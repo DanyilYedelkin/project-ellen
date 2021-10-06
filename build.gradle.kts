@@ -6,7 +6,7 @@ plugins {
 group = "sk.tuke.kpi.oop"
 version = "1.0"
 
-val gamelibVersion = "2.6.0"
+val gamelibVersion = "2.6.1"
 
 val backend = if (System.getProperty("os.name").contains("mac", ignoreCase = true)) "lwjgl2" else "lwjgl"
 
