@@ -97,12 +97,12 @@ public class Reactor extends AbstractActor {
 
     /* method getTemperature() which will allow you to obtain current value of reactor's core temperature */
     public int getTemperature() {
-        return this.temperature;
+        return temperature;
     }
 
     /* method getDamage() which will allow you to obtain current value of reactor's core damage. */
     public int getDamage() {
-        return this.damage;
+        return damage;
     }
 
     /*  method repairWith() repairs reactor (health and temperature) */
