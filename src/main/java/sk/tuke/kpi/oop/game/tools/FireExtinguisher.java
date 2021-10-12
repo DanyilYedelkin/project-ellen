@@ -1,20 +1,16 @@
-package sk.tuke.kpi.oop.game;
+package sk.tuke.kpi.oop.game.tools;
 
-import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.graphics.Animation;
+import sk.tuke.kpi.oop.game.tools.BreakableTool;
 
-public class FireExtinguisher extends AbstractActor {
+public class FireExtinguisher extends BreakableTool {
     private Animation extinguisherAnimation;
 
     public FireExtinguisher() {
+        super(1);
         // create animation object
         extinguisherAnimation = new Animation("sprites/extinguisher.png", 16, 16);
         // set actor's animation to just created Animation object
         setAnimation(extinguisherAnimation);
-    }
-
-    /* a method for using fire extinguisher, which will be removed from the scene */
-    public void use() {
-        this.getScene().removeActor(this);
     }
 }

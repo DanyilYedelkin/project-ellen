@@ -1,14 +1,15 @@
-package sk.tuke.kpi.oop.game;
+package sk.tuke.kpi.oop.game.tools;
 
-import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.graphics.Animation;
+import sk.tuke.kpi.oop.game.tools.BreakableTool;
 
-public class Hammer extends AbstractActor {
+public class Hammer extends BreakableTool {
     private Animation hammerAnimation;
     protected int healthUse;       // a variable, that have a health point of the hammer
 
 
     public Hammer() {
+        super(1);
         this.healthUse = 1;        // health point of a regular hammer
 
         // create animation object
@@ -20,15 +21,5 @@ public class Hammer extends AbstractActor {
     /* a method, that returns health points of the hammer */
     public int getHealth() {
         return this.healthUse;
-    }
-
-    /* method use() which will represent hammer's usage (health points) */
-    public void use() {
-        if (this.healthUse > 0) {
-            this.healthUse -= 1;
-        }
-        if (this.healthUse == 0) {
-            this.getScene().removeActor(this);      // will remove the item from the scene
-        }
     }
 }

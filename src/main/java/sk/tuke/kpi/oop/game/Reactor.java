@@ -1,7 +1,11 @@
 package sk.tuke.kpi.oop.game;
 
+import sk.tuke.kpi.gamelib.Scene;
 import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.graphics.Animation;
+import sk.tuke.kpi.oop.game.actions.PerpetualReactorHeating;
+import sk.tuke.kpi.oop.game.tools.FireExtinguisher;
+import sk.tuke.kpi.oop.game.tools.Hammer;
 
 public class Reactor extends AbstractActor {
     private int temperature;            // a variable, which checks a temperature of the reactor
@@ -40,7 +44,7 @@ public class Reactor extends AbstractActor {
     }
 
     /* method increaseTemperature() by using which increasing current temperature of reactor's core will be possible */
-    public void increaseTemperature(int increment) {
+    public void increaseTemperature(float increment) {
         if (running == true) {
             if (increment > 0 && this.damage != 100) {
                 if (damage < 33 && temperature <= 6000) {
@@ -180,4 +184,10 @@ public class Reactor extends AbstractActor {
             setAnimation(estinguishedAnimation);
         }
     }
+
+    /*@Override
+    public void addedToScene(Scene scene) {
+        scene.scheduleAction(new PerpetualReactorHeating(1), this);
+        new PerpetualReactorHeating(1).scheduleFor(this);
+    }*/
 }
