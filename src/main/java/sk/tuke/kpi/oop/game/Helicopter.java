@@ -38,6 +38,10 @@ public class Helicopter extends AbstractActor {
             } else{
                 setPosition(this.getPosX(), this.getPosY() - 1);
             }
+            if(intersects(this.player)){
+                this.player.setEnergy(this.player.getEnergy() - 1);
+            }
+
         }
     }
 
