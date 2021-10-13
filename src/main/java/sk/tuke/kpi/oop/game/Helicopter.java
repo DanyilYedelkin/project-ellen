@@ -24,7 +24,7 @@ public class Helicopter extends AbstractActor {
     public void working(){
         isOn = true;
     }
-    public void searchAndAttack(){
+    public void searchAndDestroy(){
         if(isOn == true){
             int x = this.player.getPosition().getX();
             int y = this.player.getPosition().getY();
@@ -44,6 +44,6 @@ public class Helicopter extends AbstractActor {
     public void addedToScene(Scene scene) {
         super.addedToScene(scene);
 
-        new Loop<>(new Invoke<>(this::searchAndAttack)).scheduleFor(this);
+        new Loop<>(new Invoke<>(this::searchAndDestroy)).scheduleFor(this);
     }
 }
