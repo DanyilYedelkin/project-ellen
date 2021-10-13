@@ -69,7 +69,7 @@ public class Reactor extends AbstractActor {
 
     /* method decreaseTemperature() which will allow to decrease actual temperature of reactor's core */
     public void decreaseTemperature(int decrement) {
-        if (decrement > 0 && running == true) {
+        if (decrement > 0 && running == true && temperature >= 0) {
             if (damage < 50) {
                 temperature -= decrement;
             }
@@ -91,6 +91,7 @@ public class Reactor extends AbstractActor {
             } else if (damage == 100) {
                 running = false;
                 setAnimation(destroyAnimation);
+                updateLights();
             }
         } else if (damage != 100) {
             setAnimation(offAnimation);
@@ -130,8 +131,10 @@ public class Reactor extends AbstractActor {
     public void turnOn() {
         if(damage != 100) {
             running = true;
+            light.toggle();
         } else {
             running = false;
+            light.toggle();
         }
         updateAnimation();
     }
@@ -140,8 +143,10 @@ public class Reactor extends AbstractActor {
     public void turnOff() {
         if (damage != 100) {
             running = false;
+            light.toggle();
         } else {
             running = false;
+            light.toggle();
         }
         updateAnimation();
     }
@@ -158,17 +163,25 @@ public class Reactor extends AbstractActor {
     /* method addLight() with which you will be able to connect light to reactor. */
     public void addLight(Light light) {
         this.light = light;
+        light.setElectricityFlow(true);
+
+        this.light.setElectricityFlow(true);
         updateLights();
     }
 
     /* method removeLight() with which you will be able to disconnect light from reactor. */
     public void removeLights(Light light) {
         light.setElectricityFlow(false);
+
+        this.light.setElectricityFlow(false);
         this.light = null;
     }
 
     /* method updateLights() will update the status (animation) of reactor */
     public void updateLights() {
+        if(light == null){
+            return;
+        }
         if (running == true && damage != 100) {
             light.setElectricityFlow(true);
         } else {
@@ -185,9 +198,10 @@ public class Reactor extends AbstractActor {
         }
     }
 
-    /*@Override
+    @Override
     public void addedToScene(Scene scene) {
-        scene.scheduleAction(new PerpetualReactorHeating(1), this);
+        super.addedToScene(scene);
+
         new PerpetualReactorHeating(1).scheduleFor(this);
-    }*/
+    }
 }

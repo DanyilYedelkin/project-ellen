@@ -8,8 +8,8 @@ public class Light extends AbstractActor {
     private Animation lightOnAnimation;
 
     /* create variables isRunning and isPowered */
-    private boolean isRunning;      // a variable, that checks, if our Light is working
-    private boolean isPowered;      // a variable, that checks, if our Light has an electricity
+    protected boolean isRunning;      // a variable, that checks, if our Light is working
+    protected boolean isPowered;      // a variable, that checks, if our Light has an electricity
 
     public Light() {
         // create animation object
@@ -32,16 +32,16 @@ public class Light extends AbstractActor {
 
     /* a method, which update light's animation */
     private void updateAnimation() {
-        if (isRunning == false && isPowered == false) {
-            setAnimation(lightOffAnimation);
-        } else {
+        if (isRunning == true && this.isPowered == true) {
             setAnimation(lightOnAnimation);
+        } else{
+            setAnimation(lightOffAnimation);
         }
     }
 
     /* a method will specify whether electricity is provided to light or not */
     public void setElectricityFlow(boolean newPower) {
-        isPowered = newPower;
+        this.isPowered = newPower;
         updateAnimation();
     }
 
