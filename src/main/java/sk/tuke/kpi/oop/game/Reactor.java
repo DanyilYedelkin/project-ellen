@@ -4,14 +4,22 @@ import sk.tuke.kpi.gamelib.Scene;
 import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.graphics.Animation;
 import sk.tuke.kpi.oop.game.actions.PerpetualReactorHeating;
+import sk.tuke.kpi.oop.game.tools.BreakableTool;
 import sk.tuke.kpi.oop.game.tools.FireExtinguisher;
 import sk.tuke.kpi.oop.game.tools.Hammer;
 
-public class Reactor extends AbstractActor {
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+public class Reactor extends AbstractActor implements Switchable, Repairable{
     private int temperature;            // a variable, which checks a temperature of the reactor
     private int damage;                 // a variable, which checks damage to the reactor
     private boolean running;            // a variable, which checks a temperature of the reactor
     private Light light;                // a light for the reactor
+    private Set<EnergyConsumer> devices;
+    private boolean isRepaire;
+    private EnergyConsumer device;
 
     private Animation normalAnimation;
     private Animation overheatedAnimation;
@@ -23,6 +31,8 @@ public class Reactor extends AbstractActor {
         temperature = 0;            // initial temperature
         damage = 0;                 // initial damage
         running = false;            // initial working of the reactor
+        devices = new HashSet<EnergyConsumer>();
+        isRepaire = false;
 
         /* create animations for the object */
         normalAnimation = new Animation("sprites/reactor_on.png",
@@ -45,7 +55,7 @@ public class Reactor extends AbstractActor {
 
     /* method increaseTemperature() by using which increasing current temperature of reactor's core will be possible */
     public void increaseTemperature(float increment) {
-        if (running == true) {
+        if (running) {
             if (increment > 0 && this.damage != 100) {
                 if (damage < 33 && temperature <= 6000) {
                     temperature += increment;
@@ -69,7 +79,7 @@ public class Reactor extends AbstractActor {
 
     /* method decreaseTemperature() which will allow to decrease actual temperature of reactor's core */
     public void decreaseTemperature(int decrement) {
-        if (decrement > 0 && running == true && temperature >= 0) {
+        if (decrement > 0 && running && temperature >= 0) {
             if (damage < 50) {
                 temperature -= decrement;
             }
@@ -83,7 +93,7 @@ public class Reactor extends AbstractActor {
 
     /* method updateAnimation() which will set proper animation of reactor according to its current temperature. */
     private void updateAnimation() {
-        if (running == true) {
+        if (running) {
             if (temperature < 4000) {
                 setAnimation(normalAnimation);
             } else if (temperature > 4000 && temperature < 6000) {
@@ -110,8 +120,8 @@ public class Reactor extends AbstractActor {
         return damage;
     }
 
-    /*  method repairWith() repairs reactor (health and temperature) */
-    public void repairWith(Hammer hammer) {
+    /*  method repair() repairs reactor (health and temperature) */
+    public boolean repair(Hammer hammer) {
         if ((hammer != null) && (this.damage > 0 && this.damage < 100)) {
             int decrement = this.damage - 50;
             if (decrement > 0) {
@@ -122,59 +132,70 @@ public class Reactor extends AbstractActor {
                 damage = 0;
             }
 
-            hammer.use();
+            hammer.useWith(hammer);
             updateAnimation();
-        }
+            isRepaire = true;
+
+            return true;
+        } else return false;
     }
 
     /* method turnOn(), which will allow turn on the reactor. */
     public void turnOn() {
-        if(damage != 100) {
+        if(damage != 100 && !running){
             running = true;
-            light.toggle();
-        } else {
-            running = false;
-            light.toggle();
+
+            Iterator<EnergyConsumer> eachDevice = devices.iterator();
+            while(eachDevice.hasNext()){
+                device = eachDevice.next();
+                device.setPowered(true);
+            }
+
+            updateAnimation();
         }
-        updateAnimation();
     }
 
     /* methods turnOff() which will allow turn off the reactor. */
     public void turnOff() {
-        if (damage != 100) {
+        if (damage != 100 && running){
             running = false;
-            light.toggle();
-        } else {
-            running = false;
-            light.toggle();
+
+            Iterator<EnergyConsumer> eachDevice = devices.iterator();
+            while(eachDevice.hasNext()){
+                device = eachDevice.next();
+                device.setPowered(false);
+            }
+
+            updateAnimation();
         }
-        updateAnimation();
     }
 
-    /* method isRunning() which will find out whether reactor is on or off */
-    public boolean isRunning() {
-        if(running == true) {
+    /* method isOn() which will find out whether reactor is on or off */
+    public boolean isOn() {
+        if(running) {
             return true;
         } else {
             return false;
         }
     }
 
-    /* method addLight() with which you will be able to connect light to reactor. */
-    public void addLight(Light light) {
-        this.light = light;
-        light.setElectricityFlow(true);
+    /* !!!1!! */
+    public void addDevice(EnergyConsumer device) {
+        if(device != null){
+            devices.add(device);
 
-        this.light.setElectricityFlow(true);
-        updateLights();
+            //device.setPowered(running);
+            if(running) device.setPowered(true);
+            else device.setPowered(false);
+        }
     }
 
-    /* method removeLight() with which you will be able to disconnect light from reactor. */
-    public void removeLights(Light light) {
-        light.setElectricityFlow(false);
-
-        this.light.setElectricityFlow(false);
-        this.light = null;
+    /* !!!!!!!!!! */
+    public void removeDevice(EnergyConsumer device) {
+       if(device != null){
+           device.setPowered(false);
+           devices.remove(device);
+       }
     }
 
     /* method updateLights() will update the status (animation) of reactor */
@@ -183,19 +204,22 @@ public class Reactor extends AbstractActor {
             return;
         }
         if (running == true && damage != 100) {
-            light.setElectricityFlow(true);
+            light.setPowered(true);
         } else {
-            light.setElectricityFlow(false);
+            light.setPowered(false);
         }
     }
 
-    /* method extinguishWith() which will extinguish burning broken reactor */
-    public void extinguishWith(FireExtinguisher fireExtinguisher) {
+    /* method extinguish() which will extinguish burning broken reactor */
+    public boolean extinguish(FireExtinguisher fireExtinguisher) {
         if ((fireExtinguisher != null) && (damage == 100)) {
-            fireExtinguisher.use();
+            fireExtinguisher.useWith(fireExtinguisher);
             temperature = 4000;
             setAnimation(estinguishedAnimation);
-        }
+            isRepaire = true;
+
+            return true;
+        } else return false;
     }
 
     @Override
@@ -203,5 +227,27 @@ public class Reactor extends AbstractActor {
         super.addedToScene(scene);
 
         new PerpetualReactorHeating(1).scheduleFor(this);
+    }
+
+    @Override
+    public boolean repair() {
+        if (damage > 0 && damage < 100) {
+            int decrement = damage;
+
+            if (damage - 50 < 0) {
+                damage = 0;
+            } else {
+                damage -= 50;
+            }
+            if (damage == 0) {
+                temperature = 2000 - (Math.abs((decrement - 50)) * 40);
+            } else if (damage > 0){
+                temperature = damage * 40;
+            }
+
+            updateAnimation();
+            return true;
+        }
+        return false;
     }
 }

@@ -7,7 +7,8 @@ public class Mjolnir extends Hammer {
     private Animation mjolnirAnimation;
 
     public Mjolnir() {
-        this.healthUse = 4;
+        super();
+        setRemainingUses(4);
 
         /* create an animation for mjolnir (a hammer, that have 4 health points) */
         mjolnirAnimation = new Animation("sprites/hammer.png", 16, 16);

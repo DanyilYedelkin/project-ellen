@@ -8,7 +8,7 @@ import sk.tuke.kpi.gamelib.graphics.Animation;
 
 import static sk.tuke.kpi.gamelib.graphics.Animation.PlayMode.LOOP_PINGPONG;
 
-public class Cooler extends AbstractActor {
+public class Cooler extends AbstractActor  implements Switchable{
     private Animation coolerAnimation;
     private boolean isRunning;
     private Reactor reactor;
@@ -21,20 +21,24 @@ public class Cooler extends AbstractActor {
 
         coolerAnimation = new Animation("sprites/fan.png", 32, 32, 0.2f, LOOP_PINGPONG);
         setAnimation(coolerAnimation);
+        turnOff();
     }
 
+    @Override
     public void turnOn(){
         if(reactor != null){
             isRunning = true;
             getAnimation().play();
         }
     }
+    @Override
     public void turnOff(){
         if(reactor != null){
             isRunning = false;
             getAnimation().stop();
         }
     }
+    @Override
     public boolean isOn() {
         return isRunning;
     }

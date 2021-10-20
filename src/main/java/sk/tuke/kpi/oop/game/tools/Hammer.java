@@ -10,8 +10,8 @@ public class Hammer extends BreakableTool {
 
     public Hammer() {
         super(1);
-        this.healthUse = 1;        // health point of a regular hammer
-
+        //this.healthUse = 1;        // health point of a regular hammer
+        setRemainingUses(1);
         // create animation object
         hammerAnimation = new Animation("sprites/hammer.png", 16, 16);
         // set actor's animation to just created Animation object

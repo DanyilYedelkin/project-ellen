@@ -25,7 +25,7 @@ public class Helicopter extends AbstractActor {
         isOn = true;
     }
     public void searchAndDestroy(){
-        if(isOn == true){
+        if(isOn){
             int x = this.player.getPosition().getX();
             int y = this.player.getPosition().getY();
             if(x > this.getPosX()){
