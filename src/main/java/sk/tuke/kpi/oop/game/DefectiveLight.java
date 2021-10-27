@@ -7,8 +7,8 @@ import sk.tuke.kpi.gamelib.actions.Invoke;
 import sk.tuke.kpi.gamelib.actions.Wait;
 import sk.tuke.kpi.gamelib.framework.actions.Loop;
 import sk.tuke.kpi.gamelib.graphics.Animation;
-import sk.tuke.kpi.oop.game.tools.BreakableTool;
-import sk.tuke.kpi.oop.game.tools.Wrench;
+//import sk.tuke.kpi.oop.game.tools.BreakableTool;
+//import sk.tuke.kpi.oop.game.tools.Wrench;
 
 //import javax.swing.*;
 
@@ -101,18 +101,19 @@ public class DefectiveLight extends Light implements Repairable{
         this.isBroken = true;
     }
 
-    public void repairLight(BreakableTool tool){
-        if(tool instanceof Wrench){
-            tool.useWith(tool);
+    /*public void repairLight(Wrench wrench){
+        //if(tool instanceof Wrench){
+            wrench.useWith(this);
             repair();
-        }
-    }
+        //}
+    }*/
 
     @Override
     public boolean repair(){
         if (this.blinking == null || !this.isBroken) return false;
         this.isBroken = false;
         this.blinking.dispose();
+        //setAnimation(lightOnAnimation);
 
         new ActionSequence<>(
             new Wait<>(10),
