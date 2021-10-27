@@ -6,13 +6,19 @@ import sk.tuke.kpi.gamelib.actions.ActionSequence;
 import sk.tuke.kpi.gamelib.actions.Invoke;
 import sk.tuke.kpi.gamelib.actions.Wait;
 import sk.tuke.kpi.gamelib.framework.actions.Loop;
+import sk.tuke.kpi.gamelib.graphics.Animation;
 import sk.tuke.kpi.oop.game.tools.BreakableTool;
 import sk.tuke.kpi.oop.game.tools.Wrench;
+
+import javax.swing.*;
 
 
 public class DefectiveLight extends Light implements Repairable{
     private boolean isRunning;
     private double randomNumber;
+    private boolean isPowered;
+    private Animation lightOffAnimation;
+    private Animation lightOnAnimation;
 
     /*public DefectiveLight(){
         isRunning = false;
@@ -60,9 +66,29 @@ public class DefectiveLight extends Light implements Repairable{
         super();
         this.isRunning = false;
         this.isBroken = true;
+
+        lightOnAnimation = new Animation("sprites/light_on.png", 16, 16, 0.1f);
+        lightOffAnimation = new Animation("sprites/light_off.png", 16, 16, 0.1f);
+        // set actor's animation to just created Animation object
+        setAnimation(lightOffAnimation);
+    }
+
+    /* a method will specify whether electricity is provided to light or not */
+    public void setPowered(boolean electricity) {
+        this.isPowered = electricity;
+        updateAnimation();
+    }
+    /* a method, which update light's animation */
+    private void updateAnimation() {
+        if (this.isPowered) {
+            setAnimation(lightOnAnimation);
+        } else{
+            setAnimation(lightOffAnimation);
+        }
     }
 
     private void randomOutage(){
+        updateAnimation();
         if(isPowered){
             int randomNumber = (int)(Math.random() * 20);
             if(randomNumber < 3) toggle();

@@ -8,8 +8,8 @@ public class Light extends AbstractActor implements Switchable, EnergyConsumer{
     private Animation lightOnAnimation;
 
     /* create variables isRunning and isPowered */
-    protected boolean isRunning;      // a variable, that checks, if our Light is working
-    protected boolean isPowered;      // a variable, that checks, if our Light has an electricity
+    private boolean isRunning;      // a variable, that checks, if our Light is working
+    private boolean isPowered;      // a variable, that checks, if our Light has an electricity
 
     public Light() {
         isRunning = false;

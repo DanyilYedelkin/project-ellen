@@ -5,12 +5,12 @@ import sk.tuke.kpi.oop.game.tools.BreakableTool;
 
 public class Hammer extends BreakableTool {
     private Animation hammerAnimation;
-    protected int healthUse;       // a variable, that have a health point of the hammer
+    private int healthUse;       // a variable, that have a health point of the hammer
 
 
     public Hammer() {
         super(1);
-        //this.healthUse = 1;        // health point of a regular hammer
+        this.healthUse = 1;        // health point of a regular hammer
         setRemainingUses(1);
         // create animation object
         hammerAnimation = new Animation("sprites/hammer.png", 16, 16);

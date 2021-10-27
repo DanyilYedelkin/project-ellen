@@ -4,7 +4,7 @@ import sk.tuke.kpi.gamelib.Actor;
 import sk.tuke.kpi.gamelib.Scene;
 import sk.tuke.kpi.gamelib.framework.AbstractActor;
 
-public abstract class BreakableTool extends AbstractActor implements Usable{
+public abstract class BreakableTool<A extends Actor> extends AbstractActor implements Usable<A>{
     private int remainingUses;
     private Scene scene;
 
@@ -14,7 +14,7 @@ public abstract class BreakableTool extends AbstractActor implements Usable{
 
     /* make method "useWith()" for all tools, witch will represent the tool usage */
     @Override
-    public void useWith(Actor actor){
+    public void useWith(A actor){
         if(this.remainingUses > 0) {
             this.remainingUses -= 1;
         }
