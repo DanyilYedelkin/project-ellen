@@ -12,13 +12,14 @@ public class Teleport extends AbstractActor {
     private boolean teleportIsAvaible;
     private Player player;
 
-    private Animation teleportAnimation;
+    //private Animation teleportAnimation;
 
     public Teleport(){
         teleportIsAvaible = false;
 
-        teleportAnimation = new Animation("sprites/lift.png", 48, 48);
-        setAnimation(teleportAnimation);
+        //teleportAnimation = new Animation("sprites/lift.png", 48, 48);
+        //setAnimation(teleportAnimation);
+        setAnimation(new Animation("sprites/lift.png", 48, 48));
     }
 
     public void setDestination(Teleport destinationTeleport) {

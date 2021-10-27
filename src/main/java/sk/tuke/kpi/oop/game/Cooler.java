@@ -9,7 +9,7 @@ import sk.tuke.kpi.gamelib.graphics.Animation;
 import static sk.tuke.kpi.gamelib.graphics.Animation.PlayMode.LOOP_PINGPONG;
 
 public class Cooler extends AbstractActor  implements Switchable{
-    private Animation coolerAnimation;
+    //private Animation coolerAnimation;
     private boolean isRunning;
     private Reactor reactor;
 
@@ -19,8 +19,10 @@ public class Cooler extends AbstractActor  implements Switchable{
         }
         isRunning = false;
 
-        coolerAnimation = new Animation("sprites/fan.png", 32, 32, 0.2f, LOOP_PINGPONG);
-        setAnimation(coolerAnimation);
+        //coolerAnimation = new Animation("sprites/fan.png", 32, 32, 0.2f, LOOP_PINGPONG);
+        //setAnimation(coolerAnimation);
+        setAnimation(new Animation("sprites/fan.png", 32, 32, 0.2f, LOOP_PINGPONG));
+
         turnOff();
     }
 

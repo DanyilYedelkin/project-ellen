@@ -19,8 +19,8 @@ public abstract class BreakableTool<A extends Actor> extends AbstractActor imple
             this.remainingUses -= 1;
         }
         if(this.remainingUses == 0) {
-            actor.removedFromScene(scene);
-            this.getScene().removeActor(actor);
+            this.removedFromScene(scene);
+            this.getScene().removeActor(this);
         }
     }
 

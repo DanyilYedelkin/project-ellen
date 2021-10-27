@@ -6,13 +6,13 @@ import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.framework.actions.Loop;
 import sk.tuke.kpi.gamelib.graphics.Animation;
 
-import static sk.tuke.kpi.gamelib.graphics.Animation.PlayMode.LOOP_PINGPONG;
+//import static sk.tuke.kpi.gamelib.graphics.Animation.PlayMode.LOOP_PINGPONG;
 
 public class TimeBomb extends AbstractActor {
     private float time;
     private boolean isActivated;
 
-    private Animation bombAnimation;
+    //private Animation bombAnimation;
     private Animation bombActAnimation;
     private Animation bombBoom;
 
@@ -20,10 +20,11 @@ public class TimeBomb extends AbstractActor {
         this.time = time;
         isActivated = false;
 
-        bombAnimation = new Animation("sprites/bomb.png", 16, 16);
+        //bombAnimation = new Animation("sprites/bomb.png", 16, 16);
         bombActAnimation = new Animation("sprites/bomb_activated.png", 16, 16, 0.1f);
         bombBoom = new Animation("sprites/small_explosion.png", 16, 16, 0.2f);
-        setAnimation(bombAnimation);
+        //setAnimation(bombAnimation);
+        setAnimation(new Animation("sprites/bomb.png", 16, 16));
     }
 
     public void activate(){

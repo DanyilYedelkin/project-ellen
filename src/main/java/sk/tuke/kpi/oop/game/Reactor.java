@@ -5,8 +5,8 @@ import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.graphics.Animation;
 import sk.tuke.kpi.oop.game.actions.PerpetualReactorHeating;
 //import sk.tuke.kpi.oop.game.tools.BreakableTool;
-import sk.tuke.kpi.oop.game.tools.FireExtinguisher;
-import sk.tuke.kpi.oop.game.tools.Hammer;
+//import sk.tuke.kpi.oop.game.tools.FireExtinguisher;
+//import sk.tuke.kpi.oop.game.tools.Hammer;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -121,8 +121,9 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
     }
 
     /*  method repair() repairs reactor (health and temperature) */
-    public boolean repair(Hammer hammer) {
-        if ((hammer != null) && (this.damage > 0 && this.damage < 100)) {
+    @Override
+    public boolean repair() {
+        if ((this.damage > 0 && this.damage < 100)) {
             int decrement = this.damage - 50;
             if (decrement > 0) {
                 temperature = (int)Math.floor((decrement / 0.025) + 2000);
@@ -132,7 +133,7 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
                 damage = 0;
             }
 
-            hammer.useWith(hammer);
+            //hammer.useWith(hammer);
             updateAnimation();
             isRepaire = true;
 
@@ -211,9 +212,9 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
     }
 
     /* method extinguish() which will extinguish burning broken reactor */
-    public boolean extinguish(FireExtinguisher fireExtinguisher) {
-        if ((fireExtinguisher != null) && (damage == 100)) {
-            fireExtinguisher.useWith(fireExtinguisher);
+    public boolean extinguish() {
+        if (damage == 100) {
+            //fireExtinguisher.useWith(fireExtinguisher);
             temperature = 4000;
             setAnimation(estinguishedAnimation);
             isRepaire = true;
@@ -229,7 +230,7 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
         new PerpetualReactorHeating(1).scheduleFor(this);
     }
 
-    @Override
+    /*@Override
     public boolean repair() {
         if (damage > 0 && damage < 100) {
             int decrement = damage;
@@ -249,5 +250,5 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
             return true;
         }
         return false;
-    }
+    }*/
 }

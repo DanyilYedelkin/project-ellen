@@ -10,7 +10,7 @@ import sk.tuke.kpi.gamelib.graphics.Animation;
 import sk.tuke.kpi.oop.game.tools.BreakableTool;
 import sk.tuke.kpi.oop.game.tools.Wrench;
 
-import javax.swing.*;
+//import javax.swing.*;
 
 
 public class DefectiveLight extends Light implements Repairable{
@@ -123,7 +123,7 @@ public class DefectiveLight extends Light implements Repairable{
         return !this.isBroken;
     }
 
-    public boolean getIsBroken(){
+    public boolean isBroken(){
         return this.isBroken;
     }
 

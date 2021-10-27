@@ -1,10 +1,11 @@
 package sk.tuke.kpi.oop.game.tools;
 
 import sk.tuke.kpi.gamelib.graphics.Animation;
-import sk.tuke.kpi.oop.game.tools.BreakableTool;
+import sk.tuke.kpi.oop.game.Reactor;
+//import sk.tuke.kpi.oop.game.tools.BreakableTool;
 
-public class Hammer extends BreakableTool {
-    private Animation hammerAnimation;
+public class Hammer extends BreakableTool <Reactor> {
+    //private Animation hammerAnimation;
     private int healthUse;       // a variable, that have a health point of the hammer
 
 
@@ -13,13 +14,21 @@ public class Hammer extends BreakableTool {
         this.healthUse = 1;        // health point of a regular hammer
         setRemainingUses(1);
         // create animation object
-        hammerAnimation = new Animation("sprites/hammer.png", 16, 16);
+        //hammerAnimation = new Animation("sprites/hammer.png", 16, 16);
         // set actor's animation to just created Animation object
-        setAnimation(hammerAnimation);
+        //setAnimation(hammerAnimation);
+        setAnimation(new Animation("sprites/hammer.png", 16, 16));
     }
 
     /* a method, that returns health points of the hammer */
     public int getHealth() {
         return this.healthUse;
+    }
+
+    @Override
+    public void useWith(Reactor reactor){
+        if(reactor != null){
+            if(reactor.repair())super.useWith(reactor);
+        }
     }
 }
