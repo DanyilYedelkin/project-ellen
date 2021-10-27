@@ -11,6 +11,7 @@ import sk.tuke.kpi.gamelib.graphics.Animation;
 public class TimeBomb extends AbstractActor {
     private float time;
     private boolean isActivated;
+    private Scene scene;
 
     //private Animation bombAnimation;
     private Animation bombActAnimation;
@@ -36,6 +37,7 @@ public class TimeBomb extends AbstractActor {
             time--;
             if(time <= 0) setAnimation(bombBoom);
             if(time == -90){
+                this.removedFromScene(scene);
                 this.getScene().removeActor(this);
             }
         }

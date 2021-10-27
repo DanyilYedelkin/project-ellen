@@ -1,7 +1,7 @@
 package sk.tuke.kpi.oop.game.tools;
 
 import sk.tuke.kpi.gamelib.graphics.Animation;
-import sk.tuke.kpi.oop.game.tools.Hammer;
+//import sk.tuke.kpi.oop.game.tools.Hammer;
 
 public class Mjolnir extends Hammer {
     //private Animation mjolnirAnimation;

@@ -14,8 +14,8 @@ import sk.tuke.kpi.gamelib.graphics.Animation;
 
 
 public class DefectiveLight extends Light implements Repairable{
-    private boolean isRunning;
-    private double randomNumber;
+    //private boolean isRunning;
+    //private double randomNumber;
     private boolean isPowered;
     private Animation lightOffAnimation;
     private Animation lightOnAnimation;
@@ -64,7 +64,7 @@ public class DefectiveLight extends Light implements Repairable{
 
     public DefectiveLight(){
         super();
-        this.isRunning = false;
+        //this.isRunning = false;
         this.isBroken = true;
 
         lightOnAnimation = new Animation("sprites/light_on.png", 16, 16, 0.1f);
@@ -92,7 +92,7 @@ public class DefectiveLight extends Light implements Repairable{
         if(isPowered){
             int randomNumber = (int)(Math.random() * 20);
             if(randomNumber < 3) toggle();
-            this.isRunning = true;
+            //this.isRunning = true;
         }
     }
 

@@ -18,7 +18,7 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
     private boolean running;            // a variable, which checks a temperature of the reactor
     private Light light;                // a light for the reactor
     private Set<EnergyConsumer> devices;
-    private boolean isRepaire;
+    //private boolean isRepaire;
     private EnergyConsumer device;
 
     private Animation normalAnimation;
@@ -32,7 +32,7 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
         damage = 0;                 // initial damage
         running = false;            // initial working of the reactor
         devices = new HashSet<EnergyConsumer>();
-        isRepaire = false;
+        //isRepaire = false;
 
         /* create animations for the object */
         normalAnimation = new Animation("sprites/reactor_on.png",
@@ -55,25 +55,23 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
 
     /* method increaseTemperature() by using which increasing current temperature of reactor's core will be possible */
     public void increaseTemperature(float increment) {
-        if (running) {
-            if (increment > 0 && this.damage != 100) {
-                if (damage < 33 && temperature <= 6000) {
-                    temperature += increment;
-                } else if (damage >= 33 && damage <= 66) {
-                    temperature += (increment * 1.5f);
-                } else if (damage > 66 && damage <= 100) {
-                    temperature += (increment * 2);
-                }
-
-                //for current damage to the reactor
-                if (temperature > 2000 && temperature <= 6000) {
-                    damage = (temperature - 2000) / 40;
-                } else if (temperature >= 6000) {
-                    damage = 100;
-                }
-
-                updateAnimation();
+        if (running && increment > 0 && this.damage != 100) {
+            if (damage < 33 && temperature <= 6000) {
+                temperature += increment;
+            } else if (damage >= 33 && damage <= 66) {
+                temperature = Math.round( temperature + increment * 1.5f);
+            } else if (damage > 66 && damage <= 100) {
+                temperature = Math.round( temperature + increment * 2);
             }
+
+            //for current damage to the reactor
+            if (temperature > 2000 && temperature <= 6000) {
+                damage = (int) Math.floor((temperature - 2000) / 40);
+            } else if (temperature >= 6000) {
+                damage = 100;
+            }
+
+            updateAnimation();
         }
     }
 
@@ -96,7 +94,7 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
         if (running) {
             if (temperature < 4000) {
                 setAnimation(normalAnimation);
-            } else if (temperature > 4000 && temperature < 6000) {
+            } else if (temperature >= 4000 && temperature < 6000) {
                 setAnimation(overheatedAnimation);
             } else if (damage == 100) {
                 running = false;
@@ -135,7 +133,7 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
 
             //hammer.useWith(hammer);
             updateAnimation();
-            isRepaire = true;
+            //isRepaire = true;
 
             return true;
         } else return false;
@@ -217,7 +215,7 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
             //fireExtinguisher.useWith(fireExtinguisher);
             temperature = 4000;
             setAnimation(estinguishedAnimation);
-            isRepaire = true;
+            //isRepaire = true;
 
             return true;
         } else return false;

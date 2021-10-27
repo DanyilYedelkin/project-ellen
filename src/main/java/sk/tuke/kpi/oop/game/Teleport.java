@@ -33,7 +33,7 @@ public class Teleport extends AbstractActor {
     }
 
     public void teleportPlayer(){
-        if(this.player != null) {
+        //if(this.player != null) {
             this.player = getScene().getLastActorByType(Player.class);
             int x = destination.getPosX() + 8;
             int y = destination.getPosY() + 8;
@@ -44,7 +44,7 @@ public class Teleport extends AbstractActor {
                     destination.teleportIsAvaible = false;
                 }
             }
-        }
+        //}
     }
 
     private void teleporting(){
