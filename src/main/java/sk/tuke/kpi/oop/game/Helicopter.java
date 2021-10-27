@@ -11,7 +11,7 @@ import sk.tuke.kpi.gamelib.graphics.Animation;
 public class Helicopter extends AbstractActor {
     private boolean isOn;
     private Animation helicopterAnimation;
-    private Scene scene;
+    //private Scene scene;
     private Player player;
 
     public Helicopter(Player player){

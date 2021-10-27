@@ -21,13 +21,11 @@ public class ChainBomb extends TimeBomb {
         List<Actor> listBombs = getScene().getActors();
 
         for(Actor actor : listBombs) {
-            if (actor instanceof ChainBomb) {
-                if (!((ChainBomb) actor).isActivated()) {
-                    Rectangle2D.Float chain_bomb =  posChainBomb(actor);
+            if (actor instanceof ChainBomb && !((ChainBomb) actor).isActivated()) {
+                Rectangle2D.Float chain_bomb =  posChainBomb(actor);
 
-                    if (Ellipse.intersects(chain_bomb)) {
-                        ((ChainBomb) actor).activate();
-                    }
+                if (Ellipse.intersects(chain_bomb)) {
+                    ((ChainBomb) actor).activate();
                 }
             }
         }
