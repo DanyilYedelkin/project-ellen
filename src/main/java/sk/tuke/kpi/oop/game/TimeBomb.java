@@ -6,12 +6,14 @@ import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.framework.actions.Loop;
 import sk.tuke.kpi.gamelib.graphics.Animation;
 
+import java.util.Objects;
+
 //import static sk.tuke.kpi.gamelib.graphics.Animation.PlayMode.LOOP_PINGPONG;
 
 public class TimeBomb extends AbstractActor {
     private float time;
     private boolean isActivated;
-    private Scene scene;
+    //private Scene scene;
 
     //private Animation bombAnimation;
     private Animation bombActAnimation;
@@ -36,8 +38,8 @@ public class TimeBomb extends AbstractActor {
         if(isActivated){
             time--;
             if(time <= 0) setAnimation(bombBoom);
-            if(time == -90){
-                this.removedFromScene(scene);
+            if(time == -80){
+                Objects.requireNonNull(this.getScene()).removeActor(this);
                 this.getScene().removeActor(this);
             }
         }

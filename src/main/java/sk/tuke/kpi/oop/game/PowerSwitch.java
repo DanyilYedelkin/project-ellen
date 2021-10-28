@@ -41,8 +41,10 @@ public class PowerSwitch extends AbstractActor {
     }
 
     public void switchOff(){
-        if(device != null && device.isOn()) {
+        if(device != null /*&& device.isOn()*/) {
+            toggle();
             device.turnOff();
+            this.device.turnOff();
             setTint();
         }
     }
