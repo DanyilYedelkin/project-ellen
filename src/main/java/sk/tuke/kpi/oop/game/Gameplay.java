@@ -21,6 +21,7 @@ public class Gameplay extends Scenario {
         /*scene.addActor(reactor, 146, 95);
         reactor.turnOn();
 
+
         // add cooler into the scene, and turn it on 5 seconds after the scene starts
         Cooler cooler = new Cooler(reactor);
         scene.addActor(cooler, 250,120);
@@ -44,6 +45,19 @@ public class Gameplay extends Scenario {
             () -> reactor.getTemperature() >= 4000,
             new Invoke<>(() -> smartCooler.turnOn())
         ).scheduleFor(smartCooler);*/
+
+        /*ChainBomb chainBomb1 = new ChainBomb(100);
+        scene.addActor(chainBomb1, 125, 70);
+
+        ChainBomb chainBomb2 = new ChainBomb(100);
+        scene.addActor(chainBomb2, 200, 95);
+
+        ChainBomb chainBomb3 = new ChainBomb(100);
+        scene.addActor(chainBomb3, 175, 70);
+
+        ChainBomb chainBomb4 = new ChainBomb(100);
+        scene.addActor(chainBomb4, 155, 70);*/
+
 
         getMarkers(scene);
 

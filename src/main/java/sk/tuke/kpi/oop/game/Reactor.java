@@ -54,20 +54,21 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
     }
 
     /* method increaseTemperature() by using which increasing current temperature of reactor's core will be possible */
-    public void increaseTemperature(float increment) {
-        if (running && increment > 0 && this.damage != 100) {
-            if (damage < 33 && temperature <= 6000) {
+    public void increaseTemperature(int increment) {
+        if (running /*&& increment > 0 && this.damage != 100*/) {
+            if (damage < 33 && temperature < 6000) {
                 temperature += increment;
             } else if (damage >= 33 && damage <= 66) {
                 temperature = Math.round( temperature + increment * 1.5f);
-            } else if (damage > 66 && damage <= 100) {
+            } else /*if (damage > 66 && damage <= 100)*/ {
                 temperature = Math.round( temperature + increment * 2);
             }
 
             //for current damage to the reactor
-            if (temperature > 2000 && temperature <= 6000) {
-                damage = (int) Math.floor((temperature - 2000) / 40);
+            if (temperature > 2000 && temperature < 6000) {
+                damage = (int) Math.floor((temperature - 2000) * 0.025);
             } else if (temperature >= 6000) {
+                temperature = 6000;
                 damage = 100;
             }
 
@@ -78,14 +79,16 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
     /* method decreaseTemperature() which will allow to decrease actual temperature of reactor's core */
     public void decreaseTemperature(int decrement) {
         if (decrement > 0 && running && temperature >= 0) {
-            if (damage < 50) {
+            if (damage <= 50) {
                 temperature -= decrement;
-            }
-            else if (damage >= 50 && damage < 100) {
+            } else if (damage > 50 && damage <= 100) {
                 temperature -= decrement / 2;
             }
 
             updateAnimation();
+        }
+        if(decrement > 0 && temperature <= 0){
+            temperature = 0;
         }
     }
 
@@ -99,6 +102,11 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
             } else if (damage == 100) {
                 running = false;
                 setAnimation(destroyAnimation);
+                Iterator<EnergyConsumer> eachDevice = devices.iterator();
+                while(eachDevice.hasNext()){
+                    device = eachDevice.next();
+                    device.setPowered(false);
+                }
                 updateLights();
             }
         } else if (damage != 100) {
