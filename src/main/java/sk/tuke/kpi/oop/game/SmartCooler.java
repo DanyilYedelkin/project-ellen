@@ -6,13 +6,15 @@ import sk.tuke.kpi.gamelib.framework.actions.Loop;
 
 public class SmartCooler extends Cooler {
     private Reactor reactor;
+    private boolean isRunning;
 
     public SmartCooler(Reactor reactor) {
         super(reactor);
+        isRunning = false;
         if(reactor != null){
             this.reactor = reactor;
         }
-        turnOff();
+        this.turnOff();
     }
 
 
@@ -32,5 +34,24 @@ public class SmartCooler extends Cooler {
         super.addedToScene(scene);
 
         new Loop<>(new Invoke<>(this::smartCoolReactor)).scheduleFor(this);
+    }
+
+    @Override
+    public void turnOff(){
+        if(reactor != null){
+            isRunning = false;
+            getAnimation().stop();
+        }
+    }
+    @Override
+    public void turnOn(){
+        if(reactor != null){
+            isRunning = true;
+            getAnimation().play();
+        }
+    }
+    @Override
+    public boolean isOn() {
+        return isRunning;
     }
 }

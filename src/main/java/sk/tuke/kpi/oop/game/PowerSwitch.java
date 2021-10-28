@@ -27,9 +27,10 @@ public class PowerSwitch extends AbstractActor {
         }
     }
 
-    public void getDevice(Switchable device){
-        this.device = device;
-        setTint();
+    public Switchable getDevice(){
+        //this.device = device;
+        //setTint();
+        return device;
     }
 
     public void switchOn(){
