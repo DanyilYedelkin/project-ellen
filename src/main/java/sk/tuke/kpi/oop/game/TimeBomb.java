@@ -39,6 +39,7 @@ public class TimeBomb extends AbstractActor {
             time--;
             if(time <= 0) setAnimation(bombBoom);
             if(time == -80){
+                this.isActivated = false;
                 Objects.requireNonNull(this.getScene()).removeActor(this);
                 this.getScene().removeActor(this);
             }

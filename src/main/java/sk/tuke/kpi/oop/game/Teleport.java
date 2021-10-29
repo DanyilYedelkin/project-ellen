@@ -1,6 +1,6 @@
 package sk.tuke.kpi.oop.game;
 
-import sk.tuke.kpi.gamelib.Scene;
+//import sk.tuke.kpi.gamelib.Scene;
 import sk.tuke.kpi.gamelib.actions.Invoke;
 import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.framework.Player;
@@ -32,7 +32,7 @@ public class Teleport extends AbstractActor {
         return destination;
     }
 
-    public void teleportPlayer(){
+    private void teleportPlayerDist(){
         //if(this.player != null) {
             this.player = getScene().getLastActorByType(Player.class);
             int x = destination.getPosX() + 8;
@@ -57,13 +57,19 @@ public class Teleport extends AbstractActor {
 
         //for teleporting the player
         if(destination != null && teleportIsAvaible){
-            teleportPlayer();
+            teleportPlayerDist();
         }
     }
 
-    @Override
+    /*@Override
     public void addedToScene(Scene scene) {
         super.addedToScene(scene);
+        this.player = getScene().getLastActorByType(Player.class);
+
+        new Loop<>(new Invoke<>(this::teleporting)).scheduleFor(player);
+    }*/
+
+    public void teleportPlayer(){
         this.player = getScene().getLastActorByType(Player.class);
 
         new Loop<>(new Invoke<>(this::teleporting)).scheduleFor(player);

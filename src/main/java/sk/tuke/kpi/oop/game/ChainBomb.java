@@ -9,12 +9,15 @@ import java.util.List;
 
 public class ChainBomb extends TimeBomb {
     private double ellipse;
+    private boolean isActivated = false;
 
     public ChainBomb(float time) {
         super(time);
+        isActivated = false;
     }
 
     public void explode() {
+        this.isActivated = true;
         super.activate();
         int x = this.getPosX();
         int y = this.getPosY();
@@ -32,12 +35,14 @@ public class ChainBomb extends TimeBomb {
                 ellipse = Math.sqrt(ellipse);
 
                 // If our boom-ellipse's radius is 50 and less
-                if (ellipse <= 84){
+                if (ellipse <= 84 && !((ChainBomb) actor).isActivated){
+                    ((ChainBomb) actor).isActivated = true;
                     ((ChainBomb) actor).activate();
                 }
 
                 // probably it isn't work, I don't know why :D
                 if (Ellipse.intersects(chainBomb)){
+                    ((ChainBomb) actor).isActivated = true;
                     ((ChainBomb) actor).activate();
                 }
             }
