@@ -44,6 +44,7 @@ public class Helicopter extends AbstractActor {
                 player.setEnergy(player.getEnergy() - 1);
             }
 
+
         //}
     }
 
