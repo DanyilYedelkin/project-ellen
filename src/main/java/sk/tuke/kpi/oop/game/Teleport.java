@@ -72,8 +72,8 @@ public class Teleport extends AbstractActor {
     public void teleportPlayer(Player player){
         if(player != null){
             this.player = player;
-            int x = destination.getPosX() + 8;
-            int y = destination.getPosY() + 8;
+            int x = destination.getPosX()+8;
+            int y = destination.getPosY()+8;
 
 
             this.player.setPosition(x, y);
@@ -85,8 +85,8 @@ public class Teleport extends AbstractActor {
 
     private void teleporting(){
         this.player = getScene().getLastActorByType(Player.class);
-        int x = player.getPosX() + 20;
-        int y = player.getPosY() + 20;
+        /*int x = player.getPosX() + 8;
+        int y = player.getPosY() + 8;
         int teleportX = this.getPosX();
         int teleportY = this.getPosY();
 
@@ -97,13 +97,12 @@ public class Teleport extends AbstractActor {
             if(!(this.player.intersects(destination))){
                 destination.teleportIsAvaible = true;
             }
-
             //for teleporting the player
-            if(teleportIsAvaible && (x > teleportX && x < teleportX + 40) && (y > teleportY && y < teleportY + 40)){
+            if(teleportIsAvaible && (x > teleportX && x < teleportX + 48) && (y > teleportY && y < teleportY + 48)){
                 teleportPlayer(player);
             }
-        }
-        /*if(!this.player.intersects(this)){
+        }*/
+        if(!this.player.intersects(this)){
             teleportIsAvaible = true;
         }
         if(destination != null && !(this.player.intersects(destination))){
@@ -111,9 +110,9 @@ public class Teleport extends AbstractActor {
         }
 
         //for teleporting the player
-        if(destination != null && teleportIsAvaible && (z1 < x && z1 + 40 > x) && (z2 < y && z2 + 40 > y)){
+        if(destination != null && teleportIsAvaible && player.intersects(this)){
             teleportPlayer(player);
-        }*/
+        }
         //&& player.intersects(this)
     }
 

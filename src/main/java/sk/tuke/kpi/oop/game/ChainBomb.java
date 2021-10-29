@@ -46,6 +46,7 @@ public class ChainBomb extends TimeBomb {
         Ellipse2D.Float Ellipse = new Ellipse2D.Float(x - getWidth(), y - getWidth(), 100, 100);
         //RoundRectangle2D.Float Ellipse = new RoundRectangle2D.Float(x - getWidth(), y - getWidth(), 50, 50);
 
+
         List<Actor> listBombs = getScene().getActors();
 
         for(Actor actor : listBombs) {
@@ -57,7 +58,7 @@ public class ChainBomb extends TimeBomb {
                 ellipse = Math.sqrt(ellipse);
 
                 // If our boom-ellipse's radius is 50 and less
-                if (ellipse <= 150 && !((ChainBomb) actor).isActivated){
+                if (ellipse <= 58 && !((ChainBomb) actor).isActivated){
                     ((ChainBomb) actor).isActivated = true;
                     ((ChainBomb) actor).explode();
                 }

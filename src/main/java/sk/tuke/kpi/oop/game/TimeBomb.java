@@ -24,9 +24,9 @@ public class TimeBomb extends AbstractActor {
 
         //bombAnimation = new Animation("sprites/bomb.png", 16, 16);
         bombActAnimation = new Animation("sprites/bomb_activated.png",
-            16, 16, 0.1f, Animation.PlayMode.LOOP_PINGPONG);
+            16, 16, 0.125f, Animation.PlayMode.LOOP_PINGPONG);
         bombBoom = new Animation("sprites/small_explosion.png",
-            16, 16, 0.2f, Animation.PlayMode.LOOP_PINGPONG);
+            16, 16, 0.125f, Animation.PlayMode.LOOP_PINGPONG);
         //setAnimation(bombAnimation);
         setAnimation(new Animation("sprites/bomb.png", 16, 16));
     }
@@ -46,7 +46,7 @@ public class TimeBomb extends AbstractActor {
                 new Wait<>(time),
                 new Invoke<>(() -> setAnimation(bombBoom)),
 
-                new Wait<>(0.8f),
+                new Wait<>(1),
                 new Invoke<>(() -> this.getScene().removeActor(this))
             ).scheduleFor(this);
 
@@ -63,6 +63,10 @@ public class TimeBomb extends AbstractActor {
 
     public boolean isActivated(){
         return isActivated;
+    }
+
+    public float myTime(){
+        return time;
     }
 
     /*@Override

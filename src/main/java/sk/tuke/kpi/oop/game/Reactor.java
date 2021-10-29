@@ -59,14 +59,14 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
             if (damage < 33) {
                 temperature += increment;
             } else if (damage >= 33 && damage <= 66) {
-                temperature += (int)(increment * 1.5f);
+                temperature += Math.round(increment * 1.5f);
             } else /*if (damage > 66 && damage <= 100)*/ {
                 temperature += increment * 2;
             }
 
             //for current damage to the reactor
             if (temperature > 2000 && temperature < 6000) {
-                damage = (int)((temperature - 2000) * 0.025);
+                damage = (int)Math.floor((temperature - 2000) * 0.025);
             } else if (temperature >= 6000) {
                 //temperature = 6000;
                 damage = 100;
@@ -79,10 +79,10 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
     /* method decreaseTemperature() which will allow to decrease actual temperature of reactor's core */
     public void decreaseTemperature(int decrement) {
         if (decrement > 0 && running && temperature >= 0) {
-            if (damage <= 50) {
+            if (damage < 50) {
                 temperature -= decrement;
-            } else if (damage > 50 && damage <= 100) {
-                temperature -= decrement / 2;
+            } else if (damage >= 50 && damage < 100) {
+                temperature -= (int)Math.floor(decrement / 2);
             }
 
             updateAnimation();
