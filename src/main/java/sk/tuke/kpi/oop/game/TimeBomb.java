@@ -1,6 +1,6 @@
 package sk.tuke.kpi.oop.game;
 
-import sk.tuke.kpi.gamelib.Scene;
+//import sk.tuke.kpi.gamelib.Scene;
 import sk.tuke.kpi.gamelib.actions.Invoke;
 import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.framework.actions.Loop;
@@ -24,8 +24,10 @@ public class TimeBomb extends AbstractActor {
         isActivated = false;
 
         //bombAnimation = new Animation("sprites/bomb.png", 16, 16);
-        bombActAnimation = new Animation("sprites/bomb_activated.png", 16, 16, 0.1f);
-        bombBoom = new Animation("sprites/small_explosion.png", 16, 16, 0.2f);
+        bombActAnimation = new Animation("sprites/bomb_activated.png",
+            16, 16, 0.1f, Animation.PlayMode.LOOP_PINGPONG);
+        bombBoom = new Animation("sprites/small_explosion.png",
+            16, 16, 0.2f, Animation.PlayMode.LOOP_PINGPONG);
         //setAnimation(bombAnimation);
         setAnimation(new Animation("sprites/bomb.png", 16, 16));
     }
@@ -33,15 +35,17 @@ public class TimeBomb extends AbstractActor {
     public void activate(){
         isActivated = true;
         setAnimation(bombActAnimation);
+        new Loop<>(new Invoke<>(this::bombActivate)).scheduleFor(this);
     }
     private void bombActivate(){
         if(isActivated){
             time--;
             if(time <= 0) setAnimation(bombBoom);
-            if(time == -80){
+            if(time == -90){
                 this.isActivated = false;
-                Objects.requireNonNull(this.getScene()).removeActor(this);
                 this.getScene().removeActor(this);
+                Objects.requireNonNull(this.getScene()).removeActor(this);
+                //this.getScene().removeActor(this);
             }
         }
     }
@@ -50,10 +54,10 @@ public class TimeBomb extends AbstractActor {
         return isActivated;
     }
 
-    @Override
+    /*@Override
     public void addedToScene(Scene scene){
         super.addedToScene(scene);
 
         new Loop<>(new Invoke<>(this::bombActivate)).scheduleFor(this);
-    }
+    }*/
 }

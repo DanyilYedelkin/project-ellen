@@ -34,7 +34,7 @@ public class Teleport extends AbstractActor {
 
     private void teleportPlayerDist(){
         //if(this.player != null) {
-            this.player = getScene().getLastActorByType(Player.class);
+            Player player = getScene().getLastActorByType(Player.class);
             int x = destination.getPosX() + 8;
             int y = destination.getPosY() + 8;
 
@@ -48,6 +48,7 @@ public class Teleport extends AbstractActor {
     }
 
     private void teleporting(){
+        //Player player = getScene().getLastActorByType(Player.class);;
         if(!this.player.intersects(this)){
             teleportIsAvaible = true;
         }
@@ -69,9 +70,11 @@ public class Teleport extends AbstractActor {
         new Loop<>(new Invoke<>(this::teleporting)).scheduleFor(player);
     }*/
 
-    public void teleportPlayer(){
+    public void teleportPlayer(Player player){
+        //player = getScene().getLastActorByType(Player.class);
+        this.player = player;
         this.player = getScene().getLastActorByType(Player.class);
 
-        new Loop<>(new Invoke<>(this::teleporting)).scheduleFor(player);
+        new Loop<>(new Invoke<>(this::teleporting)).scheduleFor(this.player);
     }
 }
