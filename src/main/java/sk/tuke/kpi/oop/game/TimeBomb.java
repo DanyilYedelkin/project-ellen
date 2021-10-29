@@ -36,22 +36,8 @@ public class TimeBomb extends AbstractActor {
         setAnimation(bombActAnimation);
         //new Loop<>(new Invoke<>(this::bombActivate)).scheduleFor(this);
         bombActivate();
-        /*time--;
-
-        new ActionSequence<>(
-            new Wait<>(time),
-            new When<>(
-                () -> this.time <= 0,
-                new Invoke<>(() -> setAnimation(bombBoom))
-            ).scheduleFor(this)
-        ).scheduleFor(this);*/
-
-        /*new When<>(
-            () -> this.time <= 0,
-            new Invoke<>(() -> setAnimation(bombBoom))
-        ).scheduleFor(this);*/
-
     }
+
     private void bombActivate(){
         if(isActivated){
             //time--;
@@ -60,14 +46,10 @@ public class TimeBomb extends AbstractActor {
                 new Wait<>(time),
                 new Invoke<>(() -> setAnimation(bombBoom)),
 
-                new Wait<>(2),
+                new Wait<>(0.8f),
                 new Invoke<>(() -> this.getScene().removeActor(this))
             ).scheduleFor(this);
 
-            /*new ActionSequence<>(
-                new Wait<>(3),
-                new Invoke<>(() -> this.getScene().removeActor(this))
-            ).scheduleFor(this);*/
 
             //if(time <= 0) setAnimation(bombBoom);
             /*if(time == -90){

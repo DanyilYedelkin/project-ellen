@@ -57,16 +57,14 @@ public class ChainBomb extends TimeBomb {
                 ellipse = Math.sqrt(ellipse);
 
                 // If our boom-ellipse's radius is 50 and less
-                if (ellipse <= 58 && !((ChainBomb) actor).isActivated){
+                if (ellipse <= 150 && !((ChainBomb) actor).isActivated){
                     ((ChainBomb) actor).isActivated = true;
-                    //((ChainBomb) actor).activate();
                     ((ChainBomb) actor).explode();
                 }
 
                 // probably it isn't work, I don't know why :D
                 if (Ellipse.intersects(chainBomb)){
                     ((ChainBomb) actor).isActivated = true;
-                    //((ChainBomb) actor).activate();
                     ((ChainBomb) actor).explode();
                 }
             }

@@ -1,6 +1,6 @@
 package sk.tuke.kpi.oop.game;
 
-//import sk.tuke.kpi.gamelib.Scene;
+import sk.tuke.kpi.gamelib.Scene;
 import sk.tuke.kpi.gamelib.actions.Invoke;
 import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.framework.Player;
@@ -17,6 +17,7 @@ public class Teleport extends AbstractActor {
     public Teleport(Teleport teleport){
         teleportIsAvaible = false;
         destination = teleport;
+        //player = getScene().getLastActorByType(Player.class);
 
         //teleportAnimation = new Animation("sprites/lift.png", 48, 48);
         //setAnimation(teleportAnimation);
@@ -33,17 +34,18 @@ public class Teleport extends AbstractActor {
         return destination;
     }
 
-    public void teleportPlayer(Player player){
+    /*public void teleportPlayer(Player player){
         //player = getScene().getLastActorByType(Player.class);
         this.player = player;
-        this.player = getScene().getLastActorByType(Player.class);
+        //this.player = getScene().getLastActorByType(Player.class);
 
-        new Loop<>(new Invoke<>(this::teleporting)).scheduleFor(this.player);
+        //new Loop<>(new Invoke<>(this::teleporting)).scheduleFor(this.player);
+        teleportPlayerDist();
     }
 
     private void teleportPlayerDist(){
         //if(this.player != null) {
-            Player player = getScene().getLastActorByType(Player.class);
+            //Player player = getScene().getLastActorByType(Player.class);
             int x = destination.getPosX() + 8;
             int y = destination.getPosY() + 8;
 
@@ -54,12 +56,54 @@ public class Teleport extends AbstractActor {
                 }
             }
         //}
+    }*/
+    /*public void teleportPlayer(Player player){
+        this.player = player;
+        int x = destination.getPosX() + 8;
+        int y = destination.getPosY() + 8;
+
+        if (player.intersects(this)) {
+            player.setPosition(x, y);
+            if (player.intersects(destination)) {
+                destination.teleportIsAvaible = false;
+            }
+        }
+    }*/
+    public void teleportPlayer(Player player){
+        if(player != null){
+            this.player = player;
+            int x = destination.getPosX() + 8;
+            int y = destination.getPosY() + 8;
+
+
+            this.player.setPosition(x, y);
+            if (this.player.intersects(destination)) {
+                destination.teleportIsAvaible = false;
+            }
+        }
     }
 
-
     private void teleporting(){
-        //Player player = getScene().getLastActorByType(Player.class);;
-        if(!this.player.intersects(this)){
+        this.player = getScene().getLastActorByType(Player.class);
+        int x = player.getPosX() + 20;
+        int y = player.getPosY() + 20;
+        int teleportX = this.getPosX();
+        int teleportY = this.getPosY();
+
+        if(destination != null){
+            if(!this.player.intersects(this)){
+                teleportIsAvaible = true;
+            }
+            if(!(this.player.intersects(destination))){
+                destination.teleportIsAvaible = true;
+            }
+
+            //for teleporting the player
+            if(teleportIsAvaible && (x > teleportX && x < teleportX + 40) && (y > teleportY && y < teleportY + 40)){
+                teleportPlayer(player);
+            }
+        }
+        /*if(!this.player.intersects(this)){
             teleportIsAvaible = true;
         }
         if(destination != null && !(this.player.intersects(destination))){
@@ -67,16 +111,21 @@ public class Teleport extends AbstractActor {
         }
 
         //for teleporting the player
-        if(destination != null && teleportIsAvaible){
-            teleportPlayerDist();
-        }
+        if(destination != null && teleportIsAvaible && (z1 < x && z1 + 40 > x) && (z2 < y && z2 + 40 > y)){
+            teleportPlayer(player);
+        }*/
+        //&& player.intersects(this)
     }
 
-    /*@Override
+    @Override
     public void addedToScene(Scene scene) {
         super.addedToScene(scene);
         this.player = getScene().getLastActorByType(Player.class);
 
+
+        /*if(player != null){
+            new Loop<>(new Invoke<>(this::teleporting)).scheduleFor(player);
+        }*/
         new Loop<>(new Invoke<>(this::teleporting)).scheduleFor(player);
-    }*/
+    }
 }
