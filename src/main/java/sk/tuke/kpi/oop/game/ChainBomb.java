@@ -2,6 +2,7 @@ package sk.tuke.kpi.oop.game;
 
 import sk.tuke.kpi.gamelib.Actor;
 import sk.tuke.kpi.gamelib.actions.Invoke;
+import sk.tuke.kpi.gamelib.actions.When;
 import sk.tuke.kpi.gamelib.framework.actions.Loop;
 
 
@@ -28,9 +29,13 @@ public class ChainBomb extends TimeBomb {
     }
     private void timeCheck(){
         time--;
-        if(time <= 0) {
+        /*if(time <= 0) {
             new Loop<>(new Invoke<>(this::explodeAll)).scheduleFor(this);
-        }
+        }*/
+        new When<>(
+            () -> this.time <= 0,
+            new Invoke<>(this::explodeAll)
+        ).scheduleFor(this);
     }
 
     private void explodeAll(){
@@ -52,7 +57,7 @@ public class ChainBomb extends TimeBomb {
                 ellipse = Math.sqrt(ellipse);
 
                 // If our boom-ellipse's radius is 50 and less
-                if (ellipse <= 84 && !((ChainBomb) actor).isActivated){
+                if (ellipse <= 50 && !((ChainBomb) actor).isActivated){
                     ((ChainBomb) actor).isActivated = true;
                     //((ChainBomb) actor).activate();
                     ((ChainBomb) actor).explode();

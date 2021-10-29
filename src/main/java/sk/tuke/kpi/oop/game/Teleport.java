@@ -14,8 +14,9 @@ public class Teleport extends AbstractActor {
 
     //private Animation teleportAnimation;
 
-    public Teleport(){
+    public Teleport(Teleport teleport){
         teleportIsAvaible = false;
+        destination = teleport;
 
         //teleportAnimation = new Animation("sprites/lift.png", 48, 48);
         //setAnimation(teleportAnimation);
@@ -32,6 +33,14 @@ public class Teleport extends AbstractActor {
         return destination;
     }
 
+    public void teleportPlayer(Player player){
+        //player = getScene().getLastActorByType(Player.class);
+        this.player = player;
+        this.player = getScene().getLastActorByType(Player.class);
+
+        new Loop<>(new Invoke<>(this::teleporting)).scheduleFor(this.player);
+    }
+
     private void teleportPlayerDist(){
         //if(this.player != null) {
             Player player = getScene().getLastActorByType(Player.class);
@@ -46,6 +55,7 @@ public class Teleport extends AbstractActor {
             }
         //}
     }
+
 
     private void teleporting(){
         //Player player = getScene().getLastActorByType(Player.class);;
@@ -69,12 +79,4 @@ public class Teleport extends AbstractActor {
 
         new Loop<>(new Invoke<>(this::teleporting)).scheduleFor(player);
     }*/
-
-    public void teleportPlayer(Player player){
-        //player = getScene().getLastActorByType(Player.class);
-        this.player = player;
-        this.player = getScene().getLastActorByType(Player.class);
-
-        new Loop<>(new Invoke<>(this::teleporting)).scheduleFor(this.player);
-    }
 }

@@ -1,14 +1,13 @@
 package sk.tuke.kpi.oop.game;
 
 //import sk.tuke.kpi.gamelib.Scene;
+//import sk.tuke.kpi.gamelib.Actor;
+import sk.tuke.kpi.gamelib.actions.ActionSequence;
 import sk.tuke.kpi.gamelib.actions.Invoke;
+import sk.tuke.kpi.gamelib.actions.Wait;
 import sk.tuke.kpi.gamelib.framework.AbstractActor;
-import sk.tuke.kpi.gamelib.framework.actions.Loop;
+//import sk.tuke.kpi.gamelib.framework.actions.Loop;
 import sk.tuke.kpi.gamelib.graphics.Animation;
-
-import java.util.Objects;
-
-//import static sk.tuke.kpi.gamelib.graphics.Animation.PlayMode.LOOP_PINGPONG;
 
 public class TimeBomb extends AbstractActor {
     private float time;
@@ -35,18 +34,48 @@ public class TimeBomb extends AbstractActor {
     public void activate(){
         isActivated = true;
         setAnimation(bombActAnimation);
-        new Loop<>(new Invoke<>(this::bombActivate)).scheduleFor(this);
+        //new Loop<>(new Invoke<>(this::bombActivate)).scheduleFor(this);
+        bombActivate();
+        /*time--;
+
+        new ActionSequence<>(
+            new Wait<>(time),
+            new When<>(
+                () -> this.time <= 0,
+                new Invoke<>(() -> setAnimation(bombBoom))
+            ).scheduleFor(this)
+        ).scheduleFor(this);*/
+
+        /*new When<>(
+            () -> this.time <= 0,
+            new Invoke<>(() -> setAnimation(bombBoom))
+        ).scheduleFor(this);*/
+
     }
     private void bombActivate(){
         if(isActivated){
-            time--;
-            if(time <= 0) setAnimation(bombBoom);
-            if(time == -90){
+            //time--;
+
+            new ActionSequence<>(
+                new Wait<>(time),
+                new Invoke<>(() -> setAnimation(bombBoom)),
+
+                new Wait<>(2),
+                new Invoke<>(() -> this.getScene().removeActor(this))
+            ).scheduleFor(this);
+
+            /*new ActionSequence<>(
+                new Wait<>(3),
+                new Invoke<>(() -> this.getScene().removeActor(this))
+            ).scheduleFor(this);*/
+
+            //if(time <= 0) setAnimation(bombBoom);
+            /*if(time == -90){
                 this.isActivated = false;
                 this.getScene().removeActor(this);
                 Objects.requireNonNull(this.getScene()).removeActor(this);
                 //this.getScene().removeActor(this);
-            }
+            }*/
         }
     }
 
