@@ -65,10 +65,6 @@ public class TimeBomb extends AbstractActor {
         return isActivated;
     }
 
-    public float myTime(){
-        return time;
-    }
-
     /*@Override
     public void addedToScene(Scene scene){
         super.addedToScene(scene);
