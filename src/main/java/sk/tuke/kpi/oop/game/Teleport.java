@@ -80,8 +80,8 @@ public class Teleport extends AbstractActor {
     public void teleportPlayer(Player player) {
         if(this.player != null){
             //for new player's position (into the middle of the teleport)
-            int newX = this.getPosX() + Math.abs(this.getWidth() / 2) - Math.abs(this.player.getWidth() / 2);
-            int newY = this.getPosY() + Math.abs(this.getHeight() / 2) - Math.abs(this.player.getHeight() / 2);
+            int newX = this.getPosX() + 8;
+            int newY = this.getPosY() + 8;
 
             this.player.setPosition(newX, newY);
 
@@ -140,6 +140,7 @@ public class Teleport extends AbstractActor {
     * */
 
     private void teleportation(){
+        //for teleporting the player (from A teleport to B teleport)
         if(this.destination != null && checkPlayerPosition()){
             this.destination.teleportPlayer(this.player);
         }
@@ -147,18 +148,23 @@ public class Teleport extends AbstractActor {
 
     private boolean checkPlayerPosition(){
         //for calculating positions of player and teleports
-        int xMidPlayer = player.getPosX() + Math.abs(player.getWidth() / 2);
-        int yMidPlayer = player.getPosY() + Math.abs(player.getHeight() / 2);
-        int xMidTeleport = this.getPosX() + Math.abs(this.getWidth() / 2);
-        int yMidTeleport = this.getPosY() + Math.abs(this.getHeight() / 2);
+        int midWidthTeleport = 24;  // that's like  Math.abs(this.getWidth() / 2);
+        int midHeightTeleport = 24; // that's like  Math.abs(this.getHeight() / 2);
+        int midWidthPlayer = 16;    // that's like  Math.abs(player.getWidth() / 2);
+        int midHeightPlayer = 16;   // that's like  Math.abs(player.getHeight() / 2)
 
-        if(!teleportIsAvaible){
+        int xMidPlayer = player.getPosX() + midWidthPlayer;
+        int yMidPlayer = player.getPosY() + midHeightPlayer;
+        int xMidTeleport = getPosX() + midWidthTeleport;
+        int yMidTeleport = getPosY() + midHeightTeleport;
+
+        if(!teleportIsAvaible){ //check if I can use the teleport again
             return false;
-        } else if(!this.player.intersects(this)){
+        } else if(!this.player.intersects(this)){ //check if player doesn't intersect with teleport
             return false;
-        } else if(Math.abs(xMidTeleport - xMidPlayer) > (Math.abs(this.getWidth() / 2))){
+        } else if(Math.abs(xMidTeleport - xMidPlayer) > midWidthTeleport){ //check if player is on a teleport (X coordinate)
             return false;
-        } else return Math.abs(yMidTeleport - yMidPlayer) <= (Math.abs(this.getHeight() / 2));
+        } else return Math.abs(yMidTeleport - yMidPlayer) <= midHeightTeleport; // check if player is on a teleport (Y coordinate)
     }
 
 
@@ -168,6 +174,7 @@ public class Teleport extends AbstractActor {
         this.player = getScene().getLastActorByType(Player.class);
 
         if(destination != null){
+            assert player != null;
             new Loop<>(new Invoke<>(this::teleportation)).scheduleFor(player);
         }
 
