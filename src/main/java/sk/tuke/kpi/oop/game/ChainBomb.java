@@ -4,7 +4,7 @@ import sk.tuke.kpi.gamelib.Actor;
 import sk.tuke.kpi.gamelib.actions.ActionSequence;
 import sk.tuke.kpi.gamelib.actions.Invoke;
 import sk.tuke.kpi.gamelib.actions.Wait;
-import sk.tuke.kpi.gamelib.actions.When;
+//import sk.tuke.kpi.gamelib.actions.When;
 import sk.tuke.kpi.gamelib.framework.actions.Loop;
 
 
