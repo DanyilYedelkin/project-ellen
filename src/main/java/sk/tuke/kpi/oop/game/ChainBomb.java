@@ -12,19 +12,19 @@ import java.awt.geom.Rectangle2D;
 import java.util.List;
 
 public class ChainBomb extends TimeBomb {
-    private double ellipse;
-    private boolean isActivated;
+    //private double ellipse;
+    //private boolean isActivated;
     private float time;
 
     public ChainBomb(float time) {
         super(time);
         this.time = time;
-        isActivated = false;
+        //isActivated = false;
     }
     @Override
-    public void activate() {
-        this.isActivated = true;
+    public void activate(){
         super.activate();
+        //this.isActivated = true;
         new Loop<>(new Invoke<>(this::timeCheck)).scheduleFor(this);
     }
 
@@ -42,7 +42,7 @@ public class ChainBomb extends TimeBomb {
         int x = this.getPosX();
         int y = this.getPosY();
         //Ellipse2D.Float Ellipse = new Ellipse2D.Float(x, y, getWidth(), getHeight());
-        Ellipse2D.Float Ellipse = new Ellipse2D.Float(x - 42, y - 58, 100, 100);
+        Ellipse2D Ellipse = new Ellipse2D.Float(x - 42, y - 58, 100, 100);
         //RoundRectangle2D.Float Ellipse = new RoundRectangle2D.Float(x - getWidth(), y - getWidth(), 50, 50);
 
 
@@ -52,8 +52,8 @@ public class ChainBomb extends TimeBomb {
             if (actor instanceof ChainBomb && !((ChainBomb) actor).isActivated()) {
                 Rectangle2D chainBomb = posChainBomb(actor);
                 //for creation an ellipse of boom
-                ellipse = Math.pow((actor.getPosY() - this.getPosY()), 2) + Math.pow((actor.getPosX() - this.getPosX()), 2);
-                ellipse = Math.sqrt(ellipse);
+                //ellipse = Math.pow((actor.getPosY() - this.getPosY()), 2) + Math.pow((actor.getPosX() - this.getPosX()), 2);
+                //ellipse = Math.sqrt(ellipse);
 
                 // probably it isn't work, I don't know why :D
                 if (Ellipse.intersects(chainBomb)){
@@ -62,10 +62,10 @@ public class ChainBomb extends TimeBomb {
                 }
 
                 // If our boom-ellipse's radius is 50 and less
-                if (ellipse <= 50 && !((ChainBomb) actor).isActivated){
-                    //((ChainBomb) actor).isActivated = true;
+                /*if (ellipse <= 50 && !((ChainBomb) actor).isActivated){
+                    ((ChainBomb) actor).isActivated = true;
                     ((ChainBomb) actor).activate();
-                }
+                }*/
             }
         }
     }
