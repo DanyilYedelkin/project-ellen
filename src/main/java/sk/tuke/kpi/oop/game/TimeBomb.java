@@ -74,12 +74,15 @@ public class TimeBomb extends AbstractActor {
 //}
 
 
-package sk.tuke.kpi.oop.game;
+/*package sk.tuke.kpi.oop.game;
 import sk.tuke.kpi.gamelib.actions.ActionSequence;
 import sk.tuke.kpi.gamelib.actions.Invoke;
 import sk.tuke.kpi.gamelib.actions.Wait;
+import sk.tuke.kpi.gamelib.actions.When;
 import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.graphics.Animation;
+
+import java.util.Objects;
 
 public class TimeBomb extends AbstractActor {
     private float time;
@@ -113,7 +116,7 @@ public class TimeBomb extends AbstractActor {
                 new Invoke<>(() -> setAnimation(bombBoom)),
 
                 // the reaction of the chain's bomb explode
-                new Invoke<>(() -> setExploded()),
+                new Invoke<>(this::setExploded),
 
                 new Wait<>(1),
                 new Invoke<>(() -> this.getScene().removeActor(this))
@@ -123,6 +126,76 @@ public class TimeBomb extends AbstractActor {
 
     public void setExploded(){
         this.isExploded = true;
+    }
+
+    public boolean isActivated(){
+        return isActivated;
+    }
+
+    public boolean isExploded() {
+        return isExploded;
+    }
+}*/
+
+package sk.tuke.kpi.oop.game;
+    import sk.tuke.kpi.gamelib.actions.ActionSequence;
+    import sk.tuke.kpi.gamelib.actions.Invoke;
+    import sk.tuke.kpi.gamelib.actions.Wait;
+    import sk.tuke.kpi.gamelib.actions.When;
+    import sk.tuke.kpi.gamelib.framework.AbstractActor;
+    import sk.tuke.kpi.gamelib.graphics.Animation;
+
+    import java.util.Objects;
+
+public class TimeBomb extends AbstractActor {
+    private float time;
+    private boolean isActivated;
+    private boolean isExploded;
+    private Animation bombActAnimation;
+    private Animation bombBoom;
+
+    public TimeBomb(float time){
+        this.time = time;
+        isActivated = false;
+        isExploded = false;
+
+        bombActAnimation = new Animation("sprites/bomb_activated.png",
+            16, 16, time/6, Animation.PlayMode.LOOP_PINGPONG);
+        bombBoom = new Animation("sprites/small_explosion.png",
+            16, 16, 0.125f, Animation.PlayMode.LOOP_PINGPONG);
+        setAnimation(new Animation("sprites/bomb.png", 16, 16));
+    }
+
+    public void activate(){
+        isActivated = true;
+        setAnimation(bombActAnimation);
+        bombActivate();
+    }
+
+    private void bombActivate(){
+        if(isActivated){
+
+            new ActionSequence<>(
+                new Wait<>(time),
+                new Invoke<>(() -> explode())
+                //new Wait<>(1),
+                //new Invoke<>(() -> this.getScene().removeActor(this))
+            ).scheduleFor(this);
+
+        }
+    }
+
+    public void explode(){
+        this.isExploded = true;
+        setAnimation(bombBoom);
+        new When<>(
+            ()->{
+                return getAnimation().getCurrentFrameIndex() >= 7;  //когда анимация взрыва бомбы на последнем кадре
+            },
+            new Invoke<>(() -> {
+                Objects.requireNonNull(getScene()).removeActor(this); //переключается на удаление, иначе анимация взрыва проходит в 0.000001 секунды
+            })
+        ).scheduleFor(this);
     }
 
     public boolean isActivated(){

@@ -1,6 +1,6 @@
-package sk.tuke.kpi.oop.game;
+//package sk.tuke.kpi.oop.game;
 
-import sk.tuke.kpi.gamelib.Actor;
+//import sk.tuke.kpi.gamelib.Actor;
 /*
 import sk.tuke.kpi.gamelib.actions.ActionSequence;
 import sk.tuke.kpi.gamelib.actions.Invoke;
@@ -8,7 +8,7 @@ import sk.tuke.kpi.gamelib.actions.Wait;
 import sk.tuke.kpi.gamelib.framework.actions.Loop;
 */
 
-import java.awt.geom.Ellipse2D;
+/*import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
 
@@ -29,12 +29,12 @@ public class ChainBomb extends TimeBomb {
     }
 
     // probably in the arena (site, which check code), has some problems with multithreading
-    /*private void timeCheck(){
-        new ActionSequence<>(
-            new Wait<>(time),
-            new Invoke<>(this::explodeAll)
-        ).scheduleFor(this);
-    }*/
+    //private void timeCheck(){
+        //new ActionSequence<>(
+            //new Wait<>(time),
+            //new Invoke<>(this::explodeAll)
+        //).scheduleFor(this);
+    //}
 
     //function for explode all chain bombs in the area of destroying (boom)
     private void explodeAll(){
@@ -69,6 +69,56 @@ public class ChainBomb extends TimeBomb {
 
     //function, which can help us find the Rectangle2D for all chain bombs
     private Rectangle2D.Float posChainBomb(Actor actor){
+        int x = actor.getPosX();
+        int y = actor.getPosY();
+        int width = actor.getWidth();
+        int height = actor.getHeight();
+
+        return new Rectangle2D.Float(x, y - height, width, height);
+    }
+}*/
+
+package sk.tuke.kpi.oop.game;
+
+import sk.tuke.kpi.gamelib.Actor;
+
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
+import java.util.List;
+
+public class ChainBomb extends TimeBomb {
+
+    public ChainBomb(float time) {
+        super(time);
+    }
+
+    @Override
+    public void explode(){
+        super.explode();
+        if (this.isExploded()) explodeAll();
+    }
+
+    private void explodeAll(){
+        int x = this.getPosX();
+        int y = this.getPosY();
+        Ellipse2D Ellipse = new Ellipse2D.Float(x - 42, y - 58, 100, 100);
+
+
+        List<Actor> listBombs = getScene().getActors();
+
+        for(Actor actor : listBombs) {
+            if (actor instanceof ChainBomb && !((ChainBomb) actor).isActivated()) {
+                Rectangle2D chainBomb = posChainBomb(actor);
+
+                if (Ellipse.intersects(chainBomb)){
+                    ((ChainBomb) actor).activate();
+                }
+
+            }
+        }
+    }
+
+    private Rectangle2D.Float posChainBomb(Actor actor) {
         int x = actor.getPosX();
         int y = actor.getPosY();
         int width = actor.getWidth();
