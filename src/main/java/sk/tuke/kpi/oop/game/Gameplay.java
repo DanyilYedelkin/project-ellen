@@ -46,14 +46,26 @@ public class Gameplay extends Scenario {
             new Invoke<>(() -> smartCooler.turnOn())
         ).scheduleFor(smartCooler);*/
 
-        ChainBomb chainBomb1 = new ChainBomb(100);
+        /*ChainBomb chainBomb1 = new ChainBomb(100);
         scene.addActor(chainBomb1, 125, 70);
 
         ChainBomb chainBomb2 = new ChainBomb(100);
         scene.addActor(chainBomb2, 200, 95);
 
         ChainBomb chainBomb3 = new ChainBomb(100);
-        scene.addActor(chainBomb3, 150, 150);
+        scene.addActor(chainBomb3, 150, 150);*/
+
+        /*ChainBomb chainBomb1 = new ChainBomb(1);
+        ChainBomb chainBomb2 = new ChainBomb(1);
+        ChainBomb chainBomb3 = new ChainBomb(1);
+        ChainBomb chainBomb4 = new ChainBomb(1);
+
+
+
+        scene.addActor(chainBomb1, 150, 150);
+        scene.addActor(chainBomb2, 200, 95);
+        scene.addActor(chainBomb3, 125, 70);
+        scene.addActor(chainBomb4, 140, 120);*/
 
 
         //getMarkers(scene);

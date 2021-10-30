@@ -1,7 +1,9 @@
 package sk.tuke.kpi.oop.game;
 
 import sk.tuke.kpi.gamelib.Actor;
+import sk.tuke.kpi.gamelib.actions.ActionSequence;
 import sk.tuke.kpi.gamelib.actions.Invoke;
+import sk.tuke.kpi.gamelib.actions.Wait;
 import sk.tuke.kpi.gamelib.actions.When;
 import sk.tuke.kpi.gamelib.framework.actions.Loop;
 
@@ -28,21 +30,28 @@ public class ChainBomb extends TimeBomb {
         new Loop<>(new Invoke<>(this::timeCheck)).scheduleFor(this);
     }
     private void timeCheck(){
-        time--;
+        //time--;
         /*if(time <= 0) {
             new Loop<>(new Invoke<>(this::explodeAll)).scheduleFor(this);
         }*/
-        new When<>(
+        /*new When<>(
             () -> this.time <= 0,
+            new Invoke<>(this::explodeAll)
+        ).scheduleFor(this);*/
+
+        new ActionSequence<>(
+            new Wait<>(time),
             new Invoke<>(this::explodeAll)
         ).scheduleFor(this);
     }
 
     private void explodeAll(){
         //this.isActivated = true;
+        time = 0;
         //super.activate();
         int x = this.getPosX();
         int y = this.getPosY();
+        //Ellipse2D.Float Ellipse = new Ellipse2D.Float(x, y, getWidth(), getHeight());
         Ellipse2D.Float Ellipse = new Ellipse2D.Float(x - getWidth(), y - getWidth(), 100, 100);
         //RoundRectangle2D.Float Ellipse = new RoundRectangle2D.Float(x - getWidth(), y - getWidth(), 50, 50);
 
@@ -58,7 +67,7 @@ public class ChainBomb extends TimeBomb {
                 ellipse = Math.sqrt(ellipse);
 
                 // If our boom-ellipse's radius is 50 and less
-                if (ellipse <= 58 && !((ChainBomb) actor).isActivated){
+                if (ellipse <= 50 && !((ChainBomb) actor).isActivated){
                     ((ChainBomb) actor).isActivated = true;
                     ((ChainBomb) actor).explode();
                 }

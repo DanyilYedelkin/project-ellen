@@ -75,34 +75,55 @@ public class Teleport extends AbstractActor {
             int x = destination.getPosX()+8;
             int y = destination.getPosY()+8;
 
-
+        if(!this.player.intersects(destination)){
             this.player.setPosition(x, y);
+            checkPosition();
+            destination.teleportIsAvaible = false;
+        }
+            /*this.player.setPosition(x, y);
             if (this.player.intersects(destination)) {
                 destination.teleportIsAvaible = false;
-            }
+            }*/
+        }
+    }
+    private void checkPosition(){
+        int xPlayer = player.getPosX();
+        int yPlayer = player.getPosY();
+
+        int xDestination = destination.getPosX() + 8;
+        int yDestination = destination.getPosY() + 8;
+
+        if(xPlayer != xDestination && yPlayer != yDestination){
+            player.setPosition(xDestination, yDestination);
+        } else if(xPlayer != xDestination){
+            player.setPosition(xDestination, yPlayer);
+        } else if(yPlayer != yDestination){
+            player.setPosition(xPlayer, yDestination);
         }
     }
 
     private void teleporting(){
         //this.player = getScene().getLastActorByType(Player.class);
-        /*int x = player.getPosX() + 8;
+        int x = player.getPosX() + 8;
         int y = player.getPosY() + 8;
         int teleportX = this.getPosX();
         int teleportY = this.getPosY();
 
-        if(destination != null){
-            if(!this.player.intersects(this)){
+        //if(destination != null){
+            //if(!this.player.intersects(this)){
+                //teleportIsAvaible = true;
+            //}
+            if(!(this.player.intersects(destination)) && !this.player.intersects(this)){
                 teleportIsAvaible = true;
-            }
-            if(!(this.player.intersects(destination))){
                 destination.teleportIsAvaible = true;
             }
             //for teleporting the player
-            if(teleportIsAvaible && (x > teleportX && x < teleportX + 48) && (y > teleportY && y < teleportY + 48)){
+            if(teleportIsAvaible && (x > teleportX && x < teleportX + 48) &&
+                (y > teleportY && y < teleportY + 48) && destination.teleportIsAvaible){
                 teleportPlayer(player);
             }
-        }*/
-        if(!this.player.intersects(this)){
+        //}
+        /*if(!this.player.intersects(this)){
             teleportIsAvaible = true;
         }
         if(destination != null && !(this.player.intersects(destination))){
@@ -112,7 +133,7 @@ public class Teleport extends AbstractActor {
         //for teleporting the player
         if(destination != null && teleportIsAvaible && player.intersects(this)){
             teleportPlayer(player);
-        }
+        }*/
         //&& player.intersects(this)
     }
 
@@ -122,10 +143,10 @@ public class Teleport extends AbstractActor {
         this.player = getScene().getLastActorByType(Player.class);
 
 
-        /*if(player != null){
+        if(destination != null){
             new Loop<>(new Invoke<>(this::teleporting)).scheduleFor(player);
-        }*/
+        }
 
-        new Loop<>(new Invoke<>(this::teleporting)).scheduleFor(player);
+        //new Loop<>(new Invoke<>(this::teleporting)).scheduleFor(player);
     }
 }
