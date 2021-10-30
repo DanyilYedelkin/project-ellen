@@ -50,12 +50,7 @@ public class ChainBomb extends TimeBomb {
 
         for(Actor actor : listBombs) {
             if (actor instanceof ChainBomb && !((ChainBomb) actor).isActivated()) {
-
-                int newX = actor.getPosX();
-                int newY = actor.getPosY();
-                int width = actor.getWidth();
-                int height = actor.getHeight();
-                Rectangle2D chainBomb = new Rectangle2D.Float(newX, newY - height, width, height);
+                Rectangle2D chainBomb = posChainBomb(actor);
                 //for creation an ellipse of boom
                 ellipse = Math.pow((actor.getPosY() - this.getPosY()), 2) + Math.pow((actor.getPosX() - this.getPosX()), 2);
                 ellipse = Math.sqrt(ellipse);
@@ -73,5 +68,14 @@ public class ChainBomb extends TimeBomb {
                 }
             }
         }
+    }
+
+    private Rectangle2D.Float posChainBomb(Actor actor) {
+        int x = actor.getPosX();
+        int y = actor.getPosY();
+        int width = actor.getWidth();
+        int height = actor.getHeight();
+
+        return new Rectangle2D.Float(x, y - height, width, height);
     }
 }
