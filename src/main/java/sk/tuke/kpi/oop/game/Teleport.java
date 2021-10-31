@@ -1,5 +1,8 @@
 package sk.tuke.kpi.oop.game;
 
+/* (the code is not perfect, later, it will be modified and improved) */
+
+//add libraries
 import sk.tuke.kpi.gamelib.Scene;
 import sk.tuke.kpi.gamelib.actions.Invoke;
 import sk.tuke.kpi.gamelib.actions.When;
@@ -8,19 +11,17 @@ import sk.tuke.kpi.gamelib.framework.Player;
 import sk.tuke.kpi.gamelib.framework.actions.Loop;
 import sk.tuke.kpi.gamelib.graphics.Animation;
 
-//import org.jetbrains.annotations.NotNull;
-
-
 public class Teleport extends AbstractActor {
-    private Teleport destination;
-    private boolean teleportIsAvaible;;
-    private Player player;
+    //add private variables
+    private Teleport destination;       //a destination of a teleport
+    private boolean teleportIsAvaible;  //check if a teleportation is avaible
+    private Player player;              //player
 
     //private Animation teleportAnimation;
 
     public Teleport(Teleport teleport){
         this.destination = teleport;
-        this.teleportIsAvaible = true;
+        this.teleportIsAvaible = true;  //default
 
         //player = getScene().getLastActorByType(Player.class);
 
@@ -30,17 +31,19 @@ public class Teleport extends AbstractActor {
         setAnimation(new Animation ("sprites/lift.png", 48, 48));
     }
 
-
+    //a method with which we can change a destination of the teleport
     public void setDestination(Teleport destinationTeleport){
         if(this != destinationTeleport) {
             this.destination = destinationTeleport;
         }
     }
 
+    //a method, which returns the destination of the teleport
     public Teleport getDestination(){
         return destination;
     }
 
+    //old version of the code
     /*public void teleportPlayer(Player player){
         //player = getScene().getLastActorByType(Player.class);
         this.player = player;
@@ -77,6 +80,8 @@ public class Teleport extends AbstractActor {
         }
     }*/
 
+    //new version of the code
+    //a method, which teleport the player
     public void teleportPlayer(Player player) {
         if(this.player != null){
             //for new player's position (into the middle of the teleport)
@@ -94,6 +99,7 @@ public class Teleport extends AbstractActor {
             ).scheduleFor(this);
         }
     }
+    //another old version of the code
     /*
     public void teleportPlayer(Player player){
         if(player != null){
@@ -139,6 +145,9 @@ public class Teleport extends AbstractActor {
 
     * */
 
+    //a new version of the code
+
+    //a method, which teleports the player (from A to B)
     private void teleportation(){
         //for teleporting the player (from A teleport to B teleport)
         if(this.destination != null && checkPlayerPosition()){
@@ -146,12 +155,13 @@ public class Teleport extends AbstractActor {
         }
     }
 
+    //a method, which checks a player position
     private boolean checkPlayerPosition(){
         //for calculating positions of player and teleports
-        int midWidthTeleport = 24;  // that's like  Math.abs(this.getWidth() / 2);
-        int midHeightTeleport = 24; // that's like  Math.abs(this.getHeight() / 2);
-        int midWidthPlayer = 16;    // that's like  Math.abs(player.getWidth() / 2);
-        int midHeightPlayer = 16;   // that's like  Math.abs(player.getHeight() / 2)
+        int midWidthTeleport = 24;  // the middle of the width teleport
+        int midHeightTeleport = 24; // the middle of the height teleport
+        int midWidthPlayer = 16;    // the middle of the width player
+        int midHeightPlayer = 16;   // the middle of the height player
 
         int xMidPlayer = player.getPosX() + midWidthPlayer;
         int yMidPlayer = player.getPosY() + midHeightPlayer;

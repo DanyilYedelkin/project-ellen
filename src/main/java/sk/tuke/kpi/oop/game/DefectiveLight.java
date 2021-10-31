@@ -1,5 +1,8 @@
 package sk.tuke.kpi.oop.game;
 
+/* (the code is not perfect, later, it will be modified and improved) */
+
+//add libraries
 import sk.tuke.kpi.gamelib.Disposable;
 import sk.tuke.kpi.gamelib.Scene;
 import sk.tuke.kpi.gamelib.actions.ActionSequence;
@@ -87,6 +90,7 @@ public class DefectiveLight extends Light implements Repairable{
         }
     }
 
+    // a method with which we will have a random number, for blinking
     private void randomOutage(){
         updateAnimation();
         if(isPowered){
@@ -124,6 +128,7 @@ public class DefectiveLight extends Light implements Repairable{
         return !this.isBroken;
     }
 
+    //a method, which will returns if defective light is broken
     public boolean isBroken(){
         return this.isBroken;
     }

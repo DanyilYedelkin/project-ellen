@@ -1,11 +1,13 @@
 package sk.tuke.kpi.oop.game;
 
+//add libraries
 import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.graphics.Animation;
 
 public class Computer extends AbstractActor implements EnergyConsumer {
-    private boolean isPowered;
-    private Animation computerAnimation;
+    //add variable
+    private boolean isPowered;  //check if a computer has an electricity
+    private Animation computerAnimation; //a computer's animation
 
     public Computer() {
         isPowered = false;
@@ -53,14 +55,15 @@ public class Computer extends AbstractActor implements EnergyConsumer {
         }
     }
 
-    @Override
+    @Override   //override method for a computer
     public void setPowered(boolean electricity) {
         isPowered = electricity;
         updateAnimation();
     }
 
+    //a method, which changed computer's animation since his powered
     public void updateAnimation() {
-        if (isPowered == true) {
+        if (isPowered) {
             computerAnimation.play();
         } else{
             computerAnimation.stop();

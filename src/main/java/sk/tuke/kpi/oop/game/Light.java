@@ -1,9 +1,11 @@
 package sk.tuke.kpi.oop.game;
 
+//add libraries
 import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.graphics.Animation;
 
 public class Light extends AbstractActor implements Switchable, EnergyConsumer{
+    //add private variables of animations
     private Animation lightOffAnimation;
     private Animation lightOnAnimation;
 
@@ -12,8 +14,9 @@ public class Light extends AbstractActor implements Switchable, EnergyConsumer{
     private boolean isPowered;      // a variable, that checks, if our Light has an electricity
 
     public Light() {
-        isRunning = false;
-        isPowered = false;
+        isRunning = false;  //default
+        isPowered = false;  //default
+
         // create animation object
         lightOnAnimation = new Animation("sprites/light_on.png", 16, 16, 0.1f);
         lightOffAnimation = new Animation("sprites/light_off.png", 16, 16, 0.1f);
@@ -23,11 +26,11 @@ public class Light extends AbstractActor implements Switchable, EnergyConsumer{
 
     /* a method will change light's state from on to off and vice-versa */
     public void toggle() {
-        if (!isRunning) {
+        if(!isRunning) {    //if it doesn't work
             isRunning = true;
             updateAnimation();
             turnOn();
-        } else {
+        } else{     //if it works
             isRunning = false;
             updateAnimation();
             turnOff();
@@ -36,9 +39,9 @@ public class Light extends AbstractActor implements Switchable, EnergyConsumer{
 
     /* a method, which update light's animation */
     private void updateAnimation() {
-        if (isRunning && this.isPowered) {
+        if(isRunning && this.isPowered){    //if we want to turn it on
             setAnimation(lightOnAnimation);
-        } else{
+        } else{                             //or to turn it off
             setAnimation(lightOffAnimation);
         }
     }
@@ -55,17 +58,15 @@ public class Light extends AbstractActor implements Switchable, EnergyConsumer{
         return isRunning;
     }
 
-    @Override
+    @Override   //override a method, which turns the light on
     public void turnOn(){
         isRunning = true;
         updateAnimation();
     }
 
-    @Override
+    @Override   //override a method, which turns the light off
     public void  turnOff(){
         isRunning = false;
         updateAnimation();
     }
-
-
 }

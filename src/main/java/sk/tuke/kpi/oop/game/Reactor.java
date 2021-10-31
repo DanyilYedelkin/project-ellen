@@ -1,5 +1,8 @@
 package sk.tuke.kpi.oop.game;
 
+/* (the code is not perfect, later, it will be modified and improved) */
+
+//add libraries
 import sk.tuke.kpi.gamelib.Scene;
 import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.graphics.Animation;
@@ -152,11 +155,18 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
         if(damage != 100 && !running){
             running = true;
 
+            // "for", which will change an electricity of all connected devices
+            for (EnergyConsumer energyConsumer : devices) {
+                device = energyConsumer;
+                device.setPowered(true);
+            }
+            /*
             Iterator<EnergyConsumer> eachDevice = devices.iterator();
             while(eachDevice.hasNext()){
                 device = eachDevice.next();
                 device.setPowered(true);
             }
+            */
 
             updateAnimation();
         }
@@ -167,11 +177,18 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
         if (damage != 100 && running){
             running = false;
 
+            // "for", which will change an electricity of all connected devices
+            for (EnergyConsumer energyConsumer : devices) {
+                device = energyConsumer;
+                device.setPowered(false);
+            }
+            /*
             Iterator<EnergyConsumer> eachDevice = devices.iterator();
             while(eachDevice.hasNext()){
                 device = eachDevice.next();
                 device.setPowered(false);
             }
+            */
 
             updateAnimation();
         }
@@ -179,14 +196,15 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
 
     /* method isOn() which will find out whether reactor is on or off */
     public boolean isOn() {
-        if(running) {
+        return running; // a simple version of the code
+        /*if(running) {
             return true;
         } else {
             return false;
-        }
+        }*/
     }
 
-    /* !!!1!! */
+    /* a method, which adds the device to a list devices */
     public void addDevice(EnergyConsumer device) {
         if(device != null){
             devices.add(device);
@@ -197,7 +215,7 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
         }
     }
 
-    /* !!!!!!!!!! */
+    /* a method, which removes the device from a list devices */
     public void removeDevice(EnergyConsumer device) {
        if(device != null){
            device.setPowered(false);
@@ -235,26 +253,4 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
 
         new PerpetualReactorHeating(1).scheduleFor(this);
     }
-
-    /*@Override
-    public boolean repair() {
-        if (damage > 0 && damage < 100) {
-            int decrement = damage;
-
-            if (damage - 50 < 0) {
-                damage = 0;
-            } else {
-                damage -= 50;
-            }
-            if (damage == 0) {
-                temperature = 2000 - (Math.abs((decrement - 50)) * 40);
-            } else if (damage > 0){
-                temperature = damage * 40;
-            }
-
-            updateAnimation();
-            return true;
-        }
-        return false;
-    }*/
 }
