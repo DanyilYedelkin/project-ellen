@@ -1,4 +1,4 @@
-package sk.tuke.kpi.oop.game.tools;
+package sk.tuke.kpi.oop.game.items;
 
 /* (the code is not perfect, later, it will be modified and improved) */
 
@@ -7,7 +7,7 @@ import sk.tuke.kpi.gamelib.graphics.Animation;
 import sk.tuke.kpi.oop.game.Reactor;
 //import sk.tuke.kpi.oop.game.tools.BreakableTool;
 
-public class Hammer extends BreakableTool <Reactor> {
+public class Hammer extends BreakableTool<Reactor> implements Collectible{
     //private Animation hammerAnimation;
     private int healthUse;       // a variable, that have a health point of the hammer
 

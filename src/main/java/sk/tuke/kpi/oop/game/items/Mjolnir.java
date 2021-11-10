@@ -1,4 +1,4 @@
-package sk.tuke.kpi.oop.game.tools;
+package sk.tuke.kpi.oop.game.items;
 
 /* (the code is not perfect, later, it will be modified and improved) */
 

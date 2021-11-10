@@ -1,4 +1,4 @@
-package sk.tuke.kpi.oop.game.tools;
+package sk.tuke.kpi.oop.game.items;
 
 /* (the code is not perfect, later, it will be modified and improved) */
 
@@ -9,7 +9,7 @@ import sk.tuke.kpi.oop.game.DefectiveLight;
 //import sk.tuke.kpi.oop.game.Reactor;
 //import sk.tuke.kpi.oop.game.tools.BreakableTool;
 
-public class Wrench extends BreakableTool <DefectiveLight>{
+public class Wrench extends BreakableTool<DefectiveLight> implements Collectible{
     //private Animation wrenchAnimation;
 
     public Wrench() {
