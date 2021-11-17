@@ -1,19 +1,32 @@
 package sk.tuke.kpi.oop.game.characters;
 
+import sk.tuke.kpi.gamelib.Disposable;
+import sk.tuke.kpi.gamelib.GameApplication;
+import sk.tuke.kpi.gamelib.actions.ActionSequence;
+import sk.tuke.kpi.gamelib.actions.Invoke;
+import sk.tuke.kpi.gamelib.actions.Wait;
 import sk.tuke.kpi.gamelib.framework.AbstractActor;
+import sk.tuke.kpi.gamelib.framework.actions.Loop;
 import sk.tuke.kpi.gamelib.graphics.Animation;
+import sk.tuke.kpi.gamelib.messages.Topic;
 import sk.tuke.kpi.oop.game.Direction;
 import sk.tuke.kpi.oop.game.Keeper;
 import sk.tuke.kpi.oop.game.Movable;
 import sk.tuke.kpi.oop.game.items.Backpack;
 
+import java.util.Objects;
+
 
 public class Ripley extends AbstractActor implements Movable, Keeper {
+    private Disposable disposable;
     private int speed;
     private Animation ripleyAnimation;
+    private Animation diedRipleyAnimation;
     private int energy;
     private int ammo;
     private Backpack backpack;
+    public static final Topic<Ripley> RIPLEY_DIED = Topic.create("ripley died", Ripley.class);
+
 
     public Ripley(){
         super("Ellen");
@@ -24,6 +37,9 @@ public class Ripley extends AbstractActor implements Movable, Keeper {
 
         ripleyAnimation = new Animation("sprites/player.png",
             32, 32, 0.1f, Animation.PlayMode.LOOP_PINGPONG);
+
+        diedRipleyAnimation = new Animation("sprites/player_die.png",
+            32,32,0.1f, Animation.PlayMode.ONCE);
 
         setAnimation(ripleyAnimation);
         stoppedMoving();
@@ -62,4 +78,55 @@ public class Ripley extends AbstractActor implements Movable, Keeper {
     public Backpack getBackpack() {
         return backpack;
     }
+
+    public void showRipleyState(){
+        int windowHeight = Objects.requireNonNull(getScene()).getGame().getWindowSetup().getHeight();
+        int yTextPos = windowHeight - GameApplication.STATUS_LINE_OFFSET;
+        int windowWidth = getScene().getGame().getWindowSetup().getWidth();
+        int xTextPos = windowWidth - GameApplication.STATUS_LINE_OFFSET - 680;
+
+        getScene().getGame().getOverlay().drawText(" | Energy: " + energy, xTextPos, yTextPos);
+        getScene().getGame().getOverlay().drawText("| Ammo: " + ammo, 255, yTextPos);
+    }
+
+    public void decreaseEnergy(){
+        if(this.getEnergy() > 0){
+            disposable = new Loop<>(
+                new ActionSequence<>(
+                    new Invoke<>(() -> {
+                        if(this.getEnergy() > 0){
+                            this.decrease();
+                        } else{
+                            //for one full animation
+                            checkEnergy();
+
+                            //for repeated animation
+                            //this.setAnimation(new Animation("sprites/player_die.png", 32, 32, 0.1f, Animation.PlayMode.ONCE));
+                            //Objects.requireNonNull(getScene()).getMessageBus().publish(RIPLEY_DIED, this);
+                        }
+                    }),
+                    new Wait<>(1))
+            ).scheduleFor(this);
+        } else{
+            checkEnergy();
+        }
+    }
+    private void decrease(){
+        if(getEnergy() >= 0){
+            energy--;
+        } else{
+            checkEnergy();
+        }
+    }
+    private void checkEnergy(){
+        if(getEnergy() <= 0){
+            this.setAnimation(diedRipleyAnimation);
+            Objects.requireNonNull(getScene()).getMessageBus().publish(RIPLEY_DIED, this);
+        }
+    }
+
+    public Disposable stopDecreaseEnergy(){
+        return disposable;
+    }
+
 }
