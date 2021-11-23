@@ -40,10 +40,9 @@ public class EscapeRoom implements SceneListener {
                 case "ventilator":
                     return new Ventilator();
                 case "alien":
-                    //return new Alien(100, new RandomlyMoving());
                     return new Alien();
                 case "alien mother":
-                    //return new AlienMother(200, new RandomlyMoving());
+                    //return
                 case "ammo":
                     return new Ammo();
                 default:
@@ -61,7 +60,6 @@ public class EscapeRoom implements SceneListener {
 
         Disposable movableCon = scene.getInput().registerListener(new MovableController(ellen));
         Disposable keeperCon = scene.getInput().registerListener(new KeeperController(ellen));
-        //Disposable shooterCon = scene.getInput().registerListener(new ShooterController(ellen));
 
         scene.getGame().pushActorContainer(ellen.getBackpack());
 
