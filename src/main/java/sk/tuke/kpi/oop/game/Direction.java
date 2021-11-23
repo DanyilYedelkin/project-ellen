@@ -34,30 +34,51 @@ public enum Direction {
             else return 225.0f;
         }
     }
-    public int getX(){
+
+    public static Direction fromAngle(float angle) {
+        if(angle == 0){
+            return NORTH;
+        } else if(angle == 45){
+            return NORTHWEST;
+        } else if(angle == 180){
+            return SOUTH;
+        } else if(angle == 90){
+            return WEST;
+        } else if(angle == 135){
+            return SOUTHWEST;
+        } else if(angle == 225){
+            return SOUTHEAST;
+        } else if(angle == 270){
+            return EAST;
+        } else{
+            return NORTHEAST;
+        }
+    }
+
+        public int getDx(){
         return dx;
     }
-    public int getY(){
+    public int getDy(){
         return dy;
     }
 
     public Direction combine(Direction other){
         if(other == null) return null;
         //created, because we can't change other.getX() and other.getY()
-        int newX = other.getX();
-        int newY = other.getY();
+        int newX = other.getDx();
+        int newY = other.getDy();
 
         Direction newDirection = NONE;
-        if(other.getX() + this.getX() != 2) {
+        if(other.getDx() + this.getDx() != 2) {
             //other.getX() += this.getX();
-            newX += this.getX();
+            newX += this.getDx();
         }
-        if(other.getY() + this.getY() != 2) {
+        if(other.getDy() + this.getDy() != 2) {
             //other.getY() += this.getY();
-            newY += this.getX();
+            newY += this.getDy();
         }
         for(Direction counter : Direction.values()){
-            if(newX == counter.getX() && newY == counter.getY()){
+            if(newX == counter.getDx() && newY == counter.getDy()){
                 newDirection = counter;
             }
         }

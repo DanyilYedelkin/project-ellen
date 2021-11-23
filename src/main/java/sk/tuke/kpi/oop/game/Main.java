@@ -3,6 +3,7 @@ package sk.tuke.kpi.oop.game;
 import sk.tuke.kpi.gamelib.*;
 import sk.tuke.kpi.gamelib.backends.lwjgl.LwjglBackend;
 //import sk.tuke.kpi.oop.game.scenarios.FirstSteps;
+import sk.tuke.kpi.oop.game.scenarios.EscapeRoom;
 import sk.tuke.kpi.oop.game.scenarios.MissionImpossible;
 
 
@@ -17,12 +18,16 @@ public class Main {
 
         // creating scene for game
         // using class `World` as implementation of interface `Scene`
-        Scene scene  = new World("World", "maps/mission-impossible.tmx", new MissionImpossible.Factory());
+        //Scene scene  = new World("World", "maps/mission-impossible.tmx", new MissionImpossible.Factory());
+        Scene scene  = new World("World", "maps/escape-room.tmx", new EscapeRoom.Factory());
 
         // adding scene into the game
         game.addScene(scene);
 
-        MissionImpossible listener = new MissionImpossible();
+        //MissionImpossible listener = new MissionImpossible();
+        //scene.addListener(listener);
+
+        EscapeRoom listener = new EscapeRoom();
         scene.addListener(listener);
 
         game.getInput().onKeyPressed(Input.Key.ESCAPE, game::stop);

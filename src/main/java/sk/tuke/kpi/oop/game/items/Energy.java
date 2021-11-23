@@ -8,10 +8,9 @@ import java.util.Objects;
 
 
 public class Energy extends AbstractActor implements Usable<Ripley>{
-    private Animation energy;
 
     public Energy(){
-        energy = new Animation("sprites/energy.png", 16, 16);
+        Animation energy = new Animation("sprites/energy.png", 16, 16);
         setAnimation(energy);
     }
     @Override

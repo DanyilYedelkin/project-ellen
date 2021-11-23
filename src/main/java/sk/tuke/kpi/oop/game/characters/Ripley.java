@@ -17,7 +17,7 @@ import sk.tuke.kpi.oop.game.items.Backpack;
 import java.util.Objects;
 
 
-public class Ripley extends AbstractActor implements Movable, Keeper {
+public class Ripley extends AbstractActor implements Movable, Keeper, Alive {
     private Disposable disposable;
     private int speed;
     private Animation ripleyAnimation;
@@ -25,12 +25,14 @@ public class Ripley extends AbstractActor implements Movable, Keeper {
     private int energy;
     private int ammo;
     private Backpack backpack;
+    private Health health;
     public static final Topic<Ripley> RIPLEY_DIED = Topic.create("ripley died", Ripley.class);
 
 
     public Ripley(){
         super("Ellen");
         energy = 60;
+        health = new Health(100, 100);
         speed = 2;
         ammo = 100;
         backpack = new Backpack("Ripley's backpack", 10);
@@ -43,6 +45,12 @@ public class Ripley extends AbstractActor implements Movable, Keeper {
 
         setAnimation(ripleyAnimation);
         stoppedMoving();
+
+        health.onExhaustion(() -> {
+            setAnimation(diedRipleyAnimation);
+            Objects.requireNonNull(getScene()).getMessageBus().publish(RIPLEY_DIED,this);
+        });
+
     }
 
     @Override
@@ -85,17 +93,18 @@ public class Ripley extends AbstractActor implements Movable, Keeper {
         int windowWidth = getScene().getGame().getWindowSetup().getWidth();
         int xTextPos = windowWidth - GameApplication.STATUS_LINE_OFFSET - 680;
 
-        getScene().getGame().getOverlay().drawText(" | Energy: " + energy, xTextPos, yTextPos);
+        getScene().getGame().getOverlay().drawText(" | Energy: " + health.getValue(), xTextPos, yTextPos);
         getScene().getGame().getOverlay().drawText("| Ammo: " + ammo, 255, yTextPos);
     }
 
     public void decreaseEnergy(){
-        if(this.getEnergy() > 0){
+        if(health.getValue() > 0){
             disposable = new Loop<>(
                 new ActionSequence<>(
                     new Invoke<>(() -> {
-                        if(this.getEnergy() > 0){
-                            this.decrease();
+                        if(health.getValue() > 0){
+                            //this.decrease();
+                            getHealth().drain(2);
                         } else{
                             //for one full animation
                             checkEnergy();
@@ -119,7 +128,7 @@ public class Ripley extends AbstractActor implements Movable, Keeper {
         }
     }
     private void checkEnergy(){
-        if(getEnergy() <= 0){
+        if(health.getValue() <= 0){
             this.setAnimation(diedRipleyAnimation);
             Objects.requireNonNull(getScene()).getMessageBus().publish(RIPLEY_DIED, this);
         }
@@ -129,4 +138,8 @@ public class Ripley extends AbstractActor implements Movable, Keeper {
         return disposable;
     }
 
+    @Override
+    public Health getHealth() {
+        return null;
+    }
 }

@@ -69,8 +69,8 @@ public class Move<A extends Movable> implements Action<A> {
 
             if(duration > 0){
                 // '-' because, if we have '+', we will be walking into another side
-                int x = actor.getPosX() - direction.getX() * actor.getSpeed();
-                int y = actor.getPosY() + direction.getY() * actor.getSpeed();
+                int x = actor.getPosX() - direction.getDx() * actor.getSpeed();
+                int y = actor.getPosY() + direction.getDy() * actor.getSpeed();
 
                 //removed these variables to get rid of the jitter(shake) effect
                 //int notX = actor.getPosX() + direction.getX() * actor.getSpeed();
@@ -79,8 +79,8 @@ public class Move<A extends Movable> implements Action<A> {
                 actor.setPosition(x, y);
                 assert getActor() != null;
                 if ((Objects.requireNonNull(getActor().getScene())).getMap().intersectsWithWall(actor)) {
-                    int notX = actor.getPosX() + direction.getX() * actor.getSpeed();
-                    int notY = actor.getPosY() - direction.getY() * actor.getSpeed();
+                    int notX = actor.getPosX() + direction.getDx() * actor.getSpeed();
+                    int notY = actor.getPosY() - direction.getDy() * actor.getSpeed();
 
                     actor.setPosition(notX, notY);
                 }
