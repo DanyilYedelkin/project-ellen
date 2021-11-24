@@ -25,10 +25,11 @@ public class RandomlyMoving implements Behaviour<Movable>{
 
     private void randomMoving(Movable actor){
         Direction newDirection = null;
-        int checking = (int)((Math.random() * (3)) - 1);
+        int checking = (int)(Math.random() * (3)) - 1;
+        int checking2 = (int)(Math.random() * (3)) - 1;
 
         for(Direction direction : Direction.values()){
-            if(checking == direction.getDx() && direction.getDx() == direction.getDy()){
+            if(checking == direction.getDx() && checking2 == direction.getDy()){
                 newDirection = direction;
             }
         }

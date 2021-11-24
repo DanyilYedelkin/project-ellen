@@ -82,7 +82,7 @@ public class MissionImpossible implements SceneListener {
         Hammer hammer = new Hammer();
         scene.addActor(hammer, 150, 100);
 
-        scene.getMessageBus().subscribe(Door.DOOR_OPENED, (Ripley)->ellen.decreaseEnergy());
+        //scene.getMessageBus().subscribe(Door.DOOR_OPENED, (Ripley)->ellen.decreaseEnergy());
         scene.getMessageBus().subscribe(Ventilator.VENTILATOR_REPAIRED, (Ripley)->ellen.stopDecreaseEnergy().dispose());
 
         scene.getMessageBus().subscribe(Ripley.RIPLEY_DIED, (Ripley)->movableController.dispose());
