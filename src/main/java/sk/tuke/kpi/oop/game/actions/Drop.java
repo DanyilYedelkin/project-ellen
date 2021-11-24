@@ -50,6 +50,13 @@ public class Drop<A extends Keeper> extends AbstractAction<A> {
                 getActor().getBackpack().remove(lastItem);
             //}
         }
+        if(backpack.peek() != null){
+            setDone(true);
+
+            return;
+        }
         setDone(true);
+
     }
+
 }
