@@ -85,13 +85,16 @@ public class Move<A extends Movable> implements Action<A> {
                     actor.setPosition(notX, notY);
                     actor.collidedWithWall();
                 }
+            } else{
+                stop();
             }
         }
 
         if(Math.abs(deltaTime - duration) <= 1e-5){
             isDone = true;
             isFirst = true;
-            actor.stoppedMoving();
+            //actor.stoppedMoving();
+            stop();
         }
     }
 

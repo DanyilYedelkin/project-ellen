@@ -8,7 +8,7 @@ import sk.tuke.kpi.gamelib.KeyboardListener;
 import sk.tuke.kpi.oop.game.Direction;
 import sk.tuke.kpi.oop.game.Movable;
 import sk.tuke.kpi.oop.game.actions.Move;
-import sk.tuke.kpi.oop.game.characters.Ripley;
+//import sk.tuke.kpi.oop.game.characters.Ripley;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -22,7 +22,7 @@ public class MovableController implements KeyboardListener {
         Map.entry(Input.Key.RIGHT, Direction.EAST),
         Map.entry(Input.Key.LEFT, Direction.WEST)
     );
-    private Actor actor;
+    private Movable actor;
     private Set<Input.Key> key;
     private Move<Movable> move;
     private Disposable disposable;
@@ -47,7 +47,7 @@ public class MovableController implements KeyboardListener {
             } else if(secondKey == null){
                 secondKey = key;
             }
-            starting();
+            starting();//==================
         }
     }
     public void starting() {
@@ -58,7 +58,7 @@ public class MovableController implements KeyboardListener {
             if(counter == 0){
                 direction = keyDirectionMap.get(iterator);
             }
-            if(counter != 0){
+            if(counter == 1){
                 direction = direction.combine(keyDirectionMap.get(iterator));
             }
             counter++;
@@ -68,7 +68,7 @@ public class MovableController implements KeyboardListener {
         }
         if(direction != Direction.NONE){
             move = new Move<>(direction, Float.MAX_VALUE);
-            disposable = move.scheduleFor((Ripley) actor);
+            disposable = move.scheduleFor(actor);//==================
         }
 
     }

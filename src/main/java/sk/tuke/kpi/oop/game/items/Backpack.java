@@ -9,7 +9,7 @@ import java.util.*;
 public class Backpack implements ActorContainer<Collectible> {
     private String name;
     private int capacity;
-    private List<Collectible> backpackItems;
+    private List<Collectible> backpackItems = new ArrayList<>();
 
     public Backpack(String name, int capacity){
         this.name = name;
@@ -20,7 +20,8 @@ public class Backpack implements ActorContainer<Collectible> {
 
     @Override
     public @NotNull List<Collectible> getContent() {
-        return backpackItems;
+        //return backpackItems;
+        return List.copyOf(backpackItems);
     }
 
     @Override
@@ -52,9 +53,9 @@ public class Backpack implements ActorContainer<Collectible> {
     public void remove(@NotNull Collectible actor) {
         if(this.backpackItems.contains(actor)){
             this.backpackItems.remove(actor);
-        } else{
+        } /*else{
             throw new IllegalStateException(name + " is empty");
-        }
+        }*/
 
     }
 

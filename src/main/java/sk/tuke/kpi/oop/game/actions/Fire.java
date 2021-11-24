@@ -16,9 +16,8 @@ public class Fire<A extends Armed> extends AbstractAction<A> {
 
         if(getActor() == null){
             setDone(true);
-
-            return;
-        } else if(isDone()){
+        }
+        if(isDone()){
             return;
         }
 

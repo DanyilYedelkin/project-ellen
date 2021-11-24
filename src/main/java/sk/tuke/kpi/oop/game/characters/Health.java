@@ -40,16 +40,18 @@ public class Health {
     // Výsledná hodnota nesmie klesnúť pod 0, čo je už stav signalizujúci, že
     // aktér vlastniaci daný objekt zdravia sa úplne vyčerpal a zomrel.
     public void drain(int amount){
-        if(currentHealth - amount >= 0){
+        if(currentHealth - amount > 0){
             currentHealth -= amount;
         } else exhaust();
     }
 
     //metóda spôsobí okamžité úplné vyčerpanie zdravia, a teda nastaví hodnotu zdravia na 0.
     public void exhaust(){
-        currentHealth = 0;
+        if(currentHealth > 0){
+            currentHealth = 0;
 
-        effect.forEach(ExhaustionEffect::apply);
+            effect.forEach(ExhaustionEffect::apply);
+        }
     }
 
     @FunctionalInterface

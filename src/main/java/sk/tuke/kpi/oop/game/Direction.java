@@ -50,7 +50,9 @@ public enum Direction {
     }
 
     public static Direction fromAngle(float angle){
-        if(angle == 45){
+        if(angle == 0){
+            return NONE;
+        } else if(angle == 45){
             return NORTHWEST;
         } else if(angle == 90){
             return WEST;
@@ -68,7 +70,7 @@ public enum Direction {
             return NORTH;
         }
 
-        return NORTH;
+        return NONE;
     }
 
 
@@ -81,6 +83,7 @@ public enum Direction {
 
     public Direction combine(Direction other){
         if(other == null) return null;
+        if(this == other) return this;
         //created, because we can't change other.getX() and other.getY()
         int newX = other.getDx();
         int newY = other.getDy();

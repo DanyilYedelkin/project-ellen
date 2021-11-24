@@ -7,11 +7,12 @@ import sk.tuke.kpi.oop.game.Keeper;
 public class Shift<A extends Keeper> extends AbstractAction<A> {
 
     @Override
-    public void execute(float deltaTime) {
-        if(getActor() == null || getActor().getBackpack().isEmpty() || isDone() || getActor().getBackpack().getSize() == 10){
+    public void execute(float deltaTime){
+        if(getActor() == null || getActor().getBackpack().isEmpty() || isDone() /*|| getActor().getBackpack().getSize() == 10*/){
             setDone(true);
             //System.out.println("I'm empty, or I'm full !!!!");
-        } else if(!isDone()){
+        }
+        if(!isDone()){
             getActor().getBackpack().shift();
         }
 

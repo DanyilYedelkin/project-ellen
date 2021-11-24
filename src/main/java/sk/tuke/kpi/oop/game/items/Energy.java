@@ -16,8 +16,11 @@ public class Energy extends AbstractActor implements Usable<Alive>{
     }
     @Override
     public void useWith(Alive alive){
-        if(alive != null && alive.getHealth().getValue() != 100 && intersects(alive)){
+        if(alive != null && alive.getHealth().getValue() != 100){
             alive.getHealth().refill(100);
+            if(intersects(alive)){
+                alive.getHealth().restore();
+            }
 
             (Objects.requireNonNull(getScene())).removeActor(this);
         }
