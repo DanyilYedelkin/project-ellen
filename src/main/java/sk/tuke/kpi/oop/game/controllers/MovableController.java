@@ -1,7 +1,7 @@
 package sk.tuke.kpi.oop.game.controllers;
 
 import org.jetbrains.annotations.NotNull;
-import sk.tuke.kpi.gamelib.Actor;
+//import sk.tuke.kpi.gamelib.Actor;
 import sk.tuke.kpi.gamelib.Disposable;
 import sk.tuke.kpi.gamelib.Input;
 import sk.tuke.kpi.gamelib.KeyboardListener;
@@ -28,7 +28,6 @@ public class MovableController implements KeyboardListener {
     private Disposable disposable;
     private Input.Key firstKey;
     private Input.Key secondKey;
-    private Direction direction;
 
     private int counter;
 
@@ -51,7 +50,7 @@ public class MovableController implements KeyboardListener {
         }
     }
     public void starting() {
-        direction = Direction.NONE;
+        Direction direction = Direction.NONE;
         counter = 0;
 
         for(Input.Key iterator : this.key){

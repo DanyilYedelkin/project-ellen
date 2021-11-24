@@ -6,7 +6,7 @@ import sk.tuke.kpi.oop.game.Keeper;
 import sk.tuke.kpi.oop.game.items.Backpack;
 import sk.tuke.kpi.oop.game.items.Collectible;
 
-import java.util.Objects;
+//import java.util.Objects;
 
 
 public class Drop<A extends Keeper> extends AbstractAction<A> {
