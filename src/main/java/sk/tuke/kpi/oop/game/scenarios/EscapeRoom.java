@@ -3,14 +3,15 @@ package sk.tuke.kpi.oop.game.scenarios;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import sk.tuke.kpi.gamelib.*;
-import sk.tuke.kpi.gamelib.actions.Invoke;
-import sk.tuke.kpi.gamelib.actions.When;
-import sk.tuke.kpi.oop.game.Locker;
-import sk.tuke.kpi.oop.game.Ventilator;
+//import sk.tuke.kpi.gamelib.actions.Invoke;
+//import sk.tuke.kpi.gamelib.actions.When;
+import sk.tuke.kpi.oop.game.behaviours.RandomlyMoving;
 import sk.tuke.kpi.oop.game.characters.Alien;
+import sk.tuke.kpi.oop.game.characters.AlienMother;
 import sk.tuke.kpi.oop.game.characters.Ripley;
 import sk.tuke.kpi.oop.game.controllers.KeeperController;
 import sk.tuke.kpi.oop.game.controllers.MovableController;
+import sk.tuke.kpi.oop.game.controllers.ShooterController;
 import sk.tuke.kpi.oop.game.items.AccessCard;
 import sk.tuke.kpi.oop.game.items.Ammo;
 import sk.tuke.kpi.oop.game.items.Energy;
@@ -31,18 +32,20 @@ public class EscapeRoom implements SceneListener {
                     return new Ripley();
                 case "energy":
                     return new Energy();
-                case "access card":
-                    return new AccessCard();
-                case "door":
-                    return new LockedDoor();
-                case "locker":
-                    return new Locker();
-                case "ventilator":
-                    return new Ventilator();
+                case "exit door":
+                    return new LockedDoor(name, Door.Orientation.VERTICAL);
+                case "front door":
+                    return new Door(name, Door.Orientation.VERTICAL);
+                    //return new LockedDoor(name, Door.Orientation.VERTICAL);
+                case "back door":
+                    return new Door(name, Door.Orientation.HORIZONTAL);
+                    //return new LockedDoor(name, Door.Orientation.HORIZONTAL);
                 case "alien":
-                    return new Alien();
+                    //return new Alien();
+                    return new Alien(100, new RandomlyMoving());
                 case "alien mother":
-                    //return
+                    //return new AlienMother(200);
+                    return new AlienMother(200, new RandomlyMoving());
                 case "ammo":
                     return new Ammo();
                 default:
@@ -58,39 +61,36 @@ public class EscapeRoom implements SceneListener {
         assert ellen != null;
         scene.follow(ellen);
 
-        Disposable movableCon = scene.getInput().registerListener(new MovableController(ellen));
-        Disposable keeperCon = scene.getInput().registerListener(new KeeperController(ellen));
+        Disposable movableController = scene.getInput().registerListener(new MovableController(ellen));
+        Disposable keeperController = scene.getInput().registerListener(new KeeperController(ellen));
+        Disposable shooterController = scene.getInput().registerListener(new ShooterController(ellen));
 
         scene.getGame().pushActorContainer(ellen.getBackpack());
 
-        energy = scene.getFirstActorByType(Energy.class);
-        //assert energy != null;
-        if(energy != null){
-            new When<>(
-                () -> ellen.intersects(energy),
-                new Invoke<>(() -> energy.useWith(ellen))
-            ).scheduleFor(ellen);
-        }
-
-        ammo = scene.getFirstActorByType(Ammo.class);
-        if(ammo != null){
-            new When<>(
-                () -> ellen.intersects(ammo),
-                new Invoke<>(() -> ammo.useWith(ellen))
-            ).scheduleFor(ellen);
-        }
-
-
         AccessCard accessCard = new AccessCard();
         ellen.getBackpack().add(accessCard);
+
+        scene.getMessageBus().subscribe(Ripley.RIPLEY_DIED, (Ripley)->movableController.dispose());
+        scene.getMessageBus().subscribe(Ripley.RIPLEY_DIED, (Ripley)->keeperController.dispose());
+        scene.getMessageBus().subscribe(Ripley.RIPLEY_DIED, (Ripley)->shooterController.dispose());
     }
 
     @Override
     public void sceneUpdating(@NotNull Scene scene) {
-        ellen= scene.getFirstActorByType(Ripley.class);
+        ellen = scene.getFirstActorByType(Ripley.class);
         assert ellen != null;
 
         ellen.showRipleyState();
+
+        energy = scene.getFirstActorByType(Energy.class);
+        if(energy != null && ellen.intersects(energy)){
+            energy.useWith(ellen);
+        }
+
+        ammo = scene.getFirstActorByType(Ammo.class);
+        if(ammo != null && ellen.intersects(ammo)){
+            ammo.useWith(ellen);
+        }
     }
 
 

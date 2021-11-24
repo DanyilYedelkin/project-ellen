@@ -66,7 +66,7 @@ public class FirstSteps implements SceneListener {
         int windowWidth = scene.getGame().getWindowSetup().getWidth();
         int xTextPos = windowWidth - GameApplication.STATUS_LINE_OFFSET - 680;
 
-        scene.getGame().getOverlay().drawText(" | Energy: " + ripley.getEnergy(), xTextPos, yTextPos);
+        scene.getGame().getOverlay().drawText(" | Energy: " + ripley.getHealth(), xTextPos, yTextPos);
         //pushActorContainer()
         //ActorContainer<Collectible> actors = new ActorContainer<Collectible>()
 

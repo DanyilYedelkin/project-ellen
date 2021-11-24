@@ -1,8 +1,8 @@
 package sk.tuke.kpi.oop.game;
 
 public enum Direction {
-    NORTH(0, 1), WEST(1, 0), SOUTH(0, -1),  EAST(-1, 0),
-    NORTHWEST(1, 1), NORTHEAST(-1, 1), SOUTHWEST(1, -1), SOUTHEAST(-1, -1), NONE(0, 0);
+    NORTH(0, 1), WEST(-1, 0), SOUTH(0, -1),  EAST(1, 0),
+    NORTHWEST(-1, 1), NORTHEAST(1, 1), SOUTHWEST(-1, -1), SOUTHEAST(1, -1), NONE(0, 0);
 
     private final int dx;
     private final int dy;
@@ -21,6 +21,20 @@ public enum Direction {
 
     public float getAngle(){
         if(dx == 1){
+            if(dy == 1) return 315.0f;
+            else if(dy == 0) return 270.0f;
+            else return 225.0f;
+        } else if(dx == 0){
+            if(dy == 1) return 360.0f;
+            else if(dy == 0) return 0.0f;
+            else return 180.0f;
+        } else{
+            if(dy == 1) return 45.0f;
+            else if(dy == 0) return 90.0f;
+            else return 135.0f;
+        }
+
+        /*if(dx == 1){
             if(dy == 1) return 45.0f;
             else if(dy == 0) return 90.0f;
             else return 135.0f;
@@ -32,30 +46,33 @@ public enum Direction {
             if(dy == 1) return 315.0f;
             else if(dy == 0) return 270.0f;
             else return 225.0f;
-        }
+        }*/
     }
 
-    public static Direction fromAngle(float angle) {
-        if(angle == 0){
-            return NORTH;
-        } else if(angle == 45){
+    public static Direction fromAngle(float angle){
+        if(angle == 45){
             return NORTHWEST;
-        } else if(angle == 180){
-            return SOUTH;
         } else if(angle == 90){
             return WEST;
         } else if(angle == 135){
             return SOUTHWEST;
+        } else if(angle == 180){
+            return SOUTH;
         } else if(angle == 225){
             return SOUTHEAST;
         } else if(angle == 270){
             return EAST;
-        } else{
+        } else if(angle == 315){
             return NORTHEAST;
+        } else if(angle == 360){
+            return NORTH;
         }
+
+        return NORTH;
     }
 
-        public int getDx(){
+
+    public int getDx(){
         return dx;
     }
     public int getDy(){

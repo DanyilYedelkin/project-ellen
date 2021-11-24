@@ -4,7 +4,7 @@ package sk.tuke.kpi.oop.game.items;
 
 //add libraries
 import sk.tuke.kpi.gamelib.graphics.Animation;
-import sk.tuke.kpi.oop.game.Reactor;
+//import sk.tuke.kpi.oop.game.Reactor;
 import sk.tuke.kpi.oop.game.Repairable;
 //import sk.tuke.kpi.oop.game.tools.BreakableTool;
 

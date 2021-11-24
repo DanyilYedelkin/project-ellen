@@ -6,4 +6,5 @@ public interface Movable extends Actor {
     int getSpeed();
     default void stoppedMoving() {}
     default void startedMoving(Direction direction) {}
+    default void collidedWithWall() {}
 }

@@ -9,6 +9,10 @@ public class LockedDoor extends Door{
         super();
         isLocked = true;
     }
+    public LockedDoor(String name, Orientation orientation){
+        super(name, orientation);
+        isLocked = true;
+    }
 
     //zamknutie (a zároveň zatvorenie) dverí
     public void lock(){

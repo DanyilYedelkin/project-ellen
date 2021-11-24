@@ -10,6 +10,8 @@ import sk.tuke.kpi.oop.game.actions.Take;
 import sk.tuke.kpi.oop.game.actions.Use;
 import sk.tuke.kpi.oop.game.items.Usable;
 
+import java.util.Objects;
+
 
 public class KeeperController implements KeyboardListener {
     private Keeper keeper;
@@ -27,15 +29,14 @@ public class KeeperController implements KeyboardListener {
         } else if(key == Input.Key.S){
             new Shift<>().scheduleFor(keeper);
         } else if(key == Input.Key.U){
-            Usable<?> usable = keeper.getScene().getActors().stream().filter(Usable.class::isInstance).filter(keeper::intersects).map(Usable.class::cast).findFirst().orElse(null);
+            Usable<?> usable = Objects.requireNonNull(keeper.getScene()).getActors().stream().filter(Usable.class::isInstance).filter(keeper::intersects).map(Usable.class::cast).findFirst().orElse(null);
             if(usable != null){
                 new Use<>(usable).scheduleForIntersectingWith(keeper);
             }
-        } else if(key == Input.Key.B){
-            if(keeper.getBackpack().peek() instanceof Usable){
-                Use<?> use = new Use<>((Usable<?>) keeper.getBackpack().peek());
-                use.scheduleForIntersectingWith(keeper);
-            }
+        } else if(key == Input.Key.B && keeper.getBackpack().peek() instanceof Usable){
+            Use<?> use = new Use<>((Usable<?>) keeper.getBackpack().peek());
+
+            use.scheduleForIntersectingWith(keeper);
         }
     }
 
