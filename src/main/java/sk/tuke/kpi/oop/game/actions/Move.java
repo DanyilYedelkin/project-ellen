@@ -5,7 +5,7 @@ import sk.tuke.kpi.gamelib.actions.Action;
 import sk.tuke.kpi.oop.game.Direction;
 import sk.tuke.kpi.oop.game.Movable;
 
-import java.util.Objects;
+//import java.util.Objects;
 
 public class Move<A extends Movable> implements Action<A> {
     private Direction direction;
@@ -78,7 +78,7 @@ public class Move<A extends Movable> implements Action<A> {
 
                 actor.setPosition(x, y);
                 assert getActor() != null;
-                if ((Objects.requireNonNull(getActor().getScene())).getMap().intersectsWithWall(actor)) {
+                if(getActor().getScene().getMap().intersectsWithWall(actor)) {
                     int notX = actor.getPosX() - direction.getDx() * actor.getSpeed();
                     int notY = actor.getPosY() - direction.getDy() * actor.getSpeed();
 
@@ -108,8 +108,16 @@ public class Move<A extends Movable> implements Action<A> {
     }
 
     public void stop(){
-        isDone = false;
-        actor.stoppedMoving();
+        //isDone = true;
+        //isFirst = true;
+
+        //actor.stoppedMoving();
+        if(actor != null){
+            isDone = true;
+            isFirst = true;
+
+            actor.stoppedMoving();
+        }
     }
 
 }

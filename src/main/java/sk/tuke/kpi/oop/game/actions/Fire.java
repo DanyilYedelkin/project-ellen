@@ -11,15 +11,17 @@ public class Fire<A extends Armed> extends AbstractAction<A> {
 
     @Override
     public void execute(float deltaTime){
-        int posX = Direction.fromAngle(Objects.requireNonNull(getActor()).getAnimation().getRotation()).getDx();
-        int posY = Direction.fromAngle(Objects.requireNonNull(getActor()).getAnimation().getRotation()).getDy();
 
         if(getActor() == null){
             setDone(true);
         }
+
         if(isDone()){
             return;
         }
+
+        int posX = Direction.fromAngle(getActor().getAnimation().getRotation()).getDx();
+        int posY = Direction.fromAngle(getActor().getAnimation().getRotation()).getDy();
 
         Fireable fireable = Objects.requireNonNull(getActor()).getFirearm().fire();
         if(fireable != null){

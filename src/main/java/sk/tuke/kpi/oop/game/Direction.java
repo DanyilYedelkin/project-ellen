@@ -68,7 +68,7 @@ public enum Direction {
             return NORTH;
         }
 
-        return NONE;
+        return NORTH;
     }
 
 
@@ -87,11 +87,11 @@ public enum Direction {
         int newY = other.getDy();
 
         Direction newDirection = NONE;
-        if(other.getDx() + this.getDx() != 2) {
+        if(/*other.getDx() + this.getDx() != 2*/ other.getDx() != this.getDx()) {
             //other.getX() += this.getX();
             newX += this.getDx();
         }
-        if(other.getDy() + this.getDy() != 2) {
+        if(/*other.getDy() + this.getDy() != 2*/ other.getDy() != this.getDy()) {
             //other.getY() += this.getY();
             newY += this.getDy();
         }

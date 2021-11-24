@@ -41,14 +41,14 @@ public class Drop<A extends Keeper> extends AbstractAction<A> {
             lastItem = getActor().getBackpack().peek();
             assert lastItem != null;
 
-            if(!backpack.isEmpty()){
+            //if(!backpack.isEmpty()){
                 //System.out.println("CHEEECK !!!!");
                 int x = getActor().getPosX() + (getActor().getWidth() - (lastItem.getWidth()));
                 int y = getActor().getPosY() + (getActor().getHeight() - Math.abs(lastItem.getHeight()/3));
 
                 scene.addActor(lastItem, x, y);
                 getActor().getBackpack().remove(lastItem);
-            }
+            //}
         }
         setDone(true);
     }
