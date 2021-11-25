@@ -14,25 +14,25 @@ import sk.tuke.kpi.oop.game.items.Usable;
 import java.util.Objects;
 
 public class Door extends AbstractActor implements Openable, Usable<Actor> {
-    private Animation openedDoorAnimation;
-    private Animation closedDoorAnimation;
+    private Animation openedDoorAnimation = new Animation("sprites/vdoor.png", 16, 32,
+        0.1f, Animation.PlayMode.ONCE_REVERSED);
+    private Animation closedDoorAnimation = new Animation("sprites/vdoor.png", 16, 32,
+        0.1f, Animation.PlayMode.ONCE);;
+
     private boolean opened;
-    public static final Topic<Door> DOOR_OPENED = Topic.create("door opened", Door.class);
-    public static final Topic<Door> DOOR_CLOSED = Topic.create("door closed", Door.class);
-    private enum Orientation{
+    public enum Orientation{
         VERTICAL,
         HORIZONTAL
     }
+
+    public static final Topic<Door> DOOR_OPENED = Topic.create("door opened", Door.class);
+    public static final Topic<Door> DOOR_CLOSED = Topic.create("door closed", Door.class);
 
 
     public Door(){
         opened = false;
 
-        closedDoorAnimation = new Animation("sprites/vdoor.png", 16, 32, 0.1f, Animation.PlayMode.ONCE);
-        openedDoorAnimation = new Animation("sprites/vdoor.png", 16, 32, 0.1f, Animation.PlayMode.ONCE_REVERSED);
-
         setAnimation(closedDoorAnimation);
-        //setAnimation(new Animation("sprites/vdoor.png", 16, 32, 0.1f, Animation.PlayMode.ONCE));
         getAnimation().stop();
     }
     public Door(String name, Orientation orientation){
@@ -40,9 +40,6 @@ public class Door extends AbstractActor implements Openable, Usable<Actor> {
         opened = false;
 
         if(orientation == Orientation.VERTICAL){
-            closedDoorAnimation = new Animation("sprites/vdoor.png", 16, 32, 0.1f, Animation.PlayMode.ONCE);
-            openedDoorAnimation = new Animation("sprites/vdoor.png", 16, 32, 0.1f, Animation.PlayMode.ONCE_REVERSED);
-
             setAnimation(closedDoorAnimation);
         } else if(orientation == Orientation.HORIZONTAL){
             closedDoorAnimation = new Animation("sprites/hdoor.png", 32, 16, 0.1f, Animation.PlayMode.ONCE);

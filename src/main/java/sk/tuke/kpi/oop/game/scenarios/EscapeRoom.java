@@ -35,10 +35,10 @@ public class EscapeRoom implements SceneListener {
                 case "exit door":
                     //return new LockedDoor(name, Door.Orientation.VERTICAL);
                 case "front door":
-                    //return new Door(name, Door.Orientation.VERTICAL);
+                    return new Door(name, Door.Orientation.VERTICAL);
                     //return new LockedDoor(name, Door.Orientation.VERTICAL);
                 case "back door":
-                    //return new Door(name, Door.Orientation.HORIZONTAL);
+                    return new Door(name, Door.Orientation.HORIZONTAL);
                     //return new LockedDoor(name, Door.Orientation.HORIZONTAL);
                 case "alien":
                     //return new Alien();

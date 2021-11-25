@@ -48,12 +48,7 @@ public class Move<A extends Movable> implements Action<A> {
 
     @Override
     public void execute(float deltaTime) {
-        if(actor == null) return;
-
-        if(!isFirst){
-            isFirst = true;
-            actor.startedMoving(direction);
-        }
+        if(actor == null || getActor() == null) return;
 
         if(deltaTime >= duration){
             reset();
@@ -61,12 +56,12 @@ public class Move<A extends Movable> implements Action<A> {
 
         duration -= deltaTime;
 
-        if(!isDone()){
-            if(time == 0 ){
-                actor.startedMoving(direction);
-                time += 1;
-            }
+        if(!isFirst){
+            isFirst = true;
+            actor.startedMoving(direction);
+        }
 
+        if(!isDone()){
             if(duration > 0){
                 // '-' because, if we have '+', we will be walking into another side
                 int x = actor.getPosX() + direction.getDx() * actor.getSpeed();
@@ -92,7 +87,7 @@ public class Move<A extends Movable> implements Action<A> {
 
         if(Math.abs(deltaTime - duration) <= 1e-5){
             isDone = true;
-            isFirst = true;
+            isFirst = false;
             //actor.stoppedMoving();
             stop();
         }

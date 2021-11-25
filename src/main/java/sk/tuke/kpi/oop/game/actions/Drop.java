@@ -40,6 +40,7 @@ public class Drop<A extends Keeper> extends AbstractAction<A> {
             scene = getActor().getScene();
             lastItem = getActor().getBackpack().peek();
             assert lastItem != null;
+            //checkDebugging();
 
             //if(!backpack.isEmpty()){
                 //System.out.println("CHEEECK !!!!");
@@ -49,14 +50,19 @@ public class Drop<A extends Keeper> extends AbstractAction<A> {
                 scene.addActor(lastItem, x, y);
                 getActor().getBackpack().remove(lastItem);
             //}
-        }
-        if(backpack.peek() != null){
             setDone(true);
-
-            return;
         }
+
         setDone(true);
 
+        if(!isDone()){
+            checkDebugging();
+        }
     }
 
+    private void checkDebugging(){
+        if(backpack.isEmpty()){
+            System.out.println("I'm empty! You can't peek any items in me");
+        }
+    }
 }
