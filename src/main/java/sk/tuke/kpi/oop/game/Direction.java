@@ -25,9 +25,11 @@ public enum Direction {
             else if(dy == 0) return 270.0f;
             else return 225.0f;
         } else if(dx == 0){
-            if(dy == 1) return 360.0f;
+            /*if(dy == 1) return 360.0f;
             else if(dy == 0) return 0.0f;
-            else return 180.0f;
+            else return 180.0f;*/
+            if(dy == 1) return 0;
+            else return 180;
         } else{
             if(dy == 1) return 45.0f;
             else if(dy == 0) return 90.0f;

@@ -56,6 +56,13 @@ public class Move<A extends Movable> implements Action<A> {
 
         duration -= deltaTime;
 
+        if(Math.abs(deltaTime - duration) <= 1e-5){
+            isDone = true;
+            isFirst = true;
+            //actor.stoppedMoving();
+            stop();
+        }
+
         if(!isFirst){
             isFirst = true;
             actor.startedMoving(direction);
@@ -84,20 +91,13 @@ public class Move<A extends Movable> implements Action<A> {
                 stop();
             }
         }
-
-        /*if(Math.abs(deltaTime - duration) <= 1e-5){
-            isDone = true;
-            isFirst = false;
-            //actor.stoppedMoving();
-            stop();
-        }*/
     }
 
     @Override
     public void reset() {
         actor.stoppedMoving();
         isDone = false;
-        isFirst = false;
+        isFirst = true;
         //time = 0;
         duration = 0;
     }
