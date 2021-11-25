@@ -24,6 +24,7 @@ public class Door extends AbstractActor implements Openable, Usable<Actor> {
         VERTICAL,
         HORIZONTAL
     }
+    private Orientation doorOrientation;
 
     public static final Topic<Door> DOOR_OPENED = Topic.create("door opened", Door.class);
     public static final Topic<Door> DOOR_CLOSED = Topic.create("door closed", Door.class);
@@ -40,8 +41,12 @@ public class Door extends AbstractActor implements Openable, Usable<Actor> {
         opened = false;
 
         if(orientation == Orientation.VERTICAL){
+            doorOrientation = orientation;
+
             setAnimation(closedDoorAnimation);
         } else if(orientation == Orientation.HORIZONTAL){
+            doorOrientation = orientation;
+
             closedDoorAnimation = new Animation("sprites/hdoor.png", 32, 16, 0.1f, Animation.PlayMode.ONCE);
             openedDoorAnimation = new Animation("sprites/hdoor.png", 32, 16, 0.1f, Animation.PlayMode.ONCE_REVERSED);
 
@@ -69,7 +74,21 @@ public class Door extends AbstractActor implements Openable, Usable<Actor> {
     public void open() {
         opened = true;
 
-        Objects.requireNonNull(getScene()).getMap().getTile(getPosX()/16, getPosY()/16).setType(MapTile.Type.CLEAR);
+        /*if(doorOrientation == Orientation.HORIZONTAL){
+            Objects.requireNonNull(getScene()).getMap().getTile(this.getPosX()/16 - 1, this.getPosY()/16).setType(MapTile.Type.CLEAR);
+            Objects.requireNonNull(getScene()).getMap().getTile(this.getPosX()/16 - 1, this.getPosY()/16 + 1).setType(MapTile.Type.CLEAR);
+        } else{
+            Objects.requireNonNull(getScene()).getMap().getTile(this.getPosX()/16, this.getPosY()/16).setType(MapTile.Type.CLEAR);
+            Objects.requireNonNull(getScene()).getMap().getTile(this.getPosX()/16 + 1, this.getPosY()/16).setType(MapTile.Type.CLEAR);
+        }*/
+
+        if(doorOrientation == Orientation.VERTICAL){
+            Objects.requireNonNull(getScene()).getMap().getTile(this.getPosX()/16, this.getPosY()/16).setType(MapTile.Type.CLEAR);
+            Objects.requireNonNull(getScene()).getMap().getTile(this.getPosX()/16, this.getPosY()/16 + 1).setType(MapTile.Type.CLEAR);
+        } else{
+            Objects.requireNonNull(getScene()).getMap().getTile(this.getPosX()/16, this.getPosY()/16).setType(MapTile.Type.CLEAR);
+            Objects.requireNonNull(getScene()).getMap().getTile(this.getPosX()/16 + 1, this.getPosY()/16).setType(MapTile.Type.CLEAR);
+        }
 
         setAnimation(openedDoorAnimation);
 
@@ -82,7 +101,25 @@ public class Door extends AbstractActor implements Openable, Usable<Actor> {
     public void close() {
         opened = false;
 
-        Objects.requireNonNull(getScene()).getMap().getTile(getPosX()/16, getPosY()/16).setType(MapTile.Type.WALL);
+        /*if(doorOrientation == Orientation.HORIZONTAL){
+            Objects.requireNonNull(getScene()).getMap().getTile(this.getPosX()/16 - 1, this.getPosY()/16).setType(MapTile.Type.WALL);
+            Objects.requireNonNull(getScene()).getMap().getTile(this.getPosX()/16 - 1, this.getPosY()/16 + 1).setType(MapTile.Type.WALL);
+        } else{*/
+            //Objects.requireNonNull(getScene()).getMap().getTile(this.getPosX()/16, this.getPosY()/16).setType(MapTile.Type.WALL);
+            //Objects.requireNonNull(getScene()).getMap().getTile(this.getPosX()/16 + 1, this.getPosY()/16).setType(MapTile.Type.WALL);
+        //}
+
+        /*if(doorOrientation == Orientation.HORIZONTAL){
+            Objects.requireNonNull(getScene()).getMap().getTile(this.getPosX()/16, this.getPosY()/16).setType(MapTile.Type.WALL);
+            Objects.requireNonNull(getScene()).getMap().getTile(this.getPosX()/16 + 1, this.getPosY()/16).setType(MapTile.Type.WALL);
+        }*/
+        if(doorOrientation == Orientation.VERTICAL){
+            Objects.requireNonNull(getScene()).getMap().getTile(this.getPosX()/16, this.getPosY()/16).setType(MapTile.Type.WALL);
+            Objects.requireNonNull(getScene()).getMap().getTile(this.getPosX()/16, this.getPosY()/16 + 1).setType(MapTile.Type.WALL);
+        } else{
+            Objects.requireNonNull(getScene()).getMap().getTile(this.getPosX()/16, this.getPosY()/16).setType(MapTile.Type.WALL);
+            Objects.requireNonNull(getScene()).getMap().getTile(this.getPosX()/16 + 1, this.getPosY()/16).setType(MapTile.Type.WALL);
+        }
 
         setAnimation(closedDoorAnimation);
 

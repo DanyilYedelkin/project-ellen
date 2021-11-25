@@ -50,7 +50,9 @@ public enum Direction {
     }
 
     public static Direction fromAngle(float angle){
-        if(angle == 45){
+        if(angle == 0){
+            return NORTH;
+        } else if(angle == 45){
             return NORTHWEST;
         } else if(angle == 90){
             return WEST;
@@ -62,13 +64,9 @@ public enum Direction {
             return SOUTHEAST;
         } else if(angle == 270){
             return EAST;
-        } else if(angle == 315){
+        } else{
             return NORTHEAST;
-        } else if(angle == 360){
-            return NORTH;
         }
-
-        return NORTH;
     }
 
 

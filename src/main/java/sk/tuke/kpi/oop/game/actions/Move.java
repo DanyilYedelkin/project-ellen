@@ -13,7 +13,7 @@ public class Move<A extends Movable> implements Action<A> {
     private float duration;
     private boolean isDone;
     private boolean isFirst;
-    private int time;
+    //private int time;
 
     public Move(Direction direction, float duration) {
         // implementation of actor's constructor
@@ -21,14 +21,14 @@ public class Move<A extends Movable> implements Action<A> {
         isFirst = false;
         this.direction = direction;
         this.duration = duration;
-        time = 0;
+        //time = 0;
     }
     public Move(Direction direction) {
         // implementation of actor's constructor
         isDone = false;
         isFirst = false;
         this.direction = direction;
-        time = 0;
+        //time = 0;
     }
 
     @Override
@@ -85,12 +85,12 @@ public class Move<A extends Movable> implements Action<A> {
             }
         }
 
-        if(Math.abs(deltaTime - duration) <= 1e-5){
+        /*if(Math.abs(deltaTime - duration) <= 1e-5){
             isDone = true;
             isFirst = false;
             //actor.stoppedMoving();
             stop();
-        }
+        }*/
     }
 
     @Override
@@ -98,7 +98,7 @@ public class Move<A extends Movable> implements Action<A> {
         actor.stoppedMoving();
         isDone = false;
         isFirst = false;
-        time = 0;
+        //time = 0;
         duration = 0;
     }
 
