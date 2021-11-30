@@ -37,8 +37,8 @@ public class Ripley extends AbstractActor implements Movable, Keeper, Alive, Arm
         //energy = 60;
         health = new Health(100, 100);
         speed = 2;
-        ammo = 100;
-        weapon = new Gun(100,150);
+        ammo = 50;
+        weapon = new Gun(20,400);
         backpack = new Backpack("Ripley's backpack", 10);
 
         ripleyAnimation = new Animation("sprites/player.png",

@@ -3,8 +3,10 @@ package sk.tuke.kpi.oop.game.scenarios;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import sk.tuke.kpi.gamelib.*;
-//import sk.tuke.kpi.gamelib.actions.Invoke;
-//import sk.tuke.kpi.gamelib.actions.When;
+import sk.tuke.kpi.oop.game.Computer;
+import sk.tuke.kpi.oop.game.Cooler;
+import sk.tuke.kpi.oop.game.Reactor;
+import sk.tuke.kpi.oop.game.Ventilator;
 import sk.tuke.kpi.oop.game.behaviours.RandomlyMoving;
 import sk.tuke.kpi.oop.game.characters.Alien;
 import sk.tuke.kpi.oop.game.characters.AlienMother;
@@ -12,44 +14,50 @@ import sk.tuke.kpi.oop.game.characters.Ripley;
 import sk.tuke.kpi.oop.game.controllers.KeeperController;
 import sk.tuke.kpi.oop.game.controllers.MovableController;
 import sk.tuke.kpi.oop.game.controllers.ShooterController;
-import sk.tuke.kpi.oop.game.items.AccessCard;
-import sk.tuke.kpi.oop.game.items.Ammo;
-import sk.tuke.kpi.oop.game.items.Energy;
+import sk.tuke.kpi.oop.game.items.*;
 import sk.tuke.kpi.oop.game.openables.Door;
 import sk.tuke.kpi.oop.game.openables.LockedDoor;
 
-public class EscapeRoom implements SceneListener {
+
+public class DieHard implements SceneListener {
     private Energy energy;
     private Ammo ammo;
     private Ripley ellen;
 
-    public static class Factory implements ActorFactory {
+
+    public static class Factory implements ActorFactory{
+        private Reactor reactor;
+
         @Override
         public @Nullable Actor create(@Nullable String type, @Nullable String name) {
             assert name != null;
             switch(name){
                 case "ellen":
                     return new Ripley();
-                    //<object id="1" name="ellen" type="ripley" x="416" y="192" width="32" height="32"/>
                 case "energy":
                     return new Energy();
-                case "exit door":
-                    //return new LockedDoor(name, Door.Orientation.VERTICAL);
-                case "front door":
-                    return new Door(name, Door.Orientation.VERTICAL);
-                    //return new LockedDoor(name, Door.Orientation.VERTICAL);
+                case "door":
+                    //return new Door(name, Door.Orientation.VERTICAL);
+                    return new LockedDoor(name, Door.Orientation.VERTICAL);
                 case "back door":
-                    return new Door(name, Door.Orientation.HORIZONTAL);
-                    //return new LockedDoor(name, Door.Orientation.HORIZONTAL);
+                    //return new Door(name, Door.Orientation.HORIZONTAL);
+                    return new LockedDoor(name, Door.Orientation.HORIZONTAL);
                 case "alien":
-                    //return new Alien();
-                    //return new Alien(100, new RandomlyMoving());
+                    return new Alien(80, new RandomlyMoving());
                 case "alien mother":
-                    //return new AlienMother(200);
-                    //return new AlienMother(200, new RandomlyMoving());
-                    //<object id="17" name="front door" type="waiting2" x="112" y="224" width="78" height="127"/>
+                    return new AlienMother(200, new RandomlyMoving());
                 case "ammo":
                     return new Ammo();
+                case "computer":
+                    return new Computer();
+                case "ventilator":
+                    return new Ventilator();
+                case "access card":
+                    return new AccessCard();
+                case "hammer":
+                    return new Hammer();
+                case "cooler":
+                    return new Cooler(reactor);
                 default:
                     return null;
             }
@@ -69,8 +77,8 @@ public class EscapeRoom implements SceneListener {
 
         scene.getGame().pushActorContainer(ellen.getBackpack());
 
-        AccessCard accessCard = new AccessCard();
-        ellen.getBackpack().add(accessCard);
+        //AccessCard accessCard = new AccessCard();
+        //ellen.getBackpack().add(accessCard);
 
         scene.getMessageBus().subscribe(Ripley.RIPLEY_DIED, (Ripley)->movableController.dispose());
         scene.getMessageBus().subscribe(Ripley.RIPLEY_DIED, (Ripley)->keeperController.dispose());
@@ -93,6 +101,7 @@ public class EscapeRoom implements SceneListener {
         if(ammo != null && ellen.intersects(ammo)){
             ammo.useWith(ellen);
         }
+
     }
 
 

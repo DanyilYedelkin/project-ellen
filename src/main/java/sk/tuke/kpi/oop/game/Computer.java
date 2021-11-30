@@ -10,7 +10,7 @@ public class Computer extends AbstractActor implements EnergyConsumer {
     private Animation computerAnimation; //a computer's animation
 
     public Computer() {
-        isPowered = false;
+        isPowered = true;
         // create animation object
         computerAnimation = new Animation("sprites/computer.png", 80, 48, 0.2f, Animation.PlayMode.LOOP);
         // set actor's animation to just created Animation object

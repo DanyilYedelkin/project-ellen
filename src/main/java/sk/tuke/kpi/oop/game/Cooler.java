@@ -21,7 +21,12 @@ public class Cooler extends AbstractActor  implements Switchable{
         isRunning = false;
 
         setAnimation(new Animation("sprites/fan.png", 32, 32, 0.2f, LOOP_PINGPONG));
-        turnOff();
+        //turnOff();
+        turnOn();
+    }
+
+    public void setReactor(Reactor reactor){
+        this.reactor = reactor;
     }
 
     @Override    //override method for cooler (turn it on)

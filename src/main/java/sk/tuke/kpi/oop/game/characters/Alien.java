@@ -22,9 +22,11 @@ public class Alien extends AbstractActor implements Movable, Alive, Enemy {
     private Health health;
     private Behaviour<? super Alien> behaviour;
     private Disposable attackHero;
+    private int speed;
 
 
     public Alien(){
+        speed = 4;
         alienAnimation = new Animation("sprites/alien.png", 32, 32,
             0.1f, Animation.PlayMode.LOOP_PINGPONG);
         health = new Health(100, 100);
@@ -33,6 +35,7 @@ public class Alien extends AbstractActor implements Movable, Alive, Enemy {
         setAnimation(alienAnimation);
     }
     public Alien(int healthValue, Behaviour<? super Alien> behaviour){
+        speed = 4;
         alienAnimation = new Animation("sprites/alien.png", 32, 32,
             0.1f, Animation.PlayMode.LOOP_PINGPONG);
         health = new Health(healthValue, healthValue);
@@ -46,7 +49,7 @@ public class Alien extends AbstractActor implements Movable, Alive, Enemy {
 
     @Override
     public int getSpeed() {
-        return 2;
+        return Math.max(speed, 0);
     }
 
     @Override
@@ -77,7 +80,7 @@ public class Alien extends AbstractActor implements Movable, Alive, Enemy {
     public void attack(){
         for(Actor hero : Objects.requireNonNull(getScene()).getActors()){
             if(!(hero instanceof Enemy) && hero instanceof Alive && intersects(hero)){
-                ((Alive) hero).getHealth().drain(2);
+                ((Alive) hero).getHealth().drain(10);
 
                 if(attackHero == null){
                     new ActionSequence<>(

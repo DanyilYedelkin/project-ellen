@@ -10,12 +10,14 @@ import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.framework.Player;
 import sk.tuke.kpi.gamelib.framework.actions.Loop;
 import sk.tuke.kpi.gamelib.graphics.Animation;
+import sk.tuke.kpi.oop.game.characters.Ripley;
 
 public class Teleport extends AbstractActor {
     //add private variables
     private Teleport destination;       //a destination of a teleport
     private boolean teleportIsAvaible;  //check if a teleportation is avaible
-    private Player player;              //player
+    //private Player player;              //player
+    private Ripley player;
 
     //private Animation teleportAnimation;
 
@@ -82,7 +84,7 @@ public class Teleport extends AbstractActor {
 
     //new version of the code
     //a method, which teleport the player
-    public void teleportPlayer(Player player) {
+    public void teleportPlayer(Ripley player) { //Player player
         if(this.player != null){
             //for new player's position (into the middle of the teleport)
             int newX = this.getPosX() + 8;
@@ -151,7 +153,7 @@ public class Teleport extends AbstractActor {
     private void teleportation(){
         //for teleporting the player (from A teleport to B teleport)
         if(this.destination != null && checkPlayerPosition()){
-            this.destination.teleportPlayer(this.player);
+            this.destination.teleportPlayer(player);
         }
     }
 
@@ -181,7 +183,9 @@ public class Teleport extends AbstractActor {
     @Override
     public void addedToScene(Scene scene) {
         super.addedToScene(scene);
-        this.player = getScene().getLastActorByType(Player.class);
+        //this.player = getScene().getLastActorByType(Player.class);
+        //this.player = getScene().getLastActorByType(Ripley.class);
+        this.player = scene.getFirstActorByType(Ripley.class);
 
         if(destination != null){
             assert player != null;

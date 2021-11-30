@@ -13,12 +13,13 @@ public class Ventilator extends AbstractActor implements Repairable {
     private boolean destroy;
 
     public Ventilator(){
-        destroy = true;
+        destroy = false;
 
         ventilatorAnimation = new Animation("sprites/ventilator.png", 32, 32,  0.1f, Animation.PlayMode.LOOP_PINGPONG);
 
         setAnimation(ventilatorAnimation);
-        getAnimation().stop();
+        //getAnimation().stop();
+        getAnimation().play();
     }
 
     private boolean isDamaged(){
