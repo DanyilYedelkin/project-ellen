@@ -9,10 +9,7 @@ import sk.tuke.kpi.gamelib.actions.Wait;
 import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.framework.actions.Loop;
 import sk.tuke.kpi.gamelib.graphics.Animation;
-import sk.tuke.kpi.oop.game.items.AccessCard;
-import sk.tuke.kpi.oop.game.items.Ammo;
-import sk.tuke.kpi.oop.game.items.Energy;
-import sk.tuke.kpi.oop.game.items.Hammer;
+import sk.tuke.kpi.oop.game.items.*;
 import sk.tuke.kpi.oop.game.weapons.Bullet;
 
 import java.util.List;
@@ -33,13 +30,15 @@ public class Barrel extends AbstractActor {
         for(Actor item : itemList){
             if(item instanceof Hammer && item.intersects(this) && repeat == 1){
                 Random random = new Random();
-                int randomNumber = random.nextInt(3);
+                int randomNumber = random.nextInt(4);
                 if(randomNumber == 0){
                     getScene().addActor(new AccessCard(), this.getPosX(), this.getPosY());
                 } else if(randomNumber == 1){
                     getScene().addActor(new Ammo(), this.getPosX(), this.getPosY());
-                } else{
+                } else if(randomNumber == 2){
                     getScene().addActor(new Energy(), this.getPosX(), this.getPosY());
+                } else{
+                    getScene().addActor(new BulletproofVest(), this.getPosX(), this.getPosY());
                 }
 
                 getScene().removeActor(this);

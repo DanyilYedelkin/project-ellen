@@ -30,8 +30,6 @@ public class Armor {
     }
 
     public void exhaust(){
-        if(currentArmor > 0){
-            currentArmor = 0;
-        }
+        currentArmor = 0;
     }
 }

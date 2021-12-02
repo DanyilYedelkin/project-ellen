@@ -30,13 +30,11 @@ public class Body extends AbstractActor {
         for(Actor item : itemList){
             if(item instanceof Bullet && item.intersects(this) && repeat){
                 Random random = new Random();
-                int randomNumber = random.nextInt(3);
+                int randomNumber = random.nextInt(2);
                 if(randomNumber == 0){
                     getScene().addActor(new AccessCard(), this.getPosX() + 25, this.getPosY() + 15);
-                } else if(randomNumber == 1){
-                    getScene().addActor(new Ammo(), this.getPosX() + 25, this.getPosY() + 15);
                 } else{
-                    getScene().addActor(new Energy(), this.getPosX() + 25, this.getPosY() + 15);
+                    getScene().addActor(new Ammo(), this.getPosX() + 25, this.getPosY() + 15);
                 }
 
                 getScene().removeActor(this);

@@ -79,8 +79,19 @@ public class Alien extends AbstractActor implements Movable, Alive, Enemy {
 
     public void attack(){
         for(Actor hero : Objects.requireNonNull(getScene()).getActors()){
-            if(!(hero instanceof Enemy) && hero instanceof Alive && intersects(hero)){
-                ((Alive) hero).getHealth().drain(10);
+            if(!(hero instanceof Enemy) && hero instanceof Ripley && intersects(hero)){
+                int damage = 10;
+
+                /*for(int i = 1; i <= damage; i++, damage--){
+                    if(((Ripley) hero).getArmor().getValue() <= 0) break;
+
+                    ((Ripley) hero).getArmor().drain(1);
+                }*/
+                if(((Ripley) hero).getArmor().getValue() > 0){
+                    ((Ripley) hero).getArmor().drain(damage);
+                } else{
+                    ((Ripley) hero).getHealth().drain(damage);
+                }
 
                 if(attackHero == null){
                     new ActionSequence<>(

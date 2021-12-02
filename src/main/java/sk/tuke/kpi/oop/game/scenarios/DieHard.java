@@ -20,6 +20,7 @@ import sk.tuke.kpi.oop.game.openables.LockedDoor;
 import sk.tuke.kpi.oop.game.randomEffect.Barrel;
 import sk.tuke.kpi.oop.game.randomEffect.Body;
 import sk.tuke.kpi.oop.game.randomEffect.BodyTrap;
+import sk.tuke.kpi.oop.game.visual.Engine;
 
 
 public class DieHard implements SceneListener {
@@ -67,7 +68,7 @@ public class DieHard implements SceneListener {
                 case "body":
                     return new Body();
                 case "shield":
-                    return new Shield();
+                    return new BulletproofVest();
                 case "lurker":
                     return new Lurker(50, new RandomlyMoving());
                 case "body trap":
@@ -76,6 +77,8 @@ public class DieHard implements SceneListener {
                     return new CocaCola();
                 case "sprite":
                     return new Sprite();
+                case "engine":
+                    return new Engine();
                 default:
                     return null;
             }

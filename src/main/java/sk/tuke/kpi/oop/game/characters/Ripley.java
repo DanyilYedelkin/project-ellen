@@ -29,6 +29,7 @@ public class Ripley extends AbstractActor implements Movable, Keeper, Alive, Arm
     private int ammo;
     private Backpack backpack;
     private Health health;
+    private Armor armor;
     private Firearm weapon;
     private TunnelFinish tunnelFinish;
     public static final Topic<Ripley> RIPLEY_DIED = Topic.create("ripley died", Ripley.class);
@@ -39,6 +40,7 @@ public class Ripley extends AbstractActor implements Movable, Keeper, Alive, Arm
         super("Ellen");
         //energy = 60;
         health = new Health(100, 100);
+        armor = new Armor(20, 100);
         speed = 2;
         ammo = 20;
         weapon = new Gun(ammo,400);
@@ -110,6 +112,7 @@ public class Ripley extends AbstractActor implements Movable, Keeper, Alive, Arm
 
         getScene().getGame().getOverlay().drawText(" | Energy: " + health.getValue(), xTextPos, yTextPos);
         getScene().getGame().getOverlay().drawText("| Ammo: " + getFirearm().getAmmo(), 255, yTextPos);
+        getScene().getGame().getOverlay().drawText("| Armor: " + armor.getValue(), 375, yTextPos);
     }
 
     public void decreaseEnergy(){
@@ -119,7 +122,11 @@ public class Ripley extends AbstractActor implements Movable, Keeper, Alive, Arm
                     new Invoke<>(() -> {
                         if(health.getValue() > 0){
                             //this.decrease();
-                            getHealth().drain(2);
+                            if(armor.getValue() <= 0){
+                                getHealth().drain(2);
+                            } else{
+                                getArmor().drain(2);
+                            }
                         } else{
                             //for one full animation
                             checkEnergy();
@@ -156,6 +163,10 @@ public class Ripley extends AbstractActor implements Movable, Keeper, Alive, Arm
     @Override
     public Health getHealth() {
         return health;
+    }
+
+    public Armor getArmor(){
+        return armor;
     }
 
     @Override
