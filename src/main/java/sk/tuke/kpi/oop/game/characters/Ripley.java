@@ -12,6 +12,7 @@ import sk.tuke.kpi.gamelib.messages.Topic;
 import sk.tuke.kpi.oop.game.Direction;
 import sk.tuke.kpi.oop.game.Keeper;
 import sk.tuke.kpi.oop.game.Movable;
+import sk.tuke.kpi.oop.game.TunnelFinish;
 import sk.tuke.kpi.oop.game.items.Backpack;
 import sk.tuke.kpi.oop.game.weapons.Firearm;
 import sk.tuke.kpi.oop.game.weapons.Gun;
@@ -29,7 +30,9 @@ public class Ripley extends AbstractActor implements Movable, Keeper, Alive, Arm
     private Backpack backpack;
     private Health health;
     private Firearm weapon;
+    private TunnelFinish tunnelFinish;
     public static final Topic<Ripley> RIPLEY_DIED = Topic.create("ripley died", Ripley.class);
+    public static final Topic<Ripley> RIPLEY_WIN = Topic.create("ripley win", Ripley.class);
 
 
     public Ripley(){
@@ -51,10 +54,18 @@ public class Ripley extends AbstractActor implements Movable, Keeper, Alive, Arm
         stoppedMoving();
 
         health.onExhaustion(() -> {
-            setAnimation(diedRipleyAnimation);
-            Objects.requireNonNull(getScene()).getMessageBus().publish(RIPLEY_DIED,this);
+            if(this.getHealth().getValue() == 0){
+                setAnimation(diedRipleyAnimation);
+                Objects.requireNonNull(getScene()).getMessageBus().publish(RIPLEY_DIED,this);
+            }
         });
 
+        tunnelFinish = new TunnelFinish();
+        tunnelFinish.isOn(() -> {
+            if(this.intersects(tunnelFinish)){
+                Objects.requireNonNull(getScene()).getMessageBus().publish(RIPLEY_WIN,this);
+            }
+        });
     }
 
     @Override
