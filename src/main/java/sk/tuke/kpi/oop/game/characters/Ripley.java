@@ -40,8 +40,8 @@ public class Ripley extends AbstractActor implements Movable, Keeper, Alive, Arm
         //energy = 60;
         health = new Health(100, 100);
         speed = 2;
-        ammo = 50;
-        weapon = new Gun(20,400);
+        ammo = 20;
+        weapon = new Gun(ammo,400);
         backpack = new Backpack("Ripley's backpack", 10);
 
         ripleyAnimation = new Animation("sprites/player.png",
@@ -166,5 +166,13 @@ public class Ripley extends AbstractActor implements Movable, Keeper, Alive, Arm
     @Override
     public void setFirearm(Firearm weapon){
         this.weapon = weapon;
+    }
+
+    public void stealAmmo(int stealingAmount){
+        this.getFirearm().stealAmmo(stealingAmount);
+    }
+
+    public void setSpeed(int speed){
+        this.speed = speed;
     }
 }

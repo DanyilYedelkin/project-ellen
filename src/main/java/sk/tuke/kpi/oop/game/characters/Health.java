@@ -8,6 +8,7 @@ public class Health {
     private int currentHealth;
     private List<ExhaustionEffect> effect;
 
+
     public Health(int pointsHealth, int maxHealth){
         effect = new ArrayList<>();
 

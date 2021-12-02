@@ -67,8 +67,8 @@ public class Alien extends AbstractActor implements Movable, Alive, Enemy {
 
         attackHero = new Loop<>(
             new ActionSequence<>(
-                new Invoke<>(this::attack),
-                new Wait<>(0.5f)
+                new Wait<>(0.5f),
+                new Invoke<>(this::attack)
             )
         ).scheduleFor(this);
     }

@@ -1,4 +1,4 @@
-package sk.tuke.kpi.oop.game.items;
+package sk.tuke.kpi.oop.game.randomEffect;
 
 import org.jetbrains.annotations.NotNull;
 import sk.tuke.kpi.gamelib.Actor;
@@ -9,6 +9,10 @@ import sk.tuke.kpi.gamelib.actions.Wait;
 import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.framework.actions.Loop;
 import sk.tuke.kpi.gamelib.graphics.Animation;
+import sk.tuke.kpi.oop.game.items.AccessCard;
+import sk.tuke.kpi.oop.game.items.Ammo;
+import sk.tuke.kpi.oop.game.items.Energy;
+import sk.tuke.kpi.oop.game.items.Hammer;
 import sk.tuke.kpi.oop.game.weapons.Bullet;
 
 import java.util.List;
@@ -21,12 +25,13 @@ public class Barrel extends AbstractActor {
         setAnimation(new Animation("sprites/barrel.png", 16, 16));
     }
 
-    public void breaking() {
+    public void breaking(){
+        int repeat = 1;
         List<Actor> itemList;
         itemList = Objects.requireNonNull(getScene()).getActors();
 
-        for (Actor item : itemList) {
-            if(item instanceof Hammer && item.intersects(this)){
+        for(Actor item : itemList){
+            if(item instanceof Hammer && item.intersects(this) && repeat == 1){
                 Random random = new Random();
                 int randomNumber = random.nextInt(3);
                 if(randomNumber == 0){
@@ -39,8 +44,9 @@ public class Barrel extends AbstractActor {
 
                 getScene().removeActor(this);
                 getScene().removeActor(item);
+                repeat--;
             }
-            if(item instanceof Bullet && item.intersects(this)){
+            if(item instanceof Bullet && item.intersects(this) && repeat == 1){
                 setAnimation(new Animation("sprites/large_explosion.png",
                     32, 32, 0.1f, Animation.PlayMode.LOOP_PINGPONG));
 
@@ -52,7 +58,7 @@ public class Barrel extends AbstractActor {
                         getScene().removeActor(item);
                     })
                 ).scheduleFor(this);
-
+                repeat--;
             }
         }
     }

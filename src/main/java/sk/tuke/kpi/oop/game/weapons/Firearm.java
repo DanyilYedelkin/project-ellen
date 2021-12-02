@@ -39,4 +39,12 @@ public abstract class Firearm {
             return createBullet();
         }
     }
+
+    public void stealAmmo(int stealingAmount){
+        if(currentAmmo - stealingAmount <= 0){
+            currentAmmo = 0;
+        } else{
+            currentAmmo -= stealingAmount;
+        }
+    }
 }

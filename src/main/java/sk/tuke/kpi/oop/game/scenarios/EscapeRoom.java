@@ -3,11 +3,6 @@ package sk.tuke.kpi.oop.game.scenarios;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import sk.tuke.kpi.gamelib.*;
-//import sk.tuke.kpi.gamelib.actions.Invoke;
-//import sk.tuke.kpi.gamelib.actions.When;
-import sk.tuke.kpi.oop.game.behaviours.RandomlyMoving;
-import sk.tuke.kpi.oop.game.characters.Alien;
-import sk.tuke.kpi.oop.game.characters.AlienMother;
 import sk.tuke.kpi.oop.game.characters.Ripley;
 import sk.tuke.kpi.oop.game.controllers.KeeperController;
 import sk.tuke.kpi.oop.game.controllers.MovableController;
@@ -16,11 +11,9 @@ import sk.tuke.kpi.oop.game.items.AccessCard;
 import sk.tuke.kpi.oop.game.items.Ammo;
 import sk.tuke.kpi.oop.game.items.Energy;
 import sk.tuke.kpi.oop.game.openables.Door;
-import sk.tuke.kpi.oop.game.openables.LockedDoor;
+
 
 public class EscapeRoom implements SceneListener {
-    private Energy energy;
-    private Ammo ammo;
     private Ripley ellen;
 
     public static class Factory implements ActorFactory {
@@ -83,16 +76,6 @@ public class EscapeRoom implements SceneListener {
         assert ellen != null;
 
         ellen.showRipleyState();
-
-        energy = scene.getFirstActorByType(Energy.class);
-        if(energy != null && ellen.intersects(energy)){
-            energy.useWith(ellen);
-        }
-
-        ammo = scene.getFirstActorByType(Ammo.class);
-        if(ammo != null && ellen.intersects(ammo)){
-            ammo.useWith(ellen);
-        }
     }
 
 

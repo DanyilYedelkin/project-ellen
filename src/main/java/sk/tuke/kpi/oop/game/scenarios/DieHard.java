@@ -4,11 +4,12 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import sk.tuke.kpi.gamelib.*;
 import sk.tuke.kpi.oop.game.*;
-import sk.tuke.kpi.oop.game.message.DeathMessage;
 import sk.tuke.kpi.oop.game.behaviours.RandomlyMoving;
-import sk.tuke.kpi.oop.game.message.WinMessage;
 import sk.tuke.kpi.oop.game.characters.Alien;
 import sk.tuke.kpi.oop.game.characters.AlienMother;
+import sk.tuke.kpi.oop.game.characters.Lurker;
+import sk.tuke.kpi.oop.game.message.DeathMessage;
+import sk.tuke.kpi.oop.game.message.WinMessage;
 import sk.tuke.kpi.oop.game.characters.Ripley;
 import sk.tuke.kpi.oop.game.controllers.KeeperController;
 import sk.tuke.kpi.oop.game.controllers.MovableController;
@@ -16,11 +17,12 @@ import sk.tuke.kpi.oop.game.controllers.ShooterController;
 import sk.tuke.kpi.oop.game.items.*;
 import sk.tuke.kpi.oop.game.openables.Door;
 import sk.tuke.kpi.oop.game.openables.LockedDoor;
+import sk.tuke.kpi.oop.game.randomEffect.Barrel;
+import sk.tuke.kpi.oop.game.randomEffect.Body;
+import sk.tuke.kpi.oop.game.randomEffect.BodyTrap;
 
 
 public class DieHard implements SceneListener {
-    private Energy energy;
-    private Ammo ammo;
     private Ripley ellen;
     private  Disposable movableController;
     private  Disposable keeperController;
@@ -62,6 +64,18 @@ public class DieHard implements SceneListener {
                     return new TunnelFinish();
                 case "barrel":
                     return new Barrel();
+                case "body":
+                    return new Body();
+                case "shield":
+                    return new Shield();
+                case "lurker":
+                    return new Lurker(50, new RandomlyMoving());
+                case "body trap":
+                    return new BodyTrap();
+                case "coca cola":
+                    return new CocaCola();
+                case "sprite":
+                    return new Sprite();
                 default:
                     return null;
             }
@@ -97,15 +111,6 @@ public class DieHard implements SceneListener {
 
         ellen.showRipleyState();
 
-        energy = scene.getFirstActorByType(Energy.class);
-        if(energy != null && ellen.intersects(energy)){
-            energy.useWith(ellen);
-        }
-
-        ammo = scene.getFirstActorByType(Ammo.class);
-        if(ammo != null && ellen.intersects(ammo)){
-            ammo.useWith(ellen);
-        }
         if(ellen.getHealth().getValue() == 0){
             DeathMessage deathMessage = new DeathMessage();
             scene.addActor(deathMessage, ellen.getPosX() - 120, ellen.getPosY() - 20);

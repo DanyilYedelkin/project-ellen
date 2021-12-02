@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="70" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="142">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="70" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="166">
  <tileset firstgid="1" name="tileset01" tilewidth="16" tileheight="16" tilecount="500" columns="20">
   <image source="tilesets/tileset01.png" width="320" height="400"/>
  </tileset>
@@ -72,7 +72,7 @@
   <object id="16" name="door" x="353.856" y="210.804" width="16" height="32"/>
   <object id="17" name="door" x="414.68" y="78.8454" width="16" height="32"/>
   <object id="21" name="back door" type="horizontal" x="32.4536" y="351.794" width="32" height="16"/>
-  <object id="31" name="ellen" type="ripley" x="548.948" y="97.4017" width="32" height="32"/>
+  <object id="31" name="lurker" x="559.258" y="219.051" width="32" height="32"/>
   <object id="32" name="ventilator" x="255.134" y="205.649" width="32" height="32"/>
   <object id="33" name="ventilator" x="255.134" y="304.619" width="32" height="32"/>
   <object id="34" name="ventilator" x="255.134" y="400.495" width="32" height="32"/>
@@ -99,7 +99,7 @@
   <object id="73" name="computer" x="542.268" y="577.32" width="65.9794" height="47.4227"/>
   <object id="75" name="cooler" x="158.763" y="637.629" width="32.9897" height="29.8969"/>
   <object id="76" name="cooler" x="332.99" y="720.103" width="32.9897" height="29.8969"/>
-  <object id="77" name="hammer" x="624.742" y="226.804"/>
+  <object id="77" name="hammer" x="42.2678" y="94.8452"/>
   <object id="78" name="alien" type="waiting1" x="979.876" y="618.021" width="32" height="32"/>
   <object id="79" name="alien" type="waiting1" x="1029.36" y="602.557" width="32" height="32"/>
   <object id="80" name="alien" type="waiting1" x="1060.29" y="645.856" width="32" height="32"/>
@@ -123,7 +123,7 @@
   <object id="98" name="ammo" x="318.557" y="418.557"/>
   <object id="99" name="ammo" x="317.526" y="332.99"/>
   <object id="100" name="ammo" x="723.711" y="387.629"/>
-  <object id="101" name="ammo" x="609.278" y="500"/>
+  <object id="101" name="ammo" x="625.773" y="500"/>
   <object id="102" name="alien" type="waiting1" x="52.0412" y="231.423" width="32" height="32"/>
   <object id="103" name="alien" type="waiting1" x="77.8144" y="631.423" width="32" height="32"/>
   <object id="104" name="alien" type="waiting1" x="307.711" y="544.825" width="32" height="32"/>
@@ -162,8 +162,15 @@
   <object id="137" name="alien" type="waiting1" x="95.3402" y="535.546" width="32" height="32"/>
   <object id="138" name="alien" type="waiting1" x="81.9381" y="665.443" width="32" height="32"/>
   <object id="139" name="tunnel for finish" x="961.856" y="81.4433" width="28.866" height="29.8969"/>
-  <object id="140" name="barrel" x="637.113" y="132.99"/>
+  <object id="140" name="barrel" x="44.3299" y="182.474"/>
   <object id="141" name="hammer" x="600" y="141.237"/>
+  <object id="148" name="energy" x="638.144" y="354.639"/>
+  <object id="157" name="body" x="247.918" y="19.0515" width="63.9588" height="40.2474"/>
+  <object id="159" name="shield" x="967.01" y="246.392" width="28.866" height="26.8041"/>
+  <object id="160" name="ellen" type="ripley" x="165.443" y="62.3505" width="32" height="32"/>
+  <object id="161" name="body trap" x="389.67" y="225.237" width="63.9588" height="40.2474"/>
+  <object id="162" name="coca cola" x="92.7835" y="39.1753" width="6" height="23"/>
+  <object id="163" name="sprite" x="118.557" y="88.6598" width="29" height="16"/>
  </objectgroup>
  <layer id="2" name="walls" width="70" height="50" visible="0">
   <data encoding="csv">
