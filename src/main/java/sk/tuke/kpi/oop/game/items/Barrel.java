@@ -21,12 +21,12 @@ public class Barrel extends AbstractActor {
         setAnimation(new Animation("sprites/barrel.png", 16, 16));
     }
 
-    public void rozbiSa() {
-        List<Actor> nastrojeList;
-        nastrojeList = Objects.requireNonNull(getScene()).getActors();
+    public void breaking() {
+        List<Actor> itemList;
+        itemList = Objects.requireNonNull(getScene()).getActors();
 
-        for (Actor nastroj : nastrojeList) {
-            if(nastroj instanceof Hammer && nastroj.intersects(this)){
+        for (Actor item : itemList) {
+            if(item instanceof Hammer && item.intersects(this)){
                 Random random = new Random();
                 int randomNumber = random.nextInt(3);
                 if(randomNumber == 0){
@@ -38,9 +38,9 @@ public class Barrel extends AbstractActor {
                 }
 
                 getScene().removeActor(this);
-                getScene().removeActor(nastroj);
+                getScene().removeActor(item);
             }
-            if(nastroj instanceof Bullet && nastroj.intersects(this)){
+            if(item instanceof Bullet && item.intersects(this)){
                 setAnimation(new Animation("sprites/large_explosion.png",
                     32, 32, 0.1f, Animation.PlayMode.LOOP_PINGPONG));
 
@@ -49,7 +49,7 @@ public class Barrel extends AbstractActor {
                     new Wait<>(time),   //wait some seconds, before it explodes
                     new Invoke<>(() -> {    //removing the bomb from the scene
                         Objects.requireNonNull(getScene()).removeActor(this); //переключается на удаление, иначе анимация взрыва проходит в 0.000001 секунды
-                        getScene().removeActor(nastroj);
+                        getScene().removeActor(item);
                     })
                 ).scheduleFor(this);
 
@@ -61,7 +61,7 @@ public class Barrel extends AbstractActor {
     public void addedToScene(@NotNull Scene scene) {
         super.addedToScene(scene);
         new Loop<>(
-            new Invoke<>(this::rozbiSa)
+            new Invoke<>(this::breaking)
         ).scheduleOn(scene);
     }
 
