@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="70" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="223">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="70" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="246">
  <tileset firstgid="1" name="tileset01" tilewidth="16" tileheight="16" tilecount="500" columns="20">
   <image source="tilesets/tileset01.png" width="320" height="400"/>
  </tileset>
@@ -76,21 +76,9 @@
   <object id="32" name="ventilator" x="255.134" y="205.649" width="32" height="32"/>
   <object id="33" name="ventilator" x="255.134" y="304.619" width="32" height="32"/>
   <object id="34" name="ventilator" x="255.134" y="400.495" width="32" height="32"/>
-  <object id="35" name="alien" type="waiting1" x="26.268" y="475.753" width="32" height="32"/>
-  <object id="36" name="alien" type="waiting1" x="166.474" y="515.959" width="32" height="32"/>
-  <object id="37" name="alien" type="waiting1" x="1014.93" y="705.649" width="32" height="32"/>
-  <object id="38" name="alien" type="waiting1" x="936.577" y="616.99" width="32" height="32"/>
-  <object id="39" name="alien" type="waiting1" x="932.454" y="670.598" width="32" height="32"/>
-  <object id="40" name="alien" type="waiting1" x="981.938" y="719.052" width="32" height="32"/>
-  <object id="41" name="alien" type="waiting1" x="1039.67" y="653.072" width="32" height="32"/>
-  <object id="42" name="alien" type="waiting1" x="1012.87" y="663.382" width="32" height="32"/>
-  <object id="43" name="alien" type="waiting1" x="991.216" y="664.412" width="32" height="32"/>
-  <object id="44" name="alien" type="waiting1" x="1041.73" y="709.773" width="32" height="32"/>
-  <object id="45" name="alien" type="waiting1" x="90.1855" y="186.062" width="32" height="32"/>
-  <object id="46" name="alien" type="waiting1" x="396.371" y="321.113" width="32" height="32"/>
+  <object id="46" name="alien" type="waiting1" x="353.072" y="499.464" width="32" height="32"/>
   <object id="47" name="alien" type="waiting1" x="405.649" y="172.66" width="32" height="32"/>
   <object id="48" name="alien" type="waiting1" x="424.206" y="680.907" width="32" height="32"/>
-  <object id="49" name="alien" type="waiting1" x="357.196" y="509.773" width="32" height="32"/>
   <object id="17" name="alien mother" type="waiting2" x="763.547" y="294.103" width="78" height="127"/>
   <object id="66" name="access card" x="156.949" y="214.681" width="16" height="16"/>
   <object id="67" name="alien mother" type="waiting2" x="75.433" y="478.768" width="78" height="127"/>
@@ -100,50 +88,18 @@
   <object id="75" name="cooler" x="158.763" y="637.629" width="32.9897" height="29.8969"/>
   <object id="76" name="cooler" x="332.99" y="720.103" width="32.9897" height="29.8969"/>
   <object id="77" name="hammer" x="42.2678" y="94.8452"/>
-  <object id="78" name="alien" type="waiting1" x="979.876" y="618.021" width="32" height="32"/>
-  <object id="79" name="alien" type="waiting1" x="1029.36" y="602.557" width="32" height="32"/>
-  <object id="80" name="alien" type="waiting1" x="1060.29" y="645.856" width="32" height="32"/>
-  <object id="81" name="alien" type="waiting1" x="965.443" y="662.351" width="32" height="32"/>
-  <object id="82" name="alien" type="waiting1" x="1057.2" y="600.495" width="32" height="32"/>
-  <object id="83" name="alien" type="waiting1" x="1038.64" y="726.268" width="32" height="32"/>
-  <object id="84" name="alien" type="waiting1" x="1003.59" y="729.361" width="32" height="32"/>
-  <object id="85" name="alien" type="waiting1" x="955.134" y="709.773" width="32" height="32"/>
-  <object id="86" name="alien" type="waiting1" x="982.969" y="669.567" width="32" height="32"/>
-  <object id="87" name="alien" type="waiting1" x="960.289" y="635.546" width="32" height="32"/>
-  <object id="88" name="alien" type="waiting1" x="1013.9" y="633.485" width="32" height="32"/>
-  <object id="89" name="alien" type="waiting1" x="934.515" y="699.464" width="32" height="32"/>
-  <object id="90" name="alien" type="waiting1" x="934.515" y="700.495" width="32" height="32"/>
-  <object id="91" name="alien" type="waiting1" x="915.959" y="662.351" width="32" height="32"/>
-  <object id="92" name="alien" type="waiting1" x="916.99" y="605.649" width="32" height="32"/>
-  <object id="93" name="alien" type="waiting1" x="921.113" y="726.268" width="32" height="32"/>
-  <object id="94" name="alien" type="waiting1" x="969.567" y="726.268" width="32" height="32"/>
-  <object id="95" name="alien" type="waiting1" x="1023.18" y="660.289" width="32" height="32"/>
   <object id="96" name="ammo" x="93.8144" y="150.515"/>
   <object id="97" name="energy" x="316.495" y="228.866"/>
   <object id="98" name="ammo" x="318.557" y="418.557"/>
   <object id="99" name="ammo" x="317.526" y="332.99"/>
   <object id="100" name="ammo" x="723.711" y="387.629"/>
   <object id="101" name="ammo" x="592.783" y="539.175"/>
-  <object id="102" name="alien" type="waiting1" x="45.8552" y="243.794" width="32" height="32"/>
-  <object id="103" name="alien" type="waiting1" x="77.8144" y="631.423" width="32" height="32"/>
   <object id="104" name="alien" type="waiting1" x="307.711" y="544.825" width="32" height="32"/>
   <object id="105" name="alien" type="waiting1" x="378.845" y="640.701" width="32" height="32"/>
-  <object id="106" name="alien" type="waiting1" x="374.722" y="24.2062" width="32" height="32"/>
-  <object id="107" name="alien" type="waiting1" x="155.134" y="157.196" width="32" height="32"/>
-  <object id="108" name="alien" type="waiting1" x="27.299" y="543.794" width="32" height="32"/>
-  <object id="109" name="alien" type="waiting1" x="162.351" y="565.443" width="32" height="32"/>
-  <object id="110" name="alien" type="waiting1" x="109.773" y="656.165" width="32" height="32"/>
-  <object id="111" name="alien" type="waiting1" x="53.0722" y="673.691" width="32" height="32"/>
-  <object id="112" name="alien" type="waiting1" x="102.557" y="613.897" width="32" height="32"/>
-  <object id="113" name="alien" type="waiting1" x="79.8763" y="549.979" width="32" height="32"/>
+  <object id="107" name="clever alien" type="waiting1" x="155.134" y="157.196" width="32" height="32"/>
   <object id="114" name="alien" type="waiting1" x="698.433" y="614.928" width="32" height="32"/>
-  <object id="115" name="alien" type="waiting1" x="776.784" y="512.866" width="32" height="32"/>
-  <object id="116" name="alien" type="waiting1" x="877.814" y="460.289" width="32" height="32"/>
-  <object id="117" name="alien" type="waiting1" x="733.485" y="220.082" width="32" height="32"/>
   <object id="118" name="ammo" x="909.278" y="301.031"/>
   <object id="119" name="alien" type="waiting1" x="716.99" y="547.918" width="32" height="32"/>
-  <object id="120" name="alien" type="waiting1" x="639.67" y="606.68" width="32" height="32"/>
-  <object id="121" name="alien" type="waiting1" x="682.969" y="674.722" width="32" height="32"/>
   <object id="122" name="alien" type="waiting1" x="620.082" y="671.629" width="32" height="32"/>
   <object id="123" name="alien" type="waiting1" x="765.443" y="599.464" width="32" height="32"/>
   <object id="124" name="alien" type="waiting1" x="388.124" y="548.948" width="32" height="32"/>
@@ -151,23 +107,14 @@
   <object id="126" name="alien" type="waiting1" x="410.804" y="639.67" width="32" height="32"/>
   <object id="127" name="alien" type="waiting1" x="726.268" y="440.701" width="32" height="32"/>
   <object id="128" name="alien" type="waiting1" x="800.495" y="442.763" width="32" height="32"/>
-  <object id="129" name="alien" type="waiting1" x="45.8557" y="581.938" width="32" height="32"/>
-  <object id="130" name="alien" type="waiting1" x="131.423" y="552.041" width="32" height="32"/>
-  <object id="131" name="alien" type="waiting1" x="105.649" y="515.959" width="32" height="32"/>
-  <object id="132" name="alien" type="waiting1" x="45.8557" y="514.928" width="32" height="32"/>
-  <object id="133" name="alien" type="waiting1" x="30.3918" y="412.866" width="32" height="32"/>
-  <object id="134" name="alien" type="waiting1" x="40.701" y="389.155" width="32" height="32"/>
-  <object id="135" name="alien" type="waiting1" x="20.0825" y="412.866" width="32" height="32"/>
-  <object id="136" name="alien" type="waiting1" x="37.6082" y="485.031" width="32" height="32"/>
-  <object id="137" name="alien" type="waiting1" x="95.3402" y="535.546" width="32" height="32"/>
-  <object id="138" name="alien" type="waiting1" x="81.9381" y="665.443" width="32" height="32"/>
+  <object id="134" name="alien" type="waiting1" x="165.443" y="534.516" width="32" height="32"/>
   <object id="139" name="tunnel for finish" x="874.227" y="87.6289" width="28.866" height="29.8969"/>
   <object id="140" name="barrel" x="44.3299" y="182.474"/>
   <object id="141" name="hammer" x="755.67" y="145.361"/>
   <object id="148" name="energy" x="638.144" y="354.639"/>
   <object id="157" name="body" x="247.918" y="19.0515" width="63.9588" height="40.2474"/>
   <object id="159" name="shield" x="128.866" y="625.773" width="28.866" height="26.8041"/>
-  <object id="160" name="ellen" type="ripley" x="170.598" y="64.4123" width="32" height="32"/>
+  <object id="160" name="ellen" type="ripley" x="169.567" y="90.1855" width="32" height="32"/>
   <object id="161" name="body trap" x="389.67" y="225.237" width="63.9588" height="40.2474"/>
   <object id="162" name="coca cola" x="335.052" y="322.68" width="6" height="23"/>
   <object id="163" name="sprite" x="118.557" y="88.6598" width="29" height="16"/>
@@ -183,8 +130,7 @@
   <object id="211" name="hammer" x="450.515" y="31.9588"/>
   <object id="212" name="hammer" x="384.536" y="141.237"/>
   <object id="213" name="hammer" x="382.474" y="735.052"/>
-  <object id="214" name="hammer" x="903.093" y="645.361"/>
-  <object id="215" name="hammer" x="903.093" y="616.495"/>
+  <object id="215" name="hammer" x="834.021" y="595.876"/>
   <object id="216" name="hammer" x="877.32" y="645.361"/>
   <object id="217" name="hammer" x="990.722" y="427.835"/>
   <object id="218" name="engine" x="1023.71" y="127.835" width="96" height="64"/>
@@ -192,13 +138,35 @@
   <object id="220" name="body trap" x="553.588" y="102.557" width="63.9588" height="40.2474"/>
   <object id="221" name="body trap" x="563.172" y="326.694" width="63.9588" height="40.2474" rotation="13.2426"/>
   <object id="222" name="body trap" x="555.573" y="482.92" width="63.9588" height="40.2474" rotation="344.578"/>
+  <object id="223" name="vending machines" x="153.608" y="5.15464" width="65" height="65"/>
+  <object id="224" name="money" x="94.8454" y="92.7835" width="16" height="16"/>
+  <object id="225" name="clever alien" type="waiting1" x="404.619" y="329.361" width="32" height="32"/>
+  <object id="226" name="clever alien" type="waiting1" x="66.4742" y="219.052" width="32" height="32"/>
+  <object id="227" name="clever alien" type="waiting1" x="32.4536" y="268.536" width="32" height="32"/>
+  <object id="228" name="clever alien" type="waiting1" x="19.0515" y="510.804" width="32" height="32"/>
+  <object id="229" name="clever alien" type="waiting1" x="93.2784" y="660.289" width="32" height="32"/>
+  <object id="230" name="clever alien" type="waiting1" x="805.649" y="500.495" width="32" height="32"/>
+  <object id="231" name="clever alien" type="waiting1" x="718.021" y="246.887" width="32" height="32"/>
+  <object id="232" name="clever alien" type="waiting1" x="675.753" y="698.433" width="32" height="32"/>
+  <object id="233" name="clever alien" type="waiting1" x="930.392" y="616.99" width="32" height="32"/>
+  <object id="234" name="clever alien" type="waiting1" x="1019.05" y="619.052" width="32" height="32"/>
+  <object id="235" name="clever alien" type="waiting1" x="970.598" y="689.155" width="32" height="32"/>
+  <object id="236" name="clever alien" type="waiting1" x="927.299" y="675.753" width="32" height="32"/>
+  <object id="237" name="clever alien" type="waiting1" x="1042.76" y="702.557" width="32" height="32"/>
+  <object id="238" name="clever alien" type="waiting1" x="976.784" y="732.454" width="32" height="32"/>
+  <object id="239" name="clever alien" type="waiting1" x="982.969" y="634.515" width="32" height="32"/>
+  <object id="240" name="clever alien" type="waiting1" x="1036.58" y="652.041" width="32" height="32"/>
+  <object id="241" name="clever alien" type="waiting1" x="921.113" y="721.113" width="32" height="32"/>
+  <object id="242" name="clever alien" type="waiting1" x="934.515" y="473.691" width="32" height="32"/>
+  <object id="243" name="alien" type="waiting1" x="869.567" y="363.381" width="32" height="32"/>
+  <object id="245" name="clever alien" type="waiting1" x="366.474" y="23.1753" width="32" height="32"/>
  </objectgroup>
- <layer id="2" name="walls" width="70" height="50">
+ <layer id="2" name="walls" width="70" height="50" visible="0">
   <data encoding="csv">
-484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,
-484,484,0,0,0,0,0,0,0,0,0,0,0,484,484,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,484,484,484,484,493,493,493,493,0,0,0,0,0,0,0,0,0,0,0,0,0,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,0,0,
-484,484,484,484,484,0,0,484,484,484,0,0,0,484,484,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,484,484,484,484,493,493,493,493,484,484,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,484,484,0,0,0,0,0,0,0,0,0,
-484,484,484,484,484,0,0,484,484,484,0,0,0,484,484,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,484,484,484,484,484,484,484,484,484,484,0,0,484,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,495,495,0,0,0,0,0,0,0,0,0,
+484,484,484,484,484,484,484,484,484,484,487,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,
+484,484,0,0,0,0,0,0,0,0,487,487,487,484,484,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,484,484,484,484,493,493,493,493,0,0,0,0,0,0,0,0,0,0,0,0,0,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,484,0,0,
+484,484,484,484,484,0,0,484,484,484,487,487,487,484,484,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,484,484,484,484,493,493,493,493,484,484,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,484,484,0,0,0,0,0,0,0,0,0,
+484,484,484,484,484,0,0,484,484,484,487,487,487,487,484,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,484,484,484,484,484,484,484,484,484,484,0,0,484,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,495,495,0,0,0,0,0,0,0,0,0,
 484,484,0,484,0,0,0,0,484,0,0,0,0,0,484,484,484,484,484,484,484,484,484,484,484,484,484,0,0,0,484,484,484,484,484,484,484,484,484,484,484,484,484,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,495,495,495,495,0,0,
 484,0,0,0,0,0,0,0,0,0,0,0,0,0,484,484,0,0,0,0,0,0,0,0,0,0,0,0,0,0,484,484,484,484,0,0,0,0,484,0,484,484,484,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,495,495,495,495,495,495,495,0,0,
 484,0,0,0,0,0,0,0,0,0,0,0,0,0,484,484,0,0,0,0,0,0,0,0,0,0,0,0,0,0,484,484,484,484,0,0,0,0,0,0,484,484,484,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,495,495,495,495,495,495,0,0,0,0,

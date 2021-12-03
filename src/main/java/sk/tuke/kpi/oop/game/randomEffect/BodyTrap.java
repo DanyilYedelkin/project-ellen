@@ -1,6 +1,7 @@
 package sk.tuke.kpi.oop.game.randomEffect;
 
 import sk.tuke.kpi.gamelib.Actor;
+import sk.tuke.kpi.oop.game.behaviours.FollowRipley;
 import sk.tuke.kpi.oop.game.behaviours.RandomlyMoving;
 import sk.tuke.kpi.oop.game.characters.Lurker;
 import sk.tuke.kpi.oop.game.weapons.Bullet;
@@ -22,7 +23,7 @@ public class BodyTrap extends Body {
 
         for(Actor item : itemList){
             if(item instanceof Bullet && item.intersects(this) && repeat){
-                getScene().addActor(new Lurker(50, new RandomlyMoving()), this.getPosX() + 25, this.getPosY() + 15);
+                getScene().addActor(new Lurker(50, new FollowRipley()), this.getPosX() + 25, this.getPosY() + 15);
 
                 getScene().removeActor(this);
                 getScene().removeActor(item);

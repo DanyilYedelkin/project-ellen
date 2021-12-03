@@ -5,6 +5,8 @@ import sk.tuke.kpi.gamelib.Actor;
 import sk.tuke.kpi.gamelib.Scene;
 import sk.tuke.kpi.gamelib.framework.AbstractActor;
 
+import java.util.Objects;
+
 public abstract class BreakableTool<A extends Actor> extends AbstractActor implements Usable<A>{
     //crating private variables
     private int remainingUses;  //a tools' health points
@@ -21,8 +23,8 @@ public abstract class BreakableTool<A extends Actor> extends AbstractActor imple
             this.remainingUses -= 1;
         }
         if(this.remainingUses == 0) { //if health points = 0, we will remove this tool from the scene
+            Objects.requireNonNull(this.getScene()).removeActor(this);
             this.removedFromScene(scene);
-            this.getScene().removeActor(this);
         }
     }
 

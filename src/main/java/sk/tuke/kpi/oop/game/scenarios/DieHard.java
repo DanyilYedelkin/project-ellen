@@ -4,10 +4,13 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import sk.tuke.kpi.gamelib.*;
 import sk.tuke.kpi.oop.game.*;
+import sk.tuke.kpi.oop.game.behaviours.FollowRipley;
 import sk.tuke.kpi.oop.game.behaviours.RandomlyMoving;
 import sk.tuke.kpi.oop.game.characters.Alien;
 import sk.tuke.kpi.oop.game.characters.AlienMother;
 import sk.tuke.kpi.oop.game.characters.Lurker;
+import sk.tuke.kpi.oop.game.market.Money;
+import sk.tuke.kpi.oop.game.market.VendingMachines;
 import sk.tuke.kpi.oop.game.message.DeathMessage;
 import sk.tuke.kpi.oop.game.message.WinMessage;
 import sk.tuke.kpi.oop.game.characters.Ripley;
@@ -47,6 +50,8 @@ public class DieHard implements SceneListener {
                     return new LockedDoor(name, Door.Orientation.HORIZONTAL);
                 case "alien":
                     return new Alien(80, new RandomlyMoving());
+                case "clever alien":
+                    return new Alien(80, new FollowRipley());
                 case "alien mother":
                     return new AlienMother(200, new RandomlyMoving());
                 case "ammo":
@@ -70,7 +75,7 @@ public class DieHard implements SceneListener {
                 case "shield":
                     return new BulletproofVest();
                 case "lurker":
-                    return new Lurker(50, new RandomlyMoving());
+                    return new Lurker(50, new FollowRipley());
                 case "body trap":
                     return new BodyTrap();
                 case "coca cola":
@@ -79,6 +84,10 @@ public class DieHard implements SceneListener {
                     return new Sprite();
                 case "engine":
                     return new Engine();
+                case "money":
+                    return new Money();
+                case "vending machines":
+                    return new VendingMachines();
                 default:
                     return null;
             }

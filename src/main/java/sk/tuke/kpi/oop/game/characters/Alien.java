@@ -12,6 +12,7 @@ import sk.tuke.kpi.gamelib.framework.actions.Loop;
 import sk.tuke.kpi.gamelib.graphics.Animation;
 import sk.tuke.kpi.oop.game.Movable;
 import sk.tuke.kpi.oop.game.behaviours.Behaviour;
+import sk.tuke.kpi.oop.game.market.Money;
 
 //import java.util.List;
 import java.util.Objects;
@@ -71,6 +72,18 @@ public class Alien extends AbstractActor implements Movable, Alive, Enemy {
                 new Invoke<>(this::attack)
             )
         ).scheduleFor(this);
+
+        new Loop<>(
+            new ActionSequence<>(
+                new Invoke<>(this::replace)
+            )
+        ).scheduleFor(this);
+    }
+
+    private void replace(){
+        if(this instanceof AlienMother && this.getHealth().getValue() == 0){
+            Objects.requireNonNull(getScene()).addActor(new Money(), this.getPosX() + 35, this.getPosY() + 35);
+        }
     }
 
     public void restartAttack() {
