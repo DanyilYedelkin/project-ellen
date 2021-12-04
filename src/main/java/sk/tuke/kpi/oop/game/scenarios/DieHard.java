@@ -1,5 +1,6 @@
 package sk.tuke.kpi.oop.game.scenarios;
 
+//add libraries
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import sk.tuke.kpi.gamelib.*;
@@ -22,8 +23,9 @@ import sk.tuke.kpi.oop.game.randomEffect.Body;
 import sk.tuke.kpi.oop.game.randomEffect.BodyTrap;
 import sk.tuke.kpi.oop.game.visual.Engine;
 
-
+//create public class DieHard (my scenario of the game)
 public class DieHard implements SceneListener {
+    //create private variables for gameplay
     private Ripley ellen;
     private  Disposable movableController;
     private  Disposable keeperController;
@@ -36,6 +38,7 @@ public class DieHard implements SceneListener {
         @Override
         public @Nullable Actor create(@Nullable String type, @Nullable String name) {
             assert name != null;
+            //creating actors from the map, using their names
             switch(name){
                 case "ellen":
                     return new Ripley();
@@ -93,22 +96,27 @@ public class DieHard implements SceneListener {
         }
     }
 
+    //a method, which initialized the scene
     @Override
     public void sceneInitialized(@NotNull Scene scene) {
+        //find our ellen (main character)
         ellen = scene.getFirstActorByType(Ripley.class);
         assert ellen != null;
+        //for following the main character
         scene.follow(ellen);
 
-        AlienEgg elienEgg = scene.getFirstActorByType(AlienEgg.class);
+        //for find alien egg in the scene
+        AlienEgg alienEgg = scene.getFirstActorByType(AlienEgg.class);
 
         movableController = scene.getInput().registerListener(new MovableController(ellen));
         keeperController = scene.getInput().registerListener(new KeeperController(ellen));
         shooterController = scene.getInput().registerListener(new ShooterController(ellen));
 
         scene.getGame().pushActorContainer(ellen.getBackpack());
+        //for activate the alien egg after open the door :D
         scene.getMessageBus().subscribe(Door.DOOR_OPENED, (AlienEgg)->{
-            assert elienEgg != null;
-            elienEgg.activate();
+            assert alienEgg != null;
+            alienEgg.activate();
         });
 
 

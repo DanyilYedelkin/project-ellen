@@ -1,13 +1,18 @@
 package sk.tuke.kpi.oop.game;
 
+//create enum Direction
 public enum Direction {
+    //set compass places in the world
     NORTH(0, 1), WEST(-1, 0), SOUTH(0, -1),  EAST(1, 0),
     NORTHWEST(-1, 1), NORTHEAST(1, 1), SOUTHWEST(-1, -1), SOUTHEAST(1, -1), NONE(0, 0);
 
+    //create private final variables
     private final int dx;
     private final int dy;
 
+    //create default Direction
     Direction(int dx, int dy) {
+        //set variables
         this.dx = dx;
         this.dy = dy;
     }
@@ -19,6 +24,7 @@ public enum Direction {
                                  S (180°)
     */
 
+    //a method to get angle
     public float getAngle(){
         if(dx == 1){
             if(dy == 1) return 315.0f;
@@ -51,6 +57,7 @@ public enum Direction {
         }*/
     }
 
+    //a method, which returns direction in the world
     public static Direction fromAngle(float angle){
         if(angle == 0){
             return NORTH;
@@ -71,7 +78,7 @@ public enum Direction {
         }
     }
 
-
+    //methods, which return position in dx and dy
     public int getDx(){
         return dx;
     }
@@ -79,6 +86,7 @@ public enum Direction {
         return dy;
     }
 
+    //a method, which combines two+ directions
     public Direction combine(Direction other){
         if(other == null) return null;
         if(this == other) return this;
@@ -101,6 +109,7 @@ public enum Direction {
             }
         }
 
+        //return new direction (changed direction)
         return newDirection;
     }
 }

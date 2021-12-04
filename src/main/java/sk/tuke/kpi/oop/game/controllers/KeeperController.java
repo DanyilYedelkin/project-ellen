@@ -1,5 +1,6 @@
 package sk.tuke.kpi.oop.game.controllers;
 
+//add libraries
 import org.jetbrains.annotations.NotNull;
 import sk.tuke.kpi.gamelib.Input;
 import sk.tuke.kpi.gamelib.KeyboardListener;
@@ -12,14 +13,17 @@ import sk.tuke.kpi.oop.game.items.Usable;
 
 import java.util.Objects;
 
-
+//create public class KeeperController
 public class KeeperController implements KeyboardListener {
+    //create a private variable keeper
     private Keeper keeper;
 
+    //default KeeperController
     public KeeperController(Keeper keeper) {
         this.keeper = keeper;
     }
 
+    //a method for pressing keys to do something with items in the scene, or in the backpack
     @Override
     public void keyPressed(@NotNull Input.Key key) {
         if(key == Input.Key.ENTER){
