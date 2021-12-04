@@ -12,6 +12,8 @@ import sk.tuke.kpi.gamelib.framework.actions.Loop;
 import sk.tuke.kpi.gamelib.graphics.Animation;
 import sk.tuke.kpi.oop.game.Movable;
 import sk.tuke.kpi.oop.game.behaviours.Behaviour;
+import sk.tuke.kpi.oop.game.items.AccessCard;
+import sk.tuke.kpi.oop.game.market.Money;
 
 import java.util.Objects;
 
@@ -83,11 +85,22 @@ public class Lurker extends AbstractActor implements Movable, Alive, Enemy {
 
         stealAmmo = new Loop<>(
             new ActionSequence<>(
-                new Wait<>(0.5f),
+                new Wait<>(0.3f),
                 new Invoke<>(this::steal)
             )
         ).scheduleFor(this);
 
+        new Loop<>(
+            new ActionSequence<>(
+                new Invoke<>(this::replace)
+            )
+        ).scheduleFor(this);
+    }
+
+    private void replace(){
+        if(this.getHealth().getValue() == 0){
+            Objects.requireNonNull(getScene()).addActor(new AccessCard(), this.getPosX(), this.getPosY());
+        }
     }
 
     private void born(){

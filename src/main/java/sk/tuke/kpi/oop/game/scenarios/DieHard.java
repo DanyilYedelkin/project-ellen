@@ -6,14 +6,11 @@ import sk.tuke.kpi.gamelib.*;
 import sk.tuke.kpi.oop.game.*;
 import sk.tuke.kpi.oop.game.behaviours.FollowRipley;
 import sk.tuke.kpi.oop.game.behaviours.RandomlyMoving;
-import sk.tuke.kpi.oop.game.characters.Alien;
-import sk.tuke.kpi.oop.game.characters.AlienMother;
-import sk.tuke.kpi.oop.game.characters.Lurker;
+import sk.tuke.kpi.oop.game.characters.*;
 import sk.tuke.kpi.oop.game.market.Money;
 import sk.tuke.kpi.oop.game.market.VendingMachines;
 import sk.tuke.kpi.oop.game.message.DeathMessage;
 import sk.tuke.kpi.oop.game.message.WinMessage;
-import sk.tuke.kpi.oop.game.characters.Ripley;
 import sk.tuke.kpi.oop.game.controllers.KeeperController;
 import sk.tuke.kpi.oop.game.controllers.MovableController;
 import sk.tuke.kpi.oop.game.controllers.ShooterController;
@@ -53,7 +50,7 @@ public class DieHard implements SceneListener {
                 case "clever alien":
                     return new Alien(80, new FollowRipley());
                 case "alien mother":
-                    return new AlienMother(200, new RandomlyMoving());
+                    return new AlienMother(200, new FollowRipley());
                 case "ammo":
                     return new Ammo();
                 case "computer":
@@ -88,6 +85,8 @@ public class DieHard implements SceneListener {
                     return new Money();
                 case "vending machines":
                     return new VendingMachines();
+                case "alien egg":
+                    return new AlienEgg(50);
                 default:
                     return null;
             }
@@ -96,16 +95,22 @@ public class DieHard implements SceneListener {
 
     @Override
     public void sceneInitialized(@NotNull Scene scene) {
-
         ellen = scene.getFirstActorByType(Ripley.class);
         assert ellen != null;
         scene.follow(ellen);
+
+        AlienEgg elienEgg = scene.getFirstActorByType(AlienEgg.class);
 
         movableController = scene.getInput().registerListener(new MovableController(ellen));
         keeperController = scene.getInput().registerListener(new KeeperController(ellen));
         shooterController = scene.getInput().registerListener(new ShooterController(ellen));
 
         scene.getGame().pushActorContainer(ellen.getBackpack());
+        scene.getMessageBus().subscribe(Door.DOOR_OPENED, (AlienEgg)->{
+            assert elienEgg != null;
+            elienEgg.activate();
+        });
+
 
         scene.getMessageBus().subscribe(Ripley.RIPLEY_DIED, (Ripley)->movableController.dispose());
         scene.getMessageBus().subscribe(Ripley.RIPLEY_DIED, (Ripley)->keeperController.dispose());

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="70" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="246">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="70" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="256">
  <tileset firstgid="1" name="tileset01" tilewidth="16" tileheight="16" tilecount="500" columns="20">
   <image source="tilesets/tileset01.png" width="320" height="400"/>
  </tileset>
@@ -81,7 +81,6 @@
   <object id="48" name="alien" type="waiting1" x="424.206" y="680.907" width="32" height="32"/>
   <object id="17" name="alien mother" type="waiting2" x="763.547" y="294.103" width="78" height="127"/>
   <object id="66" name="access card" x="156.949" y="214.681" width="16" height="16"/>
-  <object id="67" name="alien mother" type="waiting2" x="75.433" y="478.768" width="78" height="127"/>
   <object id="71" name="cooler" x="334.021" y="641.237" width="32.9897" height="29.8969"/>
   <object id="72" name="cooler" x="157.732" y="688.144" width="32.9897" height="29.8969"/>
   <object id="73" name="computer" x="542.268" y="577.32" width="65.9794" height="47.4227"/>
@@ -107,7 +106,7 @@
   <object id="126" name="alien" type="waiting1" x="410.804" y="639.67" width="32" height="32"/>
   <object id="127" name="alien" type="waiting1" x="726.268" y="440.701" width="32" height="32"/>
   <object id="128" name="alien" type="waiting1" x="800.495" y="442.763" width="32" height="32"/>
-  <object id="134" name="alien" type="waiting1" x="165.443" y="534.516" width="32" height="32"/>
+  <object id="134" name="alien" type="waiting1" x="172.659" y="534.516" width="32" height="32"/>
   <object id="139" name="tunnel for finish" x="874.227" y="87.6289" width="28.866" height="29.8969"/>
   <object id="140" name="barrel" x="44.3299" y="182.474"/>
   <object id="141" name="hammer" x="755.67" y="145.361"/>
@@ -117,7 +116,6 @@
   <object id="160" name="ellen" type="ripley" x="169.567" y="90.1855" width="32" height="32"/>
   <object id="161" name="body trap" x="389.67" y="225.237" width="63.9588" height="40.2474"/>
   <object id="162" name="coca cola" x="335.052" y="322.68" width="6" height="23"/>
-  <object id="163" name="sprite" x="118.557" y="88.6598" width="29" height="16"/>
   <object id="171" name="barrel" x="632.99" y="89.6907"/>
   <object id="190" name="barrel" x="1062.89" y="423.711"/>
   <object id="191" name="barrel" x="1063.92" y="441.237"/>
@@ -139,7 +137,6 @@
   <object id="221" name="body trap" x="563.172" y="326.694" width="63.9588" height="40.2474" rotation="13.2426"/>
   <object id="222" name="body trap" x="555.573" y="482.92" width="63.9588" height="40.2474" rotation="344.578"/>
   <object id="223" name="vending machines" x="153.608" y="5.15464" width="65" height="65"/>
-  <object id="224" name="money" x="94.8454" y="92.7835" width="16" height="16"/>
   <object id="225" name="clever alien" type="waiting1" x="404.619" y="329.361" width="32" height="32"/>
   <object id="226" name="clever alien" type="waiting1" x="66.4742" y="219.052" width="32" height="32"/>
   <object id="227" name="clever alien" type="waiting1" x="32.4536" y="268.536" width="32" height="32"/>
@@ -160,6 +157,14 @@
   <object id="242" name="clever alien" type="waiting1" x="934.515" y="473.691" width="32" height="32"/>
   <object id="243" name="alien" type="waiting1" x="869.567" y="363.381" width="32" height="32"/>
   <object id="245" name="clever alien" type="waiting1" x="366.474" y="23.1753" width="32" height="32"/>
+  <object id="246" name="alien egg" x="59.7938" y="606.186" width="32" height="32"/>
+  <object id="248" name="alien" type="waiting1" x="105.649" y="515.959" width="32" height="32"/>
+  <object id="250" name="access card" x="61.0722" y="698.186" width="16" height="16"/>
+  <object id="251" name="access card" x="452.825" y="732.206" width="16" height="16"/>
+  <object id="252" name="access card" x="449.732" y="589.938" width="16" height="16"/>
+  <object id="253" name="barrel" x="145.361" y="501.031"/>
+  <object id="254" name="barrel" x="324.742" y="493.814"/>
+  <object id="255" name="barrel" x="304.124" y="493.814"/>
  </objectgroup>
  <layer id="2" name="walls" width="70" height="50" visible="0">
   <data encoding="csv">

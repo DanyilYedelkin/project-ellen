@@ -102,7 +102,7 @@ public class Alien extends AbstractActor implements Movable, Alive, Enemy {
                 }*/
                 if(((Ripley) hero).getArmor().getValue() > 0){
                     ((Ripley) hero).getArmor().drain(damage);
-                } else{
+                } else if(((Ripley) hero).getHealth().getValue() > 0){
                     ((Ripley) hero).getHealth().drain(damage);
                 }
 
