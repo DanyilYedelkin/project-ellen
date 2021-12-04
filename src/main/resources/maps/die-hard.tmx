@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="70" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="256">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="70" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="266">
  <tileset firstgid="1" name="tileset01" tilewidth="16" tileheight="16" tilecount="500" columns="20">
   <image source="tilesets/tileset01.png" width="320" height="400"/>
  </tileset>
@@ -76,10 +76,8 @@
   <object id="32" name="ventilator" x="255.134" y="205.649" width="32" height="32"/>
   <object id="33" name="ventilator" x="255.134" y="304.619" width="32" height="32"/>
   <object id="34" name="ventilator" x="255.134" y="400.495" width="32" height="32"/>
-  <object id="46" name="alien" type="waiting1" x="353.072" y="499.464" width="32" height="32"/>
   <object id="47" name="alien" type="waiting1" x="405.649" y="172.66" width="32" height="32"/>
-  <object id="48" name="alien" type="waiting1" x="424.206" y="680.907" width="32" height="32"/>
-  <object id="17" name="alien mother" type="waiting2" x="763.547" y="294.103" width="78" height="127"/>
+  <object id="17" name="alien mother" type="waiting2" x="725.403" y="231.216" width="78" height="127"/>
   <object id="66" name="access card" x="156.949" y="214.681" width="16" height="16"/>
   <object id="71" name="cooler" x="334.021" y="641.237" width="32.9897" height="29.8969"/>
   <object id="72" name="cooler" x="157.732" y="688.144" width="32.9897" height="29.8969"/>
@@ -94,17 +92,11 @@
   <object id="100" name="ammo" x="723.711" y="387.629"/>
   <object id="101" name="ammo" x="592.783" y="539.175"/>
   <object id="104" name="alien" type="waiting1" x="307.711" y="544.825" width="32" height="32"/>
-  <object id="105" name="alien" type="waiting1" x="378.845" y="640.701" width="32" height="32"/>
   <object id="107" name="clever alien" type="waiting1" x="155.134" y="157.196" width="32" height="32"/>
-  <object id="114" name="alien" type="waiting1" x="698.433" y="614.928" width="32" height="32"/>
   <object id="118" name="ammo" x="909.278" y="301.031"/>
   <object id="119" name="alien" type="waiting1" x="716.99" y="547.918" width="32" height="32"/>
-  <object id="122" name="alien" type="waiting1" x="620.082" y="671.629" width="32" height="32"/>
   <object id="123" name="alien" type="waiting1" x="765.443" y="599.464" width="32" height="32"/>
   <object id="124" name="alien" type="waiting1" x="388.124" y="548.948" width="32" height="32"/>
-  <object id="125" name="alien" type="waiting1" x="386.062" y="681.938" width="32" height="32"/>
-  <object id="126" name="alien" type="waiting1" x="410.804" y="639.67" width="32" height="32"/>
-  <object id="127" name="alien" type="waiting1" x="726.268" y="440.701" width="32" height="32"/>
   <object id="128" name="alien" type="waiting1" x="800.495" y="442.763" width="32" height="32"/>
   <object id="134" name="alien" type="waiting1" x="172.659" y="534.516" width="32" height="32"/>
   <object id="139" name="tunnel for finish" x="874.227" y="87.6289" width="28.866" height="29.8969"/>
@@ -138,21 +130,13 @@
   <object id="222" name="body trap" x="555.573" y="482.92" width="63.9588" height="40.2474" rotation="344.578"/>
   <object id="223" name="vending machines" x="153.608" y="5.15464" width="65" height="65"/>
   <object id="225" name="clever alien" type="waiting1" x="404.619" y="329.361" width="32" height="32"/>
-  <object id="226" name="clever alien" type="waiting1" x="66.4742" y="219.052" width="32" height="32"/>
   <object id="227" name="clever alien" type="waiting1" x="32.4536" y="268.536" width="32" height="32"/>
   <object id="228" name="clever alien" type="waiting1" x="19.0515" y="510.804" width="32" height="32"/>
   <object id="229" name="clever alien" type="waiting1" x="93.2784" y="660.289" width="32" height="32"/>
   <object id="230" name="clever alien" type="waiting1" x="805.649" y="500.495" width="32" height="32"/>
   <object id="231" name="clever alien" type="waiting1" x="718.021" y="246.887" width="32" height="32"/>
-  <object id="232" name="clever alien" type="waiting1" x="675.753" y="698.433" width="32" height="32"/>
-  <object id="233" name="clever alien" type="waiting1" x="930.392" y="616.99" width="32" height="32"/>
-  <object id="234" name="clever alien" type="waiting1" x="1019.05" y="619.052" width="32" height="32"/>
-  <object id="235" name="clever alien" type="waiting1" x="970.598" y="689.155" width="32" height="32"/>
-  <object id="236" name="clever alien" type="waiting1" x="927.299" y="675.753" width="32" height="32"/>
   <object id="237" name="clever alien" type="waiting1" x="1042.76" y="702.557" width="32" height="32"/>
   <object id="238" name="clever alien" type="waiting1" x="976.784" y="732.454" width="32" height="32"/>
-  <object id="239" name="clever alien" type="waiting1" x="982.969" y="634.515" width="32" height="32"/>
-  <object id="240" name="clever alien" type="waiting1" x="1036.58" y="652.041" width="32" height="32"/>
   <object id="241" name="clever alien" type="waiting1" x="921.113" y="721.113" width="32" height="32"/>
   <object id="242" name="clever alien" type="waiting1" x="934.515" y="473.691" width="32" height="32"/>
   <object id="243" name="alien" type="waiting1" x="869.567" y="363.381" width="32" height="32"/>
@@ -165,6 +149,16 @@
   <object id="253" name="barrel" x="145.361" y="501.031"/>
   <object id="254" name="barrel" x="324.742" y="493.814"/>
   <object id="255" name="barrel" x="304.124" y="493.814"/>
+  <object id="256" name="monster1" x="713.402" y="425.773" width="72" height="128"/>
+  <object id="257" name="monster2" x="676.371" y="604.041" width="60" height="128"/>
+  <object id="258" name="monster3" x="805.237" y="341.155" width="78" height="127"/>
+  <object id="259" name="alien" type="waiting1" x="988.124" y="632.454" width="32" height="32"/>
+  <object id="260" name="alien" type="waiting1" x="400.495" y="654.103" width="32" height="32"/>
+  <object id="261" name="clever alien" type="waiting1" x="432.454" y="668.536" width="32" height="32"/>
+  <object id="262" name="clever alien" type="waiting1" x="67.5052" y="194.309" width="32" height="32"/>
+  <object id="263" name="barrel" x="346.392" y="493.814"/>
+  <object id="264" name="barrel" x="368.041" y="493.814"/>
+  <object id="265" name="hammer" x="196.907" y="618.557"/>
  </objectgroup>
  <layer id="2" name="walls" width="70" height="50" visible="0">
   <data encoding="csv">

@@ -53,7 +53,13 @@ public class DieHard implements SceneListener {
                 case "clever alien":
                     return new Alien(80, new FollowRipley());
                 case "alien mother":
-                    return new AlienMother(200, new FollowRipley());
+                    return new AlienMother(300, new FollowRipley());
+                case "monster1":
+                    return new Monster1(180, new FollowRipley());
+                case "monster2":
+                    return new Monster2(200, new FollowRipley());
+                case "monster3":
+                    return new Monster3(240, new FollowRipley());
                 case "ammo":
                     return new Ammo();
                 case "computer":
