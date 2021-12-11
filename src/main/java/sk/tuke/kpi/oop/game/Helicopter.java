@@ -1,9 +1,6 @@
 package sk.tuke.kpi.oop.game;
 
-// a method, which turns on our switchable, and change his color
-
 //add libraries
-//import sk.tuke.kpi.gamelib.Scene;
 import sk.tuke.kpi.gamelib.actions.Invoke;
 import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.framework.Player;
@@ -19,7 +16,6 @@ public class Helicopter extends AbstractActor {
 
     //a method with which a helicopter can find the player and punch him
     public void searching(){
-        //if(isOn){     //delete it, because I have a problem with much "if"
             Player player = getScene().getLastActorByType(Player.class);
             int x = player.getPosition().getX();
             int y = player.getPosition().getY();
@@ -42,14 +38,7 @@ public class Helicopter extends AbstractActor {
             if(intersects(player)){
                 player.setEnergy(player.getEnergy() - 1);
             }
-        //}
     }
-
-    /*public void addedToScene(Scene scene) {
-        //super.addedToScene(scene);
-
-        new Loop<>(new Invoke<>(this::searchAndDestroy)).scheduleFor(this);
-    }*/
 
     //a method for search and destroy the player
     public void searchAndDestroy(){
