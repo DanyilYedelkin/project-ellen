@@ -8,9 +8,8 @@ public class Shift<A extends Keeper> extends AbstractAction<A> {
 
     @Override
     public void execute(float deltaTime){
-        if(getActor() == null || getActor().getBackpack().isEmpty() || isDone() /*|| getActor().getBackpack().getSize() == 10*/){
+        if(getActor() == null || getActor().getBackpack().isEmpty() || isDone()){
             setDone(true);
-            //System.out.println("I'm empty, or I'm full !!!!");
         }
         if(!isDone()){
             getActor().getBackpack().shift();
