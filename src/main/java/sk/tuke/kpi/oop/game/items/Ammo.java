@@ -8,10 +8,9 @@ import sk.tuke.kpi.gamelib.actions.Invoke;
 import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.framework.actions.Loop;
 import sk.tuke.kpi.gamelib.graphics.Animation;
-//import sk.tuke.kpi.oop.game.characters.Alive;
 import sk.tuke.kpi.oop.game.characters.Armed;
 import sk.tuke.kpi.oop.game.characters.Ripley;
-//import sk.tuke.kpi.oop.game.characters.Ripley;
+
 
 import java.util.List;
 import java.util.Objects;
@@ -32,12 +31,6 @@ public class Ammo extends AbstractActor implements Usable<Armed>{
     //a method for use ammo by armed actor
     @Override
     public void useWith(Armed armed) {
-        /*if(ripley != null && ripley.getAmmo() < 500 && intersects(ripley)){
-            ripley.setAmmo(ripley.getAmmo() + 50);
-
-            Objects.requireNonNull(getScene()).removeActor(this);
-        }*/
-
         if(armed != null && armed.getFirearm().getAmmo() < 500){
             armed.getFirearm().reload(50);
 
