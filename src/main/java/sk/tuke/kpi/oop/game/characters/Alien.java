@@ -110,11 +110,6 @@ public class Alien extends AbstractActor implements Movable, Alive, Enemy {
                 //set the damage
                 int damage = 10;
 
-                /*for(int i = 1; i <= damage; i++, damage--){
-                    if(((Ripley) hero).getArmor().getValue() <= 0) break;
-
-                    ((Ripley) hero).getArmor().drain(1);
-                }*/
                 //drain the armor hp, and if it will be 0, then alien will drain the ellen's health points
                 if(hero instanceof Ripley && ((Ripley) hero).getArmor().getValue() > 0){
                     ((Ripley) hero).getArmor().drain(damage);
