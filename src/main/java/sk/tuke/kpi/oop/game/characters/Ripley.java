@@ -27,7 +27,6 @@ public class Ripley extends AbstractActor implements Movable, Keeper, Alive, Arm
     private int speed;                  //for ripley's speed of moving
     private Animation ripleyAnimation;  //ripley's animation (default)
     private Animation diedRipleyAnimation; //ripley's dead animation (if ripley is dead)
-    //private int energy;               //for energy
     private int ammo;                   //for ammo
     private Backpack backpack;          //create a backpack for ripley
     private Health health;              //for ripley's health
@@ -43,7 +42,7 @@ public class Ripley extends AbstractActor implements Movable, Keeper, Alive, Arm
     public Ripley(){
         //set default variables
         super("Ellen");
-        //energy = 60;
+
         health = new Health(100, 100);
         armor = new Armor(20, 100);
         speed = 2;
@@ -93,15 +92,6 @@ public class Ripley extends AbstractActor implements Movable, Keeper, Alive, Arm
         ripleyAnimation.stop();
     }
 
-    /*public int getEnergy(){
-        return energy;
-    }*/
-
-    /*public void setEnergy(int energy){
-        if(energy >=0 && energy <= 100){
-            this.energy = energy;
-        }
-    }*/
 
     //a method returns ripley's ammo
     public int getAmmo() { return ammo; }
@@ -146,10 +136,6 @@ public class Ripley extends AbstractActor implements Movable, Keeper, Alive, Arm
                         } else{
                             //for one full animation
                             checkEnergy();
-
-                            //for repeated animation
-                            //this.setAnimation(new Animation("sprites/player_die.png", 32, 32, 0.1f, Animation.PlayMode.ONCE));
-                            //Objects.requireNonNull(getScene()).getMessageBus().publish(RIPLEY_DIED, this);
                         }
                     }),
                     new Wait<>(1))
@@ -158,13 +144,7 @@ public class Ripley extends AbstractActor implements Movable, Keeper, Alive, Arm
             checkEnergy();
         }
     }
-    /*private void decrease(){
-        if(health.getValue() >= 0){
-            energy--;
-        } else{
-            checkEnergy();
-        }
-    }*/
+
     //a method, which checks current situation with ripley's energy points (health points)
     private void checkEnergy(){
         if(health.getValue() <= 0){
