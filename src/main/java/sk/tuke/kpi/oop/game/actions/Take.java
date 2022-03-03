@@ -27,7 +27,6 @@ public class Take<A extends Keeper> extends AbstractAction<A> {
                 if(scene != null && item instanceof Collectible && item.intersects(getActor())){
                     try{
                         // code which can cause exception
-                        //backpack.add(item);
                         getActor().getBackpack().add((Collectible)item);
                         Objects.requireNonNull(scene).removeActor(item);
 
