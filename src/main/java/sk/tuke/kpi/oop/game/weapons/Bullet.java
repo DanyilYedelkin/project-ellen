@@ -10,7 +10,7 @@ import sk.tuke.kpi.gamelib.framework.actions.Loop;
 import sk.tuke.kpi.gamelib.graphics.Animation;
 import sk.tuke.kpi.oop.game.Direction;
 import sk.tuke.kpi.oop.game.characters.Alive;
-//import sk.tuke.kpi.oop.game.characters.Ripley;
+
 
 import java.util.Objects;
 
