@@ -1,15 +1,9 @@
 package sk.tuke.kpi.oop.game;
 
-/* (the code is not perfect, later, it will be modified and improved) */
-
-//add libraries
 import sk.tuke.kpi.gamelib.Scene;
 import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.graphics.Animation;
 import sk.tuke.kpi.oop.game.actions.PerpetualReactorHeating;
-//import sk.tuke.kpi.oop.game.tools.BreakableTool;
-//import sk.tuke.kpi.oop.game.tools.FireExtinguisher;
-//import sk.tuke.kpi.oop.game.tools.Hammer;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -21,7 +15,6 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
     private boolean running;            // a variable, which checks a temperature of the reactor
     private Light light;                // a light for the reactor
     private Set<EnergyConsumer> devices;
-    //private boolean isRepaire;
     private EnergyConsumer device;
 
     private Animation normalAnimation;
@@ -35,7 +28,6 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
         damage = 0;                 // initial damage
         running = false;            // initial working of the reactor
         devices = new HashSet<EnergyConsumer>();
-        //isRepaire = false;
 
         /* create animations for the object */
         normalAnimation = new Animation("sprites/reactor_on.png",
@@ -63,7 +55,7 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
                 temperature += increment;
             } else if (damage >= 33 && damage <= 66) {
                 temperature += Math.round(increment * 1.5f);
-            } else /*if (damage > 66 && damage <= 100)*/ {
+            } else {
                 temperature += increment * 2;
             }
 
@@ -71,7 +63,6 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
             if (temperature > 2000 && temperature < 6000) {
                 damage = (int)Math.floor((temperature - 2000) * 0.025);
             } else if (temperature >= 6000) {
-                //temperature = 6000;
                 damage = 100;
             }
 
@@ -144,7 +135,6 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
 
             //hammer.useWith(hammer);
             updateAnimation();
-            //isRepaire = true;
 
             return true;
         } else return false;
@@ -160,13 +150,6 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
                 device = energyConsumer;
                 device.setPowered(true);
             }
-            /*
-            Iterator<EnergyConsumer> eachDevice = devices.iterator();
-            while(eachDevice.hasNext()){
-                device = eachDevice.next();
-                device.setPowered(true);
-            }
-            */
 
             updateAnimation();
         }
@@ -182,13 +165,6 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
                 device = energyConsumer;
                 device.setPowered(false);
             }
-            /*
-            Iterator<EnergyConsumer> eachDevice = devices.iterator();
-            while(eachDevice.hasNext()){
-                device = eachDevice.next();
-                device.setPowered(false);
-            }
-            */
 
             updateAnimation();
         }
@@ -197,11 +173,6 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
     /* method isOn() which will find out whether reactor is on or off */
     public boolean isOn() {
         return running; // a simple version of the code
-        /*if(running) {
-            return true;
-        } else {
-            return false;
-        }*/
     }
 
     /* a method, which adds the device to a list devices */
@@ -209,7 +180,6 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
         if(device != null){
             devices.add(device);
 
-            //device.setPowered(running);
             if(running) device.setPowered(true);
             else device.setPowered(false);
         }
@@ -238,10 +208,8 @@ public class Reactor extends AbstractActor implements Switchable, Repairable{
     /* method extinguish() which will extinguish burning broken reactor */
     public boolean extinguish() {
         if (damage == 100) {
-            //fireExtinguisher.useWith(fireExtinguisher);
             temperature = 4000;
             setAnimation(estinguishedAnimation);
-            //isRepaire = true;
 
             return true;
         } else return false;
