@@ -39,8 +39,6 @@ public class KeeperController implements KeyboardListener {
             }
         } else if(key == Input.Key.B && keeper.getBackpack().peek() instanceof Usable){
             Use<?> use = new Use<>((Usable<?>) keeper.getBackpack().peek());
-            //keeper.getBackpack().peek()
-            //keeper.getBackpack().getContent().remove(1)
 
             use.scheduleForIntersectingWith(keeper);
         }
