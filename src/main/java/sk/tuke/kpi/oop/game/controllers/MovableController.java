@@ -2,14 +2,12 @@ package sk.tuke.kpi.oop.game.controllers;
 
 //add libraries
 import org.jetbrains.annotations.NotNull;
-//import sk.tuke.kpi.gamelib.Actor;
 import sk.tuke.kpi.gamelib.Disposable;
 import sk.tuke.kpi.gamelib.Input;
 import sk.tuke.kpi.gamelib.KeyboardListener;
 import sk.tuke.kpi.oop.game.Direction;
 import sk.tuke.kpi.oop.game.Movable;
 import sk.tuke.kpi.oop.game.actions.Move;
-//import sk.tuke.kpi.oop.game.characters.Ripley;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -51,7 +49,7 @@ public class MovableController implements KeyboardListener {
             } else if(secondKey == null){
                 secondKey = key;
             }
-            starting();//==================
+            starting();
         }
     }
 
@@ -74,7 +72,7 @@ public class MovableController implements KeyboardListener {
         }
         if(direction != Direction.NONE){
             move = new Move<>(direction, Float.MAX_VALUE);
-            disposable = move.scheduleFor(actor);//==================
+            disposable = move.scheduleFor(actor);
         }
 
     }
