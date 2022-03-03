@@ -1,7 +1,5 @@
 package sk.tuke.kpi.oop.game;
 
-/* (the code is not perfect, later, it will be modified and improved) */
-
 //add libraries
 import sk.tuke.kpi.gamelib.Disposable;
 import sk.tuke.kpi.gamelib.Scene;
@@ -10,64 +8,18 @@ import sk.tuke.kpi.gamelib.actions.Invoke;
 import sk.tuke.kpi.gamelib.actions.Wait;
 import sk.tuke.kpi.gamelib.framework.actions.Loop;
 import sk.tuke.kpi.gamelib.graphics.Animation;
-//import sk.tuke.kpi.oop.game.tools.BreakableTool;
-//import sk.tuke.kpi.oop.game.tools.Wrench;
 
-//import javax.swing.*;
 
 
 public class DefectiveLight extends Light implements Repairable{
-    //private boolean isRunning;
-    //private double randomNumber;
     private boolean isPowered;
     private Animation lightOffAnimation;
     private Animation lightOnAnimation;
-
-    /*public DefectiveLight(){
-        isRunning = false;
-    }
-
-    public void defectiveAct(){
-        if(isRunning == true){
-            randomNumber = Math.random() * 20;
-            if(randomNumber < 3){
-                this.toggle();
-            }
-        } else if(this.isPowered == true){
-            isRunning = true;
-        }
-    }
-
-    @Override
-    public void addedToScene(Scene scene) {
-        super.addedToScene(scene);
-
-        new Loop<>(new Invoke<>(this::defectiveAct)).scheduleFor(this);
-    }
-
-    @Override
-    public boolean repair() {
-
-        new When<>(
-            ()->{
-                new ActionSequence<>(
-                    new Wait<>(5),
-                    new Invoke<>(this::turnOn)
-                ).scheduleFor(this);
-
-                return true;
-            },
-
-        ).scheduleFor(this);
-
-    }*/
-
     private Disposable blinking;
     private boolean isBroken;
 
     public DefectiveLight(){
         super();
-        //this.isRunning = false;
         this.isBroken = true;
 
         lightOnAnimation = new Animation("sprites/light_on.png", 16, 16, 0.1f);
@@ -105,19 +57,11 @@ public class DefectiveLight extends Light implements Repairable{
         this.isBroken = true;
     }
 
-    /*public void repairLight(Wrench wrench){
-        //if(tool instanceof Wrench){
-            wrench.useWith(this);
-            repair();
-        //}
-    }*/
-
     @Override
     public boolean repair(){
         if (this.blinking == null || !this.isBroken) return false;
         this.isBroken = false;
         this.blinking.dispose();
-        //setAnimation(lightOnAnimation);
 
         new ActionSequence<>(
             new Wait<>(10),
