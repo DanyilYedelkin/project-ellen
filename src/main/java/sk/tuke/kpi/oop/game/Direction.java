@@ -31,9 +31,6 @@ public enum Direction {
             else if(dy == 0) return 270.0f;
             else return 225.0f;
         } else if(dx == 0){
-            /*if(dy == 1) return 360.0f;
-            else if(dy == 0) return 0.0f;
-            else return 180.0f;*/
             if(dy == 1) return 0;
             else return 180;
         } else{
@@ -41,20 +38,6 @@ public enum Direction {
             else if(dy == 0) return 90.0f;
             else return 135.0f;
         }
-
-        /*if(dx == 1){
-            if(dy == 1) return 45.0f;
-            else if(dy == 0) return 90.0f;
-            else return 135.0f;
-        } else if(dx == 0){
-            if(dy == 1) return 360.0f;
-            else if(dy == 0) return 0.0f;
-            else return 180.0f;
-        } else{
-            if(dy == 1) return 315.0f;
-            else if(dy == 0) return 270.0f;
-            else return 225.0f;
-        }*/
     }
 
     //a method, which returns direction in the world
@@ -95,12 +78,10 @@ public enum Direction {
         int newY = other.getDy();
 
         Direction newDirection = NONE;
-        if(/*other.getDx() + this.getDx() != 2*/ other.getDx() != this.getDx()) {
-            //other.getX() += this.getX();
+        if(other.getDx() != this.getDx()) {
             newX += this.getDx();
         }
-        if(/*other.getDy() + this.getDy() != 2*/ other.getDy() != this.getDy()) {
-            //other.getY() += this.getY();
+        if(other.getDy() != this.getDy()) {
             newY += this.getDy();
         }
         for(Direction counter : Direction.values()){
