@@ -6,7 +6,6 @@ import sk.tuke.kpi.oop.game.Keeper;
 import sk.tuke.kpi.oop.game.items.Backpack;
 import sk.tuke.kpi.oop.game.items.Collectible;
 
-//import java.util.Objects;
 
 
 public class Drop<A extends Keeper> extends AbstractAction<A> {
@@ -16,42 +15,23 @@ public class Drop<A extends Keeper> extends AbstractAction<A> {
 
     @Override
     public void execute(float deltaTime) {
-        /*if((getActor() != null || !getActor().getBackpack().isEmpty()) && !isDone()){
-            backpack = getActor().getBackpack();
-            scene = getActor().getScene();
 
-            if(!backpack.isEmpty()){
-                //System.out.println("CHEEECK !!!!");
-                int x = getActor().getPosX() + (getActor().getWidth() - Objects.requireNonNull(backpack.peek()).getWidth());
-                int y = getActor().getPosY() + (getActor().getHeight() - Math.abs(backpack.peek().getHeight()/3));
-
-                scene.addActor(Objects.requireNonNull(backpack.peek()), x, y);
-                getActor().getBackpack().remove(Objects.requireNonNull(backpack.peek()));
-            }
-        }
-        setDone(true);*/
-
-
-        if(getActor() == null || getActor().getBackpack().isEmpty() || getActor().getScene() == null){
+        if(getActor() == null || getActor().getBackpack().isEmpty() || getActor().getScene() == null) {
             setDone(true);
         }
-        if(!isDone()){
+        if(!isDone()) {
             backpack = getActor().getBackpack();
             scene = getActor().getScene();
             lastItem = getActor().getBackpack().peek();
-            //assert lastItem != null;
-            //checkDebugging();
 
-            //if(!backpack.isEmpty()){
-                //System.out.println("CHEEECK !!!!");
-                if(this.lastItem != null){
-                    int x = getActor().getPosX() + (getActor().getWidth() - (lastItem.getWidth()));
-                    int y = getActor().getPosY() + (getActor().getHeight() - Math.abs(lastItem.getHeight()/3));
+            if(this.lastItem != null) {
+                 int x = getActor().getPosX() + (getActor().getWidth() - (lastItem.getWidth()));
+                 int y = getActor().getPosY() + (getActor().getHeight() - Math.abs(lastItem.getHeight() / 3));
 
-                    scene.addActor(lastItem, x, y);
-                    getActor().getBackpack().remove(lastItem);
-                }
-            //}
+                 scene.addActor(lastItem, x, y);
+                 getActor().getBackpack().remove(lastItem);
+            }
+            
             setDone(true);
         }
 
@@ -62,8 +42,8 @@ public class Drop<A extends Keeper> extends AbstractAction<A> {
         }
     }
 
-    private void checkDebugging(){
-        if(backpack.isEmpty()){
+    private void checkDebugging() {
+        if(backpack.isEmpty()) {
             System.out.println("I'm empty! You can't peek any items in me");
         }
     }
