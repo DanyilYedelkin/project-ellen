@@ -48,17 +48,6 @@ public class AlienEgg extends AbstractActor implements Armed, Enemy, Alive {
         if(health.getValue() == 0){
             Objects.requireNonNull(getScene()).removeActor(this);
 
-            /*BigExplode bigExplode = new BigExplode();
-            getScene().addActor(bigExplode, this.getPosX(), this.getPosY());
-            float time = 1.6f;
-            new ActionSequence<>(
-                new Wait<>(time),   //wait some seconds, before it explodes
-                new Invoke<>(() -> {    //removing the bomb from the scene
-                    //Objects.requireNonNull(getScene()).removeActor(this); //переключается на удаление, иначе анимация взрыва проходит в 0.000001 секунды
-                    getScene().removeActor(bigExplode);
-                })
-            ).scheduleFor(this);*/
-
             getScene().addActor(new Lurker(50, new FollowRipley()), this.getPosX(), this.getPosY());
         }
     }
