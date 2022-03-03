@@ -5,7 +5,6 @@ import sk.tuke.kpi.gamelib.actions.Action;
 import sk.tuke.kpi.oop.game.Direction;
 import sk.tuke.kpi.oop.game.Movable;
 
-//import java.util.Objects;
 
 public class Move<A extends Movable> implements Action<A> {
     private Direction direction;
@@ -13,7 +12,6 @@ public class Move<A extends Movable> implements Action<A> {
     private float duration;
     private boolean isDone;
     private boolean isFirst;
-    //private int time;
 
     public Move(Direction direction, float duration) {
         // implementation of actor's constructor
@@ -21,14 +19,12 @@ public class Move<A extends Movable> implements Action<A> {
         isFirst = false;
         this.direction = direction;
         this.duration = duration;
-        //time = 0;
     }
     public Move(Direction direction) {
         // implementation of actor's constructor
         isDone = false;
         isFirst = false;
         this.direction = direction;
-        //time = 0;
     }
 
     @Override
@@ -50,16 +46,11 @@ public class Move<A extends Movable> implements Action<A> {
     public void execute(float deltaTime) {
         if(actor == null || getActor() == null) return;
 
-        /*if(deltaTime >= duration){
-            reset();
-        }*/
-
         duration -= deltaTime;
 
         if(Math.abs(deltaTime - duration) <= 1e-5){
             isDone = true;
             isFirst = true;
-            //actor.stoppedMoving();
             stop();
         }
 
@@ -73,10 +64,6 @@ public class Move<A extends Movable> implements Action<A> {
                 // '-' because, if we have '+', we will be walking into another side
                 int x = actor.getPosX() + direction.getDx() * actor.getSpeed();
                 int y = actor.getPosY() + direction.getDy() * actor.getSpeed();
-
-                //removed these variables to get rid of the jitter(shake) effect
-                //int notX = actor.getPosX() + direction.getX() * actor.getSpeed();
-                //int notY = actor.getPosY() - direction.getY() * actor.getSpeed();
 
                 actor.setPosition(x, y);
                 assert getActor() != null;
@@ -98,15 +85,10 @@ public class Move<A extends Movable> implements Action<A> {
         actor.stoppedMoving();
         isDone = false;
         isFirst = true;
-        //time = 0;
         duration = 0;
     }
 
     public void stop(){
-        //isDone = true;
-        //isFirst = true;
-
-        //actor.stoppedMoving();
         if(actor != null){
             isDone = true;
             isFirst = true;
